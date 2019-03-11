@@ -15,7 +15,7 @@
     <meta Content-Type = "application/json" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>E-Counter</title>
+    <title>Pieprzony Rayback</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -31,7 +31,7 @@
 <body>
 
     <form name="hiddenForm" id="hiddenForm" method="POST" action="index.php">
-        <input type="text" name="valueUSD" />
+        <input type="text" name="valueUSD" id="valueUSD"/>
         <input type="text" name="valueEUR" />
         <input type="text" name="valueCHF" />
         <input type="text" name="valueRUB" />
@@ -87,9 +87,9 @@
         <div class="log_panel">
             <form action="proceedLoginData.php" method="post">
 
-            Login
+            Pieprzony login
             <input type="text" name="login" /> <br />
-            Password
+            Pieprzone hasło
             <input type="password" name="password" />
 
             <input type="submit" value="Login" /><br/>

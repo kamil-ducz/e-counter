@@ -24,7 +24,13 @@ $buyGBP = $_POST['buyGBP'];
 
 echo $_SESSION['valueUSD2'];
 
-$link = mysqli_connect($host, $db_user, $db_password);
+	$host = "localhost";
+	$db_user = "root";
+	$db_password = "";
+	$db_name = "usersdatabase";
+
+
+$link = mysqli_connect($host, $db_user, $db_password, $db_name);
 $usersQuery = "UPDATE users SET walletUSD = walletUSD +'$buyUSD', walletEUR = walletEUR +'$buyEUR', walletCHF = walletCHF +'$buyCHF', walletRUB = walletRUB+'$buyRUB', walletCZK = walletCZK +'$buyCZK', walletGBP = walletGBP +'$buyGBP', walletPLN = walletPLN-'$buyUSD'*'$buyCourseUSD'-'$buyEUR'*'$buyCourseEUR'-'$buyCHF'*'$buyCourseCHF'-'$buyRUB'*'$buyCourseRUB'-'$buyCZK'*'$buyCourseCZK'-'$buyGBP'*'$buyCourseGBP'";
 
 

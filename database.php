@@ -1,6 +1,6 @@
 <?php
-
-		session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 		
 class Database			// here we have class Database with most of methods
 {
@@ -9,10 +9,12 @@ class Database			// here we have class Database with most of methods
 	
 	function connect()		// used every time to connect with mysql
 	{
-		require_once('connect.php');	//we need this file and we're configuring everything(host,user,pass etc.) in it
+		require_once('connect.php');	
+
+		//we need this file and we're configuring everything(host,user,pass etc.) in it
 		if (false == isset($this -> connection))		// when there is no connection...
 		{
-			$this -> connection = mysqli_connect($host, $db_user, $db_password);		//asign effect of connection to var connection
+			$this -> connection = mysqli_connect($host, $db_user, $db_password, $db_name);		//asign effect of connection to var connection
 			
 			if (mysqli_connect_errno())		// when there's error in connection this if happens and function returns false
 			{
@@ -87,11 +89,19 @@ class Database			// here we have class Database with most of methods
 	
 	function  registerUser ($name, $surname, $login, $password, $mail, $walletUSD, $walletEUR, $walletCHF, $walletRUB, $walletCZK, $walletGBP, $walletPLN)
 	{
-		$connection = mysqli_connect($host, $db_user, $db_password);
-		//put new user to database and SQL INJECTION protection thanks to mysqli_real_escape_string, sprintf func helps to organize code
-		$query = sprintf("INSERT INTO users(name, surname, login, password, mail, walletUSD, walletEUR, walletCHF, walletRUB, walletCZK, walletGBP, walletPLN) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", mysqli_real_escape_string($connection, $name), mysqli_real_escape_string($connection, $surname), mysqli_real_escape_string($connection, $login), mysqli_real_escape_string($connection, $password), mysqli_real_escape_string($connection, $mail), mysqli_real_escape_string($connection, $walletUSD), mysqli_real_escape_string($connection, $walletEUR), mysqli_real_escape_string($connection, $walletCHF), mysqli_real_escape_string($connection, $walletRUB), mysqli_real_escape_string($connection, $walletCZK), mysqli_real_escape_string($connection, $walletGBP) ,mysqli_real_escape_string($connection, $walletPLN));
+		$host = "localhost";
+		$db_user = "root";
+		$db_password = "";
+		$db_name = "usersdatabase";
+
+		$connection = mysqli_connect($host, $db_user, $db_password, $db_name);
+		//TODO duplicate users cause issue 
+		$query = 'INSERT INTO users(name, surname, login, password, mail, walletUSD, walletEUR, walletCHF, walletRUB, walletCZK, walletGBP, walletPLN) 
+		VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$password.'", "'.$mail.'", "'.$walletUSD.'",
+		 "'.$walletEUR.'", "'.$walletCHF.'", "'.$walletRUB.'", "'.$walletCZK.'", "'.$walletGBP.'",
+		  "'.$walletPLN.'" )';
 		$result = mysqli_query($this -> connection, $query);
-			
+			echo $query;
 		if (true == $result)		//success 
 		{
 			return true;	
@@ -105,12 +115,14 @@ class Database			// here we have class Database with most of methods
 	
 	function loginCheck($login, $password)
 	{
-		
-		$connection =  mysqli_connect($host, $db_user, $db_password);		// set connection to variable
-		
-		// use mysqli_real_escape string for SQL INJECTION protection 
+		$host = "localhost";
+		$db_user = "root";
+		$db_password = "";
+		$db_name = "usersdatabase";
+		$connection =  mysqli_connect($host, $db_user, $db_password, $db_name);		// set connection to variable
 		$query=sprintf("SELECT * FROM Users WHERE login='%s' and password='%s'", mysqli_real_escape_string($connection, $login), mysqli_real_escape_string($connection, $password));
 		$result=mysqli_query($this -> connection, $query);
+
 
 		// Mysql_num_row is counting table row
 		$count=mysqli_num_rows($result);

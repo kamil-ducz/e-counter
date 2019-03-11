@@ -24,19 +24,7 @@
 	$WalletGBP = $_POST['walletGBP'];
 	$WalletPLN = $_POST['walletPLN'];
 	
-	// SQL INJECTION protection
-	$login = htmlentities($login, ENT_QUOTES, "UTF-8");
-	$pass= htmlentities($pass, ENT_QUOTES, "UTF-8");
-	$userName = htmlentities($userName, ENT_QUOTES, "UTF-8");
-	$userSurname = htmlentities($userSurname, ENT_QUOTES, "UTF-8");
-	$userMail = htmlentities($userMail, ENT_QUOTES, "UTF-8");
-	$WalletUSD = htmlentities($WalletUSD, ENT_QUOTES, "UTF-8");
-	$WalletEUR = htmlentities($WalletEUR, ENT_QUOTES, "UTF-8");
-	$WalletCHF = htmlentities($WalletCHF, ENT_QUOTES, "UTF-8");
-	$WalletRUB = htmlentities($WalletRUB, ENT_QUOTES, "UTF-8");
-	$WalletCZK = htmlentities($WalletCZK, ENT_QUOTES, "UTF-8");
-	$WalletGBP = htmlentities($WalletGBP, ENT_QUOTES, "UTF-8");
-	$WalletPLN = htmlentities($WalletPLN, ENT_QUOTES, "UTF-8");
+
 	
 	$db = new Database();		//create new database object
 	
@@ -62,9 +50,10 @@
 
 	if(false == $result)
 	{
-		echo "Unable to register.";
+		$_SESSION['error'] =  "Unable to register.";
 	}
-	
+	else{	
 	$_SESSION['error'] = '<span style="color:yellow">User '.$login.' registered!</span>';
+	}
 	header('location:index.php');
 ?>

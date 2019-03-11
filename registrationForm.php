@@ -35,28 +35,28 @@ Enter your surname:
 <input type="text" name="userSurname" /> <br />
 
 Enter your e-mail: 
-<input type="text" name="mail" /> <br />
+<input type="email" name="mail" /> <br />
 <p>
 How much money you have in USD:
-<input type="text" name="walletUSD" /> <br />
+<input type="text" name="walletUSD" value="10000" /> <br />
 
 How much money you have in EUR:
-<input type="text" name="walletEUR" /> <br />
+<input type="text" name="walletEUR" value="10000" /> <br />
 
 How much money you have in CHF:
-<input type="text" name="walletCHF" /> <br />
+<input type="text" name="walletCHF" value="10000" /> <br />
 
 How much money you have in RUB:
-<input type="text" name="walletRUB" /> <br />
+<input type="text" name="walletRUB" value="10000" /> <br />
 
 How much money you have in CZK:
-<input type="text" name="walletCZK" /> <br />
+<input type="text" name="walletCZK" value="10000" /> <br />
 
 How much money you have in GBP:
-<input type="text" name="walletGBP" /> <br />
+<input type="text" name="walletGBP" value="10000" /> <br />
 
 How much money you have in PLN:
-<input type="text" name="walletPLN" /> <br />
+<input type="text" name="walletPLN" value="10000" /> <br />
 
 <a href="index.php">Back</a>
 <input type="submit" style="height: 30px; width: 80px" value="Register" />

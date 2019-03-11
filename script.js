@@ -1,10 +1,10 @@
-setTimeout(function(){ $("#hiddenForm").submit();clearTimeout() }, 3000);
+setTimeout(function(){ $("#hiddenForm").submit();clearTimeout() }, 300000);
 
 refreshData();
-setInterval("refreshData()", 10000);
+setInterval("refreshData()", 100000);
 
 function setValues()
-{
+{	
     	document.hiddenForm.valueUSD.value = data.items[0].sellPrice;
 		document.hiddenForm.valueEUR.value = data.items[1].sellPrice;
 		document.hiddenForm.valueCHF.value = data.items[2].sellPrice;
