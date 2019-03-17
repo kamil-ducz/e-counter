@@ -1,25 +1,86 @@
+getAndCalcData();
+    
+function getAndCalcData() 
+{
+//-----------------------------------------------------------------------
+// 2) Send a http request with AJAX http://api.jquery.com/jQuery.ajax/
+//-----------------------------------------------------------------------
+//get walletUSD from db
+$.ajax({                                      
+  url: 'api.php',                  //the script to call to get data from database using api.php file        
+  data: "",                        //you can insert url argumnets here to pass to api.php
+								   //for example "id=5&parent=6"
+  dataType: 'json',                //data format      
+  success: function(data)          //on recieve of reply, data has all rows from db so it's data[row][column] format
+  {
+	
+	var id = data[0];              //get id
+	var vname = data[4];           //get name
+    var vwallet = data[6];
+	
+	//--------------------------------------------------------------------
+	// 3) Update html content
+	//--------------------------------------------------------------------
+	$('#output_db').html("<b>id: </b>"+data[0][0]+"<b> name: </b>"+data[0][1] + "<b> walletUSD: </b>" + data[0][2]); //Set output element html
+	//$('#output_db').html(vwallet);
+	//recommend reading up on jquery selectors they are awesome 
+	// http://api.jquery.com/category/selectors/
+
+    //get purchasePrice for USD from webservice
+    $.getJSON("server_content.php")		// was var jqxhr = $.getJSON but working now
+    .done(function(data2) {			//if connection ok
+            //get date and time from string, use split func to seperate string
+            var res1 = data2.publicationDate.split("T");
+            var res2 = res1[1].split(".");	
+            var result = res1[0] + " " + res2[0];		
+            
+            $("#lastUpdate").text("Last update: " +  result + "(GMT+1)");		// write in div with id "last update" (Time:GMT)
+            
+            for (i = 0; i < data2.items.length; i++)			// fill the left table
+            {
+                $("#code" + (i + 1)).text(data2.items[i].code );
+                $("#unit" + (i + 1)).text(data2.items[i].unit );
+                $("#purchasePrice" + (i + 1)).text(data2.items[i].purchasePrice);
+            }
+            
+            for (i = 0; i < data2.items.length; i++)		//fill the right table - sellPrice column
+            {
+                $("#codeSale" + (i + 1)).text(data2.items[i].code );
+                $("#sellPrice" + (i + 1)).text(data2.items[i].sellPrice );
+            }
+
+            for(i = 0; i < 6; i++)  //fill the right table - amount column
+            {
+                $("#amountWallet" + (i + 1)).text(data[0][i+6]);
+                $("#walletValue" + (i + 1)).text(data[0][i+6] * data2.items[i].sellPrice)
+            }
+
+
+            
+            
+            
+
+            
+        })
+        
+        .fail(function() {		//if not connected
+            alert( "Can't connect to the server." );
+        });
+  
+  } 
+});
+
+};
+
+
+
+
+/*
 setTimeout(function(){ $("#hiddenForm").submit();clearTimeout() }, 300000);
 
 refreshData();
 setInterval("refreshData()", 100000);
 
-function setValues()
-{	
-    	document.hiddenForm.valueUSD.value = data.items[0].sellPrice;
-		document.hiddenForm.valueEUR.value = data.items[1].sellPrice;
-		document.hiddenForm.valueCHF.value = data.items[2].sellPrice;
-		document.hiddenForm.valueRUB.value = data.items[3].sellPrice;
-		document.hiddenForm.valueCZK.value = data.items[4].sellPrice;
-		document.hiddenForm.valueGBP.value = data.items[5].sellPrice;
-		
-		document.hiddenForm.valueUSD2.value = data.items[0].purchasePrice;
-		document.hiddenForm.valueEUR2.value = data.items[1].purchasePrice;
-		document.hiddenForm.valueCHF2.value = data.items[2].purchasePrice;
-		document.hiddenForm.valueRUB2.value = data.items[3].purchasePrice;
-		document.hiddenForm.valueCZK2.value = data.items[4].purchasePrice;
-		document.hiddenForm.valueGBP2.value = data.items[5].purchasePrice;
-}
-	
 function refreshData()
 {
 
@@ -43,25 +104,7 @@ function refreshData()
 		{
 			$("#codeb" + (i + 1)).text(data.items[i].code );
 			$("#sellPrice" + (i + 1)).text(data.items[i].sellPrice );
-		}
-                
-        document.hiddenForm.valueUSD.value = data.items[0].sellPrice;
-		document.hiddenForm.valueEUR.value = data.items[1].sellPrice;
-		document.hiddenForm.valueCHF.value = data.items[2].sellPrice;
-		document.hiddenForm.valueRUB.value = data.items[3].sellPrice;
-		document.hiddenForm.valueCZK.value = data.items[4].sellPrice;
-		document.hiddenForm.valueGBP.value = data.items[5].sellPrice;
-		
-		document.hiddenForm.valueUSD2.value = data.items[0].purchasePrice;
-		document.hiddenForm.valueEUR2.value = data.items[1].purchasePrice;
-		document.hiddenForm.valueCHF2.value = data.items[2].purchasePrice;
-		document.hiddenForm.valueRUB2.value = data.items[3].purchasePrice;
-		document.hiddenForm.valueCZK2.value = data.items[4].purchasePrice;
-		document.hiddenForm.valueGBP2.value = data.items[5].purchasePrice;
-
-		//document.hiddenForm.submit();
-
-		//alert("got new values form server!")
+		}           
 
 		
 	  })
@@ -173,3 +216,4 @@ function operationsGBP2()
     document.buyForm.submit();
     document.hiddenForm.submit();
 }
+*/

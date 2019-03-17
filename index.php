@@ -23,27 +23,27 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">		<!-- including stylesheet for index.php -->
     <link rel="stylesheet" href="css/fontello.css" type="text/css">		<!-- including fontello-->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> 	<!-- including google fonts -->
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script language="javascript" type="text/javascript" src="script.js"></script>
 </head>
 
 
 <body>
 
     <form name="hiddenForm" id="hiddenForm" method="POST" action="index.php">
-        <input type="text" name="valueUSD" id="valueUSD"/>
-        <input type="text" name="valueEUR" />
-        <input type="text" name="valueCHF" />
-        <input type="text" name="valueRUB" />
-        <input type="text" name="valueCZK" />
-        <input type="text" name="valueGBP" />
+        <input type="hidden" name="valueUSD" id="valueUSD"/>
+        <input type="hidden" name="valueEUR" />
+        <input type="hidden" name="valueCHF" />
+        <input type="hidden" name="valueRUB" />
+        <input type="hidden" name="valueCZK" />
+        <input type="hidden" name="valueGBP" />
 
-        <input type="text" name="valueUSD2" />
-        <input type="text" name="valueEUR2" />
-        <input type="text" name="valueCHF2" />
-        <input type="text" name="valueRUB2" />
-        <input type="text" name="valueCZK2" />
-        <input type="text" name="valueGBP2" />
+        <input type="hidden" name="valueUSD2" />
+        <input type="hidden" name="valueEUR2" />
+        <input type="hidden" name="valueCHF2" />
+        <input type="hidden" name="valueRUB2" />
+        <input type="hidden" name="valueCZK2" />
+        <input type="hidden" name="valueGBP2" />
         <input type="submit" id="superGuzik" value="submituj" />
         <input type="button" id="hiddenFormButton" value="guzik" />
     </form>
@@ -66,7 +66,9 @@
 
             ?><!-- if logged do the html code from here... -->
             <div class="log_buttons">
-            Logged as <?php echo  $_SESSION['login']?>
+            Logged as 
+            
+            <?php echo  $_SESSION['login']?>
             <a href="userSettings.php"><i align="right" class="icon-cog "></i></a>
             <a href="logout.php"><i align="right" class="icon-power"></i></a>
             </br>
@@ -87,9 +89,9 @@
         <div class="log_panel">
             <form action="proceedLoginData.php" method="post">
 
-            Pieprzony login
+            Login
             <input type="text" name="login" /> <br />
-            Pieprzone hasło
+            Password
             <input type="password" name="password" />
 
             <input type="submit" value="Login" /><br/>
@@ -130,67 +132,42 @@
                 <tr>
                     <td id="code1"></td>
                     <td id="unit1"></td>
-                    <td id="purchasePrice1">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    $_SESSION['valueUSD2'] = $_POST['valueUSD2'];
-
-                    ?>
-                    </td>
+                    <td id="purchasePrice1"></td>
                     <td><input type="button" id="buyUSD" onclick="operationsUSD2()" value="Buy"></td>
                 </tr>
 
                 <tr>
                     <td id="code2"></td>
                     <td id="unit2"></td>
-                    <td id="purchasePrice2"><?php
-                    if(isset($_SESSION['login']))
-                    $_SESSION['valueEUR2'] = $_POST['valueEUR2'];
-                    ?></td>
+                    <td id="purchasePrice2"></td>
                     <td><input type="button" id="buyEUR" onclick="operationsEUR2()"  value="Buy"></td>
                 </tr>
 
                 <tr>
                     <td id="code3"></td>
                     <td id="unit3"></td>
-                    <td id="purchasePrice3">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    $_SESSION['valueCHF2'] = $_POST['valueCHF2'];
-                    ?></td>
+                    <td id="purchasePrice3"></td>
                     <td><input type="button" id="buyCHF" onclick="operationsCHF2()"  value="Buy"></td>
                 </tr>
 
                 <tr>
                     <td id="code4"></td>
                     <td id="unit4"></td>
-                    <td id="purchasePrice4">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    $_SESSION['valueRUB2'] = $_POST['valueRUB2'];
-                    ?></td>
+                    <td id="purchasePrice4"></td>
                     <td><input type="button" id="buyRUB" onclick="operationsRUB2()"  value="Buy"></td>
                 </tr>
 
                 <tr>
                     <td id="code5"></td>
                     <td id="unit5"></td>
-                    <td id="purchasePrice5">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    $_SESSION['valueCZK2'] = $_POST['valueCZK2'];
-                    ?></td>
+                    <td id="purchasePrice5"></td>
                     <td><input type="button" id="buyCZK" onclick="operationsCZK2()"  value="Buy"></td>
                 </tr>
 
                 <tr>
                     <td id="code6"></td>
                     <td id="unit6"></td>
-                    <td id="purchasePrice6">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    $_SESSION['valueGBP2'] = $_POST['valueGBP2'];
-                    ?></td>
+                    <td id="purchasePrice6"></td>
                     <td><input type="button" id="buyGBP" onclick="operationsGBP2()"  value="Buy"></td>
                  </tr>
 
@@ -212,167 +189,52 @@
                 </tr>
 
                 <tr>
-                    <td id="codeb1"></td>
-                    <td id="sellPrice1">5.83</td>
-                    <td>
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-                                                            echo $row[6];
-                    }
-                    ?>
-                    </td>
-
-                    <td id="value1">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                                                             $courseUSD = filter_input(INPUT_POST, 'valueUSD');
-                                                             $walUSD = $_SESSION['walletUSD'];
-                                                            $_SESSION['valueUSD'] = filter_input(INPUT_POST, 'valueUSD');
-                                                            $realVal = $courseUSD * $walUSD;
-                                                            echo $realVal;
-                    }
-                    ?>
-                    </td>
+                    <td id="codeSale1"></td>
+                    <td id="sellPrice1"></td>
+                    <td id="amountWallet1"></td>
+                    <td id="walletValue1"></td>
                     <td><input type="button" name="sellUSD" onclick="operationsUSD();" value="Sell"></td>
                 </tr>
 
                 <tr>
-                    <td id="codeb2"></td>
+                    <td id="codeSale2"></td>
                     <td id="sellPrice2"></td>
-                    <td>
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-                    echo $row[7];
-                    }
-                    ?></td>
-                    <td id="value2">
-
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $_SESSION['valueEUR'] = $_POST['valueEUR'];
-                    $realVal = $_SESSION['valueEUR'] * $_SESSION['walletEUR'];
-                    echo $realVal;
-                    }
-                    ?>
-
-                    </td>
+                    <td id="amountWallet2"></td>
+                    <td id="walletValue2"></td>
                     <td><input type="button" id="sellEUR" onclick="operationsEUR();"  value="Sell"></td>
                 </tr>
 
                 <tr>
-                    <td id="codeb3"></td>
+                    <td id="codeSale3"></td>
                     <td id="sellPrice3"></td>
-                    <td>
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-
-
-                        echo $row[8];
-                    }
-                    ?></td>
-                    <td id="value3">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $_SESSION['valueCHF'] = $_POST['valueCHF'];
-                    $realVal = $_SESSION['valueCHF'] * $_SESSION['walletCHF'];
-                    echo $realVal;
-                    }
-                    ?>
-                    </td>
+                    <td id="amountWallet3"></td>
+                    <td id="walletValue3"></td>
                     <td><input type="button" id="sellCHF" onclick="operationsCHF();"   value="Sell"></td>
                 </tr>
 
                 <tr>
-                    <td id="codeb4"></td>
+                    <td id="codeSale4"></td>
                     <td id="sellPrice4"></td>
-                    <td>
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-
-
-                        echo $row[9];
-                    }
-                    ?></td>
-                    <td id="value4">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $_SESSION['valueRUB'] = $_POST['valueRUB'];
-                    $realVal = $_SESSION['valueRUB'] * $_SESSION['walletRUB'];
-                    echo $realVal;
-                    }
-                    ?>
-                    </td>
+                    <td id="amountWallet4"></td>
+                    <td id="walletValue4"></td>
                     <td><input type="button" id="sellRUB" onclick="operationsRUB();"   value="Sell"></td>
                 </tr>
 
                 <tr>
-                    <td id="codeb5"></td>
-                    <td id="sellPrice5">3.70</td>
-                    <td>
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-                    echo $row[10];
-                    }
-
-
-                    ?></td>
-                    <td id="value5">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $_SESSION['valueCZK'] = $_POST['valueCZK'];
-                    $realVal = $_SESSION['valueCZK'] * $_SESSION['walletCZK'];
-                    echo $realVal;
-                    }
-                    ?>
-                    </td>
+                    <td id="codeSale5"></td>
+                    <td id="sellPrice5"></td>
+                    <td id="amountWallet5"></td>
+                    <td id="walletValue5"></td>
                     <td><input type="button" id="sellCZK" onclick="operationsCZK();"   value="Sell"></td>
                 </tr>
 
                 <tr>
-                    <td id="codeb6"></td>
+                    <td id="codeSale6"></td>
                     <td id="sellPrice6"></td>
-                    <td>
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-                    echo $row[11];
-                    }
-                    ?></td>
-                    <td id="value6">
-                    <?php
-                    if(isset($_SESSION['login']))
-                    {
-                    $_SESSION['valueGBP'] = $_POST['valueGBP'];
-                    $realVal = $_SESSION['valueGBP'] * $_SESSION['walletGBP'];
-                    echo $realVal;
-                    }
-                    ?>
-                    </td>
+                    <td id="amountWallet6"></td>
+                    <td id="walletValue6"></td>
                     <td><input type="button" id="sellGBP" onclick="operationsGBP();"   value="Sell"></td>
                 </tr>
-
 
             </table>
 
