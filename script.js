@@ -2,6 +2,7 @@ getAndCalcData();
     
 function getAndCalcData() 
 {
+    
 //-----------------------------------------------------------------------
 // 2) Send a http request with AJAX http://api.jquery.com/jQuery.ajax/
 //-----------------------------------------------------------------------
@@ -17,7 +18,7 @@ $.ajax({
 	var id = data[0];              //get id
 	var vname = data[4];           //get name
     var vwallet = data[6];
-	
+	console.log("dupsko");
 	//--------------------------------------------------------------------
 	// 3) Update html content
 	//--------------------------------------------------------------------
@@ -51,8 +52,8 @@ $.ajax({
 
             for(i = 0; i < 6; i++)  //fill the right table - amount column
             {
-                $("#amountWallet" + (i + 1)).text(data[0][i+6]);
-                $("#walletValue" + (i + 1)).text(data[0][i+6] * data2.items[i].sellPrice)
+                $("#amountWallet" + (i + 1)).text(data[i+6]);
+                $("#walletValue" + (i + 1)).text(data[i+6] * data2.items[i].sellPrice)
             }
 
 
