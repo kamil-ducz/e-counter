@@ -62,5 +62,5 @@
 	$_SESSION['walletPLN'] = $result['walletPLN'];
 	
 	
-	header('Location: index.php');
+	header('Location: api.php');
 ?>
