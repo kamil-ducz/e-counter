@@ -1,5 +1,6 @@
 getAndCalcData();
-    
+setTimeout(function(){ getAndCalcData(); }, 3000); 
+
 function getAndCalcData() 
 {
     

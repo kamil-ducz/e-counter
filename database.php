@@ -14,7 +14,7 @@ class Database			// here we have class Database with most of methods
 		//we need this file and we're configuring everything(host,user,pass etc.) in it
 		if (false == isset($this -> connection))		// when there is no connection...
 		{
-			$this -> connection = mysqli_connect($host, $db_user, $db_password, $db_name);		//asign effect of connection to var connection
+			$this -> connection = mysqli_connect($host, $db_user, $db_password);		//asign effect of connection to var connection
 			
 			if (mysqli_connect_errno())		// when there's error in connection this if happens and function returns false
 			{
