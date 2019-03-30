@@ -193,7 +193,7 @@
                     <td id="sellPrice1"></td>
                     <td id="amountWallet1"></td>
                     <td id="walletValue1"></td>
-                    <td><input type="button" name="sellUSD" onclick="operationsUSD();" value="Sell"></td>
+                    <td><input type="button" name="sellUSD" onclick="sellUSD();" value="Sell"></td>
                 </tr>
 
                 <tr>
@@ -279,11 +279,15 @@
             {
             $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
             $row = mysqli_fetch_row($result);
+            $walletPLN = $row[12];
+            $totalPLN = $row[6] + $row[7];
 
-                echo "Available PLN:".$row[12];
+                echo "Wallet PLN: ".$walletPLN. "<br>";
+               echo "Total PLN: "?><div id="totalPLN"></div> <?php
             }
             else echo "Log in to check your available money.";
             ?>
+            
         </div>
 
     </div>

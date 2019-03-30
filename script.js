@@ -1,5 +1,5 @@
 getAndCalcData();
-setTimeout(function(){ getAndCalcData(); }, 3000); 
+setInterval(function(){ getAndCalcData(); }, 30000); 
 
 function getAndCalcData() 
 {
@@ -19,7 +19,7 @@ $.ajax({
 	var id = data[0];              //get id
 	var vname = data[4];           //get name
     var vwallet = data[6];
-	console.log("dupsko");
+	console.log("fff");
 	//--------------------------------------------------------------------
 	// 3) Update html content
 	//--------------------------------------------------------------------
@@ -51,16 +51,24 @@ $.ajax({
                 $("#sellPrice" + (i + 1)).text(data2.items[i].sellPrice );
             }
 
-            for(i = 0; i < 6; i++)  //fill the right table - amount column
+            
+            for(i = 0; i < data2.items.length; i++)  //fill the right table - amount and value column
             {
                 $("#amountWallet" + (i + 1)).text(data[i+6]);
-                $("#walletValue" + (i + 1)).text(data[i+6] * data2.items[i].sellPrice)
+                $("#walletValue" + (i + 1)).text(parseFloat(data[i+6] * data2.items[i].sellPrice).toFixed(4));
             }
 
+            var totalPLN = 0;
+            var currentCurrencyValue = [];
 
-            
-            
-            
+            for(i = 0; i < data2.items.length; i++)  //sum all currecies amount value with walletPLN
+            {                
+                currentCurrencyValue[i] = data[i+6] * data2.items[i].sellPrice;
+                console.log(currentCurrencyValue[i]);
+                totalPLN += currentCurrencyValue[i];    
+            }
+            console.log(totalPLN);
+            $("#totalPLN").text(parseFloat(totalPLN.toFixed(4)));           
 
             
         })
@@ -74,6 +82,10 @@ $.ajax({
 
 };
 
+
+function sellUSD() {
+    var sellUSD = prompt("fucking fak fak fak fak!!!");
+}
 
 
 
