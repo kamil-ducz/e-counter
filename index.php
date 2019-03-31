@@ -125,7 +125,7 @@
                 <tr bgcolor="#666666">
                     <td>Currency</td>
                     <td>Unit</td>
-                    <td>Value</td>
+                    <td>We buy at</td>
                     <td>Actions</td>
                 </tr>
     <!-- valueUSD2 means buying, all 2 values to buy -->
@@ -182,7 +182,7 @@
 
                 <tr bgcolor="#666666">
                     <td>Currency</td>
-                    <td>Unit Price</td>
+                    <td>We buy at</td>
                     <td bgcolor="lightblue">Amount</td>
                     <td>Value</td>
                     <td>Actions</td>
@@ -280,7 +280,6 @@
             $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
             $row = mysqli_fetch_row($result);
             $walletPLN = $row[12];
-            $totalPLN = $row[6] + $row[7];
 
                 echo "Wallet PLN: ".$walletPLN. "<br>";
                echo "Total PLN: "?><div id="totalPLN"></div> <?php

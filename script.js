@@ -42,13 +42,13 @@ $.ajax({
             {
                 $("#code" + (i + 1)).text(data2.items[i].code );
                 $("#unit" + (i + 1)).text(data2.items[i].unit );
-                $("#purchasePrice" + (i + 1)).text(data2.items[i].purchasePrice);
+                $("#sellPrice" + (i + 1)).text(data2.items[i].purchasePrice);
             }
             
             for (i = 0; i < data2.items.length; i++)		//fill the right table - sellPrice column
             {
                 $("#codeSale" + (i + 1)).text(data2.items[i].code );
-                $("#sellPrice" + (i + 1)).text(data2.items[i].sellPrice );
+                $("#purchasePrice" + (i + 1)).text(data2.items[i].sellPrice );
             }
 
             
@@ -68,13 +68,19 @@ $.ajax({
                 totalPLN += currentCurrencyValue[i];    
             }
             console.log(totalPLN);
-            $("#totalPLN").text(parseFloat(totalPLN.toFixed(4)));           
+            $("#totalPLN").text(parseFloat(totalPLN.toFixed(4)));
+            
+            
+
+
+
+        
 
             
         })
         
         .fail(function() {		//if not connected
-            alert( "Can't connect to the server." );
+            alert( "Can't connect to the server" );
         });
   
   } 
@@ -82,10 +88,27 @@ $.ajax({
 
 };
 
-
+//https://www.w3schools.com/php/php_ajax_database.asp 
+//use PLNObtained to modify walletPLN for user in db
 function sellUSD() {
-    var sellUSD = prompt("fucking fak fak fak fak!!!");
+    var sellUSDAmount = prompt("Enter USD amount you want to buy");
+    var sellPriceUSD = document.getElementById("sellPrice1").innerHTML;
+    console.log("sell course USD: " + sellPriceUSD);
+    var PLNObtained = sellUSDAmount * sellPriceUSD;
+    console.log("PLN calculated: " + PLNObtained);
+    $.ajax({                                      
+        url: 'sellOperation.php',                  //the script to call to get data from database using api.php file        
+        data: "",                        //you can insert url argumnets here to pass to api.php
+                                         //for example "id=5&parent=6"
+        dataType: 'json',                //data format      
+        success: function(data)          //on recieve of reply, data has all rows from db so it's data[row][column] format
+        {
+
+        }
+    });
+
 }
+
 
 
 
