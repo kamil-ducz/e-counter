@@ -19,7 +19,7 @@ $.ajax({
 	var id = data[0];              //get id
 	var vname = data[4];           //get name
     var vwallet = data[6];
-	console.log("fff");
+	console.log("hujhuj");
 	//--------------------------------------------------------------------
 	// 3) Update html content
 	//--------------------------------------------------------------------
@@ -38,12 +38,18 @@ $.ajax({
             
             $("#lastUpdate").text("Last update: " +  result + "(GMT+1)");		// write in div with id "last update" (Time:GMT)
             
+            $("#dupsko").text("dupaihuj");
+            
+
             for (i = 0; i < data2.items.length; i++)			// fill the left table
             {
                 $("#code" + (i + 1)).text(data2.items[i].code );
                 $("#unit" + (i + 1)).text(data2.items[i].unit );
                 $("#sellPrice" + (i + 1)).text(data2.items[i].purchasePrice);
+                
             }
+
+            
             
             for (i = 0; i < data2.items.length; i++)		//fill the right table - sellPrice column
             {

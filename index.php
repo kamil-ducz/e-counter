@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/fontello.css" type="text/css">		<!-- including fontello-->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> 	<!-- including google fonts -->
     <script language="javascript" type="text/javascript" src="js/jquery-3.3.1.js"></script>
-	<script language="javascript" type="text/javascript" src="script.js"></script>
+	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
 
 
@@ -193,7 +193,12 @@
                     <td id="sellPrice1"></td>
                     <td id="amountWallet1"></td>
                     <td id="walletValue1"></td>
-                    <td><input type="button" name="sellUSD" onclick="sellUSD();" value="Sell"></td>
+                    <td>
+                        <form name="sellUSDForm" method="POST" action="sellOperation.php">
+                            <input type="text" id="dupsko" value="5">
+                            <input type="submit" id="sellUSD" onclick="sellUSD();" value="SellUSD">
+                        </form>
+                    </td>
                 </tr>
 
                 <tr>
