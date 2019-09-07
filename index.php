@@ -189,16 +189,20 @@
                 </tr>
 
                 <tr>
-                    <td id="codeSale1"></td>
-                    <td id="sellPrice1"></td>
-                    <td id="amountWallet1"></td>
-                    <td id="walletValue1"></td>
-                    <td>
-                        <form name="sellUSDForm" method="POST" action="sellOperation.php">
-                            <input type="text" id="dupsko" value="5">
-                            <input type="submit" id="sellUSD" onclick="sellUSD();" value="SellUSD">
-                        </form>
-                    </td>
+                    <form name="sellUSDForm" method="POST" action="sellOperation.php">
+
+                        <td id="codeSale1"></td>
+                        <td id="sellPrice1" name="sellPriceUSD"></td>
+                        <td>
+                            <input type="text" value="">
+                        </td>
+                        <td id="amountWallet1"></td>
+                        <td id="walletValue1"></td>
+                        <td>
+                            <input type="text" name="sellUSD" value="enter USD">
+                            <input type="submit" id="USDSubmit" value="SellUSD">
+                        </td>
+                    </form>
                 </tr>
 
                 <tr>
