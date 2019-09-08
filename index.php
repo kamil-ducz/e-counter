@@ -186,22 +186,20 @@
                     <td bgcolor="lightblue">Amount</td>
                     <td>Value</td>
                     <td>Actions</td>
+                    <td>Finalize</td>
                 </tr>
 
                 <tr>
                     <form name="sellUSDForm" method="POST" action="sellOperation.php">
 
                         <td id="codeSale1"></td>
-                        <td id="sellPrice1" name="sellPriceUSD"></td>
-                        <td>
-                            <input type="text" value="">
-                        </td>
+                        <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
                         <td id="amountWallet1"></td>
                         <td id="walletValue1"></td>
                         <td>
-                            <input type="text" name="sellUSD" value="enter USD">
-                            <input type="submit" id="USDSubmit" value="SellUSD">
+                            <input type="text" name="sellUSD" value="enter dollars">                                                        
                         </td>
+                        <td><input type="submit" id="USDSubmit" value="SellUSD"></td>                         
                     </form>
                 </tr>
 

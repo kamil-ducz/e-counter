@@ -1,5 +1,5 @@
 getAndCalcData();
-setInterval(function(){ getAndCalcData(); }, 30000); 
+setInterval(function(){ getAndCalcData(); }, 30000);
 
 function getAndCalcData() 
 {
@@ -19,7 +19,6 @@ $.ajax({
 	var id = data[0];              //get id
 	var vname = data[4];           //get name
     var vwallet = data[6];
-	console.log("hujhuj");
 	//--------------------------------------------------------------------
 	// 3) Update html content
 	//--------------------------------------------------------------------
@@ -38,8 +37,6 @@ $.ajax({
             
             $("#lastUpdate").text("Last update: " +  result + "(GMT+1)");		// write in div with id "last update" (Time:GMT)
             
-            $("#dupsko").text("dupaihuj");
-            
 
             for (i = 0; i < data2.items.length; i++)			// fill the left table
             {
@@ -49,7 +46,7 @@ $.ajax({
                 
             }
 
-            
+            $('input[name=sellPriceUSD]').val(data2.items[0].purchasePrice);
             
             for (i = 0; i < data2.items.length; i++)		//fill the right table - sellPrice column
             {
@@ -76,13 +73,6 @@ $.ajax({
             console.log(totalPLN);
             $("#totalPLN").text(parseFloat(totalPLN.toFixed(4)));
             
-            
-
-
-
-        
-
-            
         })
         
         .fail(function() {		//if not connected
@@ -92,171 +82,5 @@ $.ajax({
   } 
 });
 
+
 };
-
-//https://www.w3schools.com/php/php_ajax_database.asp 
-//use PLNObtained to modify walletPLN for user in db
-function sellUSD() {
-    var sellUSDAmount = prompt("Enter USD amount you want to buy");
-    var sellPriceUSD = document.getElementById("sellPrice1").innerHTML;
-    console.log("sell course USD: " + sellPriceUSD);
-    var PLNObtained = sellUSDAmount * sellPriceUSD;
-    console.log("PLN calculated: " + PLNObtained);
-    $.ajax({                                      
-        url: 'sellOperation.php',                  //the script to call to get data from database using api.php file        
-        data: "",                        //you can insert url argumnets here to pass to api.php
-                                         //for example "id=5&parent=6"
-        dataType: 'json',                //data format      
-        success: function(data)          //on recieve of reply, data has all rows from db so it's data[row][column] format
-        {
-
-        }
-    });
-
-}
-
-
-
-
-/*
-setTimeout(function(){ $("#hiddenForm").submit();clearTimeout() }, 300000);
-
-refreshData();
-setInterval("refreshData()", 100000);
-
-function refreshData()
-{
-
-	   $.getJSON( "proxy.php")		// was var jqxhr = $.getJSON but working now
-	  .done(function(data) {			//if connection ok
-		//get date and time from string, use split func to seperate string
-		var res1 = data.publicationDate.split("T");
-		var res2 = res1[1].split(".");	
-		var result = res1[0] + " " + res2[0];		
-		
-		$("#lastUpdate").text("Last update: " +  result + "(GMT+1)");		// write in div with id "last update" (Time:GMT)
-		
-		for (i = 0; i < data.items.length; i++)			// fill the left table
-		{
-			$("#code" + (i + 1)).text(data.items[i].code );
-			$("#unit" + (i + 1)).text(data.items[i].unit );
-			$("#purchasePrice" + (i + 1)).text(data.items[i].purchasePrice);
-		}
-		
-		for (i = 0; i < data.items.length; i++)		//fill the right table
-		{
-			$("#codeb" + (i + 1)).text(data.items[i].code );
-			$("#sellPrice" + (i + 1)).text(data.items[i].sellPrice );
-		}           
-
-		
-	  })
-	  .fail(function() {		//if not connected
-		alert( "Can't connect to the server." );
-	  });
-
-}
-
-// selling
-function operationsUSD()
-{
-    var ileUSD = prompt('How much do you want to sell?','100');
-    document.sellForm.sellUSD.value = ileUSD;
-    document.sellForm.submit();
-    sendCurrencies();
-
-}
-
-function operationsEUR()
-{
-    var ileEUR = prompt('How much do you want to sell?','100');
-    document.sellForm.sellEUR.value = ileEUR;
-    document.sellForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsCHF()
-{
-    var ileCHF = prompt('How much do you want to sell?','100');
-    document.sellForm.sellCHF.value = ileCHF;
-    document.sellForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsRUB()
-{
-    var ileRUB = prompt('How much do you want to sell?','100');
-    document.sellForm.sellRUB.value = ileRUB;
-    document.sellForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsCZK()
-{
-    var ileCZK = prompt('How much do you want to sell?','100');
-    document.sellForm.sellCZK.value = ileCZK;
-    document.sellForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsGBP()
-{
-    var ileGBP = prompt('How much do you want to sell?','100');
-    document.sellForm.sellGBP.value = ileGBP;
-    document.sellForm.submit();
-    document.hiddenForm.submit();
-
-}
-//2 means operations - buttons for buying
-function operationsUSD2()
-{
-    var ileUSD2 = prompt('How much do you want to sell?','100');
-    document.buyForm.buyUSD.value = ileUSD2;
-    document.buyForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsEUR2()
-{
-    var ileEUR2 = prompt('How much do you want to buy?','100');
-    document.buyForm.buyEUR.value = ileEUR2;
-
-    document.buyForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsCHF2()
-{
-    var ileCHF2 = prompt('How much do you want to buy?','100');
-    document.buyForm.buyCHF.value = ileCHF2;
-
-    document.buyForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsRUB2()
-{
-    var ileRUB2 = prompt('How much do you want to buy?','100');
-    document.buyForm.buyRUB.value = ileRUB2;
-
-    document.buyForm.submit();
-    document.hiddenForm.submit();
-}
-
-function operationsCZK2()
-{
-    var ileCZK2 = prompt('How much do you want to buy?','100');
-    document.buyForm.buyCZK.value = ileCZK2;
-
-    document.buyForm.submit();
-    document.hiddenForm.submit();
-}
-function operationsGBP2()
-{
-    var ileGBP2 = prompt('How much do you want to buy?','100');
-    document.buyForm.buyGBP.value = ileGBP2;
-
-    document.buyForm.submit();
-    document.hiddenForm.submit();
-}
-*/

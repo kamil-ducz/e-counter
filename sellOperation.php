@@ -11,34 +11,44 @@ session_start();
 
 $login = $_SESSION['login'];
 
-//DEBUG check before update
-$queryPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
-$rowPLN = mysqli_fetch_row($queryPLN);
+
+$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
+$queryWalletUSD = mysqli_query($con, "SELECT walletUSD FROM $tableName WHERE login='$login'");          //query
+$rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
+$rowWalletUSD = mysqli_fetch_row($queryWalletUSD);
 $sellUSD = $_POST['sellUSD'];
+$sellUSD = floatval($sellUSD);
 $sellPriceUSD = $_POST['sellPriceUSD'];
+$sellPriceUSD = floatval($sellPriceUSD);
+$valuePLN = $sellUSD * $sellPriceUSD;
+$valuePLN = floatval($valuePLN);
 print_r($sellUSD);
 echo "<br>";
 print_r($sellPriceUSD);
+echo "<br>";
+echo "PLN value = " + floatval($valuePLN); 
 
+//DEBUG check before update
 echo "<br>Before update: ";
-echo json_encode($rowPLN);
+echo "Wallet PLN: ";
+echo json_encode($rowWalletPLN);
+echo "<br>Wallet USD: ";
+echo json_encode($rowWalletUSD);
 
-//$sellUSDValue = $sellUSD * $
-
-$queryAddPLN = mysqli_query($con, "UPDATE users SET walletPLN = walletPLN + 777 WHERE login='a'");
+//actual calculation on database
+$queryAddPLN = mysqli_query($con, "UPDATE users SET walletPLN = walletPLN + $valuePLN WHERE login='$login'");
+$queryAddPLN = mysqli_query($con, "UPDATE users SET walletUSD = walletUSD - $sellUSD WHERE login='$login'");
 
 //DEBUGcheck after update
-$queryPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");
-$rowPLN = mysqli_fetch_row($queryPLN);
+$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
+$queryWalletUSD = mysqli_query($con, "SELECT walletUSD FROM $tableName WHERE login='$login'");          //query
+$rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
+$rowWalletUSD = mysqli_fetch_row($queryWalletUSD);
 echo "<br>After update: ";
-echo json_encode($rowPLN);
+echo "Wallet PLN: ";
+echo json_encode($rowWalletPLN);
+echo "<br>Wallet USD: ";
+echo json_encode($rowWalletUSD);
 
-
-
-
-//$PLNObtained = $_SESSION['sellUSD'] 
-
-//$result = mysqli_query($con, "UPDATE walletPLN FROM $tableName SET walletPLN += 'PLNObtained' WHERE login='$login'");
-//$array = mysqli_fetch_row($result);
-//echo json_encode($array);
+header('Location: index.php');
 ?>
