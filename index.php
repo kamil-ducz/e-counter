@@ -121,55 +121,91 @@
 
         <div id ="lastUpdate"> </div>
 
-            <table border="1">
-                <tr bgcolor="#666666">
-                    <td>Currency</td>
-                    <td>Unit</td>
-                    <td>We buy at</td>
-                    <td>Actions</td>
-                </tr>
+    <table border="1">
+        <tr bgcolor="#666666">
+            <td>Currency</td>
+            <td>Unit</td>
+            <td>We buy at</td>
+            <td>Actions</td>
+            <td>Finalize</td>
+        </tr>
     <!-- valueUSD2 means buying, all 2 values to buy -->
-                <tr>
-                    <td id="code1"></td>
-                    <td id="unit1"></td>
-                    <td id="purchasePrice1"></td>
-                    <td><input type="button" id="buyUSD" onclick="operationsUSD2()" value="Buy"></td>
-                </tr>
+        <tr>
+            <form name="buyUSDForm" method="POST" action="../e-counter/BuyOperations/buyOperationUSD.php">
 
-                <tr>
-                    <td id="code2"></td>
-                    <td id="unit2"></td>
-                    <td id="purchasePrice2"></td>
-                    <td><input type="button" id="buyEUR" onclick="operationsEUR2()"  value="Buy"></td>
-                </tr>
+                <td id="code1"></td>
+                <td id="unit1"></td><input type="hidden" name="buyPriceUSD">
+                <td id="purchasePrice1"></td>                     
+                <td>
+                    <input type="number" name="buyUSD" value="enter USD">                                                        
+                </td>
+                <td><input type="submit" id="USDSubmit" value="BuyUSD"></td>                         
+            </form>
+        </tr>
 
-                <tr>
-                    <td id="code3"></td>
-                    <td id="unit3"></td>
-                    <td id="purchasePrice3"></td>
-                    <td><input type="button" id="buyCHF" onclick="operationsCHF2()"  value="Buy"></td>
-                </tr>
+        <tr>
+            <form name="buyEURForm" method="POST" action="../e-counter/BuyOperations/buyOperationEUR.php">
 
-                <tr>
-                    <td id="code4"></td>
-                    <td id="unit4"></td>
-                    <td id="purchasePrice4"></td>
-                    <td><input type="button" id="buyRUB" onclick="operationsRUB2()"  value="Buy"></td>
-                </tr>
+                <td id="code2"></td>
+                <td id="unit2"></td><input type="hidden" name="buyPriceEUR">
+                <td id="purchasePrice2"></td>                     
+                <td>
+                    <input type="number" name="buyEUR" value="enter EUR">                                                        
+                </td>
+                <td><input type="submit" id="EURSubmit" value="BuyEUR"></td>                         
+            </form>
+        </tr>
+        <tr>
+            <form name="buyCHFForm" method="POST" action="../e-counter/BuyOperations/buyOperationCHF.php">
 
-                <tr>
-                    <td id="code5"></td>
-                    <td id="unit5"></td>
-                    <td id="purchasePrice5"></td>
-                    <td><input type="button" id="buyCZK" onclick="operationsCZK2()"  value="Buy"></td>
-                </tr>
+                <td id="code3"></td>
+                <td id="unit3"></td><input type="hidden" name="buyPriceCHF">
+                <td id="purchasePrice3"></td>                     
+                <td>
+                    <input type="number" name="buyCHF" value="enter CHF">                                                        
+                </td>
+                <td><input type="submit" id="CHFSubmit" value="BuyCHF"></td>                         
+            </form>
+        </tr>
 
-                <tr>
-                    <td id="code6"></td>
-                    <td id="unit6"></td>
-                    <td id="purchasePrice6"></td>
-                    <td><input type="button" id="buyGBP" onclick="operationsGBP2()"  value="Buy"></td>
-                 </tr>
+        <tr>
+            <form name="buyRUBForm" method="POST" action="../e-counter/BuyOperations/buyOperationRUB.php">
+
+                <td id="code4"></td>
+                <td id="unit4"></td><input type="hidden" name="buyPriceRUB">
+                <td id="purchasePrice4"></td>                     
+                <td>
+                    <input type="number" name="buyRUB" value="enter RUB">                                                        
+                </td>
+                <td><input type="submit" id="RUBSubmit" value="BuyRUB"></td>                         
+            </form>
+        </tr>
+
+        <tr>
+            <form name="buyCZKForm" method="POST" action="../e-counter/BuyOperations/buyOperationCZK.php">
+
+                <td id="code5"></td>
+                <td id="unit5"></td><input type="hidden" name="buyPriceCZK">
+                <td id="purchasePrice5"></td>                     
+                <td>
+                    <input type="number" name="buyCZK" value="enter CZK">                                                        
+                </td>
+                <td><input type="submit" id="CZKSubmit" value="BuyCZK"></td>                         
+            </form>
+        </tr>
+
+        <tr>
+            <form name="buyGBPForm" method="POST" action="../e-counter/BuyOperations/buyOperationGBP.php">
+
+                <td id="code6"></td>
+                <td id="unit6"></td><input type="hidden" name="buyPriceGBP">
+                <td id="purchasePrice6"></td>                     
+                <td>
+                    <input type="number" name="buyGBP" value="enter GBP">                                                        
+                </td>
+                <td><input type="submit" id="GBPSubmit" value="BuyGBP"></td>                         
+            </form>
+        </tr>
 
             </table>
         </div>
@@ -190,57 +226,87 @@
                 </tr>
 
                 <tr>
-                    <form name="sellUSDForm" method="POST" action="sellOperation.php">
+                    <form name="sellUSDForm" method="POST" action="../e-counter/SellOperations/sellOperationUSD.php">
 
                         <td id="codeSale1"></td>
                         <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
                         <td id="amountWallet1"></td>
                         <td id="walletValue1"></td>
                         <td>
-                            <input type="text" name="sellUSD" value="enter dollars">                                                        
+                            <input type="text" name="sellUSD" value="enter USD">                                                        
                         </td>
                         <td><input type="submit" id="USDSubmit" value="SellUSD"></td>                         
                     </form>
                 </tr>
 
                 <tr>
-                    <td id="codeSale2"></td>
-                    <td id="sellPrice2"></td>
-                    <td id="amountWallet2"></td>
-                    <td id="walletValue2"></td>
-                    <td><input type="button" id="sellEUR" onclick="operationsEUR();"  value="Sell"></td>
+                    <form name="sellEURForm" method="POST" action="../e-counter/SellOperations/sellOperationEUR.php">
+
+                        <td id="codeSale2"></td>
+                        <td id="sellPrice2"></td><input type="hidden" name="sellPriceEUR">                     
+                        <td id="amountWallet2"></td>
+                        <td id="walletValue2"></td>
+                        <td>
+                            <input type="text" name="sellEUR" value="enter EUR">                                                        
+                        </td>
+                        <td><input type="submit" id="EURSubmit" value="SellEUR"></td>                         
+                    </form>
                 </tr>
 
                 <tr>
-                    <td id="codeSale3"></td>
-                    <td id="sellPrice3"></td>
-                    <td id="amountWallet3"></td>
-                    <td id="walletValue3"></td>
-                    <td><input type="button" id="sellCHF" onclick="operationsCHF();"   value="Sell"></td>
+                    <form name="sellCHFForm" method="POST" action="../e-counter/SellOperations/sellOperationCHF.php">
+
+                        <td id="codeSale3"></td>
+                        <td id="sellPrice3"></td><input type="hidden" name="sellPriceCHF">                     
+                        <td id="amountWallet3"></td>
+                        <td id="walletValue3"></td>
+                        <td>
+                            <input type="text" name="sellCHF" value="enter CHF">                                                        
+                        </td>
+                        <td><input type="submit" id="CHFSubmit" value="SellCHF"></td>                         
+                    </form>
                 </tr>
 
                 <tr>
-                    <td id="codeSale4"></td>
-                    <td id="sellPrice4"></td>
-                    <td id="amountWallet4"></td>
-                    <td id="walletValue4"></td>
-                    <td><input type="button" id="sellRUB" onclick="operationsRUB();"   value="Sell"></td>
+                    <form name="sellRUBForm" method="POST" action="../e-counter/SellOperations/sellOperationRUB.php">
+
+                        <td id="codeSale4"></td>
+                        <td id="sellPrice4"></td><input type="hidden" name="sellPriceRUB">                     
+                        <td id="amountWallet4"></td>
+                        <td id="walletValue4"></td>
+                        <td>
+                            <input type="text" name="sellRUB" value="enter RUB">                                                        
+                        </td>
+                        <td><input type="submit" id="RUBSubmit" value="SellRUB"></td>                         
+                    </form>
                 </tr>
 
                 <tr>
-                    <td id="codeSale5"></td>
-                    <td id="sellPrice5"></td>
-                    <td id="amountWallet5"></td>
-                    <td id="walletValue5"></td>
-                    <td><input type="button" id="sellCZK" onclick="operationsCZK();"   value="Sell"></td>
+                    <form name="sellCZKForm" method="POST" action="../e-counter/SellOperations/sellOperationCZK.php">
+
+                        <td id="codeSale5"></td>
+                        <td id="sellPrice5"></td><input type="hidden" name="sellPriceCZK">                     
+                        <td id="amountWallet5"></td>
+                        <td id="walletValue5"></td>
+                        <td>
+                            <input type="text" name="sellCZK" value="enter CZK">                                                        
+                        </td>
+                        <td><input type="submit" id="CZKSubmit" value="SellCZK"></td>                         
+                    </form>
                 </tr>
 
                 <tr>
-                    <td id="codeSale6"></td>
-                    <td id="sellPrice6"></td>
-                    <td id="amountWallet6"></td>
-                    <td id="walletValue6"></td>
-                    <td><input type="button" id="sellGBP" onclick="operationsGBP();"   value="Sell"></td>
+                    <form name="sellGBPForm" method="POST" action="../e-counter/SellOperations/sellOperationGBP.php">
+
+                        <td id="codeSale6"></td>
+                        <td id="sellPrice6"></td><input type="hidden" name="sellPriceGBP">                     
+                        <td id="amountWallet6"></td>
+                        <td id="walletValue6"></td>
+                        <td>
+                            <input type="text" name="sellGBP" value="enter GBP">                                                        
+                        </td>
+                        <td><input type="submit" id="GBPSubmit" value="SellGBP"></td>                         
+                    </form>
                 </tr>
 
             </table>

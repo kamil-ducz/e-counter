@@ -46,7 +46,18 @@ $.ajax({
                 
             }
 
-            $('input[name=sellPriceUSD]').val(data2.items[0].purchasePrice);
+            $('input[name=sellPriceUSD]').val(data2.items[0].sellPrice);
+            $('input[name=sellPriceEUR]').val(data2.items[1].sellPrice);
+            $('input[name=sellPriceCHF]').val(data2.items[2].sellPrice);
+            $('input[name=sellPriceRUB]').val(data2.items[3].sellPrice);
+            $('input[name=sellPriceCZK]').val(data2.items[4].sellPrice);
+            $('input[name=sellPriceGBP]').val(data2.items[5].sellPrice);
+            $('input[name=buyPriceUSD]').val(data2.items[0].purchasePrice);
+            $('input[name=buyPriceEUR]').val(data2.items[1].purchasePrice);
+            $('input[name=buyPriceCHF]').val(data2.items[2].purchasePrice);
+            $('input[name=buyPriceRUB]').val(data2.items[3].purchasePrice);
+            $('input[name=buyPriceCZK]').val(data2.items[4].purchasePrice);
+            $('input[name=buyPriceGBP]').val(data2.items[5].purchasePrice);
             
             for (i = 0; i < data2.items.length; i++)		//fill the right table - sellPrice column
             {
