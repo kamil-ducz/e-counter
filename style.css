@@ -1,0 +1,132 @@
+body
+{
+	background-color: #0C012F;
+	color: #FFFFFF;
+	font-family: 'Lato', sans-serif;
+	font-size: 25px;
+}
+
+a:link {text-decoration: none; color: #ffffff; font-size: 25px; }
+
+a:visited { text-decoration: none; color: #ffffff; font-size: 25px;  }
+
+a:active { text-decoration: none; color: #ffffff; font-size: 25px; }
+
+a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
+
+
+#container		/* main 'box' for all elements */
+{
+	width: 1500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.top_panel			/* here's header EXCHANGE*/
+{
+	width: 600px;
+	height: 76px;
+	background-color: #728996;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #000000;
+	float: left;
+	margin_botton: 15px;
+}
+
+.log_buttons			/* for div when user's logged*/
+{
+	width: 600px;
+	height: 76px;
+	background-color: #0C012F;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #000000;
+	float: left;
+	text-align: right;
+	margin_botton: 15px;
+}
+
+.log_panel		/* for div when user's not logged*/
+{
+	width: 600px;
+	height: 76px;
+	background-color: #0C012F;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #000000;
+	float: left;
+	text-align: left;
+	font-size: 17px;
+	margin_botton: 15px;
+}
+
+.currencies		/* here are tables and currencies on the left*/
+{
+	width: 600px;
+	height: 500px;
+	/*background-color: #035D39;*/
+	float: left;		/*rectangles 'float to the left', so that they are one next to the other*/
+	border-color: #000000;
+	border-style: solid;
+	border-left-width: 4px;
+	border-top-width: 4px;
+	border-bottom-width: 2px;
+	border-right-width: 2px;
+	
+}
+
+.my_wallet		/* here's user's wallet to sell units on the right*/
+{
+	width: 600px;
+	height: 500px;
+	/*background-color: #035D39*/;
+	float: left;
+	border-color: #000000;
+	border-style: solid;
+	border-left-width: 0px;
+	border-top-width: 4px;
+	border-bottom-width: 2px;
+	border-right-width: 4px;
+}
+
+.blank_rectangle		/* class for the blank rectangles which separate bottom parts:graph and available money*/
+{
+	width: 996px;
+	height: 80px;
+	background-color: #0C012F;
+	float: left;
+
+
+	border-color: #000000;
+}
+
+.graph
+{
+	width: 600px;
+	height: 300px;
+	background-color: #035D39;
+	float: left;
+	border-color: #000000;
+	border-style: solid;
+	border-left-width: 4px;
+	border-top-width: 2px;
+	border-bottom-width: 4px;
+	border-right-width: 2px;
+}
+
+.available_money
+{
+	width: 600px;
+	height: 100px;
+	background-color: #035D39;
+	float: left;
+	border-color: #000000;
+	border-style: solid;
+	border-left-width: 0px;
+	border-top-width: 2px;
+	border-bottom-width: 4px;
+	border-right-width: 4px;
+}
+
+
