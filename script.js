@@ -73,15 +73,19 @@ $.ajax({
             }
 
             var totalPLN = 0;
+			console.log("totalPLN: " + totalPLN);
             var currentCurrencyValue = [];
 
             for(i = 0; i < data2.items.length; i++)  //sum all currecies amount value with walletPLN
             {                
                 currentCurrencyValue[i] = data[i+6] * data2.items[i].sellPrice;
-                console.log(currentCurrencyValue[i]);
-                totalPLN += currentCurrencyValue[i];    
+                console.log("currentCurrencyValue[i]: " + currentCurrencyValue[i]);
+                totalPLN += currentCurrencyValue[i];
+				console.log("totalPLN: " + totalPLN);
+				
             }
-            console.log(totalPLN);
+			totalPLN += data[12] * 1; //parseFloat
+			console.log("totalPLN: " + totalPLN);
             $("#totalPLN").text(parseFloat(totalPLN.toFixed(4)));
             
         })
