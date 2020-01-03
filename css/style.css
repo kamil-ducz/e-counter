@@ -17,14 +17,14 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 #container		/* main 'box' for all elements */
 {
-	width: 1000px;
+	width: 1500px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .top_panel			/* here's header EXCHANGE*/
 {
-	width: 496px;
+	width: 600px;
 	height: 76px;
 	background-color: #728996;
 	border-style: solid;
@@ -36,7 +36,7 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 .log_buttons			/* for div when user's logged*/
 {
-	width: 494px;
+	width: 600px;
 	height: 76px;
 	background-color: #0C012F;
 	border-style: solid;
@@ -49,7 +49,7 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 .log_panel		/* for div when user's not logged*/
 {
-	width: 494px;
+	width: 600px;
 	height: 76px;
 	background-color: #0C012F;
 	border-style: solid;
@@ -63,9 +63,9 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 .currencies		/* here are tables and currencies on the left*/
 {
-	width: 496px;
+	width: 600px;
 	height: 500px;
-	background-color: #035D39;
+	/*background-color: #035D39;*/
 	float: left;		/*rectangles 'float to the left', so that they are one next to the other*/
 	border-color: #000000;
 	border-style: solid;
@@ -78,9 +78,9 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 .my_wallet		/* here's user's wallet to sell units on the right*/
 {
-	width: 494px;
+	width: 600px;
 	height: 500px;
-	background-color: #035D39;
+	/*background-color: #035D39*/;
 	float: left;
 	border-color: #000000;
 	border-style: solid;
@@ -103,7 +103,7 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 .graph
 {
-	width: 496px;
+	width: 600px;
 	height: 300px;
 	background-color: #035D39;
 	float: left;
@@ -117,7 +117,7 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 
 .available_money
 {
-	width: 492px;
+	width: 600px;
 	height: 100px;
 	background-color: #035D39;
 	float: left;
