@@ -43,22 +43,22 @@ How much money you have in USD:
 <input type="number" name="walletUSD" min="0" max="1000000" value="10000" required /> <br />
 
 How much money you have in EUR:
-<input type="text" name="walletEUR" min="0" max="1000000" value="10000" required  /> <br />
+<input type="number" name="walletEUR" min="0" max="1000000" value="10000" required  /> <br />
 
 How much money you have in CHF:
-<input type="text" name="walletCHF" min="0" max="1000000" value="10000" required  /> <br />
+<input type="number" name="walletCHF" min="0" max="1000000" value="10000" required  /> <br />
 
 How much money you have in RUB:
-<input type="text" name="walletRUB" min="0" max="1000000" value="10000" required  /> <br />
+<input type="number" name="walletRUB" min="0" max="1000000" value="10000" required  /> <br />
 
 How much money you have in CZK:
-<input type="text" name="walletCZK" min="0" max="1000000" value="10000" required  /> <br />
+<input type="number" name="walletCZK" min="0" max="1000000" value="10000" required  /> <br />
 
 How much money you have in GBP:
-<input type="text" name="walletGBP" min="0" max="1000000" value="10000" required  /> <br />
+<input type="number" name="walletGBP" min="0" max="1000000" value="10000" required  /> <br />
 
 How much money you have in PLN:
-<input type="text" name="walletPLN" min="0" max="1000000" value="10000" required  /> <br />
+<input type="number" name="walletPLN" min="0" max="1000000" value="10000" required  /> <br />
 
 <a href="index.php">Back</a>
 <input type="submit" style="height: 30px; width: 80px" value="Register" />
