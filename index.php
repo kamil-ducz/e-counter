@@ -15,7 +15,7 @@
     <meta Content-Type = "application/json" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Pieprzony Rayback</title>
+    <title>Internetowy System Wymiany Walut</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -125,7 +125,7 @@
         <tr bgcolor="#666666">
             <td>Currency</td>
             <td>Unit</td>
-            <td>We buy at</td>
+            <td>Purchase price</td>
             <td>Actions</td>
             <td>Finalize</td>
         </tr>
@@ -137,7 +137,7 @@
                 <td id="unit1"></td><input type="hidden" name="buyPriceUSD">
                 <td id="purchasePrice1"></td>                     
                 <td>
-                    <input type="number" name="buyUSD" value="enter USD">                                                        
+                    <input type="number" min="0" max="1000000" name="buyUSD" placeholder="enter USD">
                 </td>
                 <td><input type="submit" id="USDSubmit" value="BuyUSD"></td>                         
             </form>
@@ -150,7 +150,7 @@
                 <td id="unit2"></td><input type="hidden" name="buyPriceEUR">
                 <td id="purchasePrice2"></td>                     
                 <td>
-                    <input type="number" name="buyEUR" value="enter EUR">                                                        
+                    <input type="number" min="0" max="1000000" name="buyEUR" placeholder="enter EUR">
                 </td>
                 <td><input type="submit" id="EURSubmit" value="BuyEUR"></td>                         
             </form>
@@ -162,7 +162,7 @@
                 <td id="unit3"></td><input type="hidden" name="buyPriceCHF">
                 <td id="purchasePrice3"></td>                     
                 <td>
-                    <input type="number" name="buyCHF" value="enter CHF">                                                        
+                    <input type="number" min="0" max="1000000" name="buyCHF" placeholder="enter CHF">
                 </td>
                 <td><input type="submit" id="CHFSubmit" value="BuyCHF"></td>                         
             </form>
@@ -175,7 +175,7 @@
                 <td id="unit4"></td><input type="hidden" name="buyPriceRUB">
                 <td id="purchasePrice4"></td>                     
                 <td>
-                    <input type="number" name="buyRUB" value="enter RUB">                                                        
+                    <input type="number" min="0" max="1000000" name="buyRUB" placeholder="enter RUB">
                 </td>
                 <td><input type="submit" id="RUBSubmit" value="BuyRUB"></td>                         
             </form>
@@ -188,7 +188,7 @@
                 <td id="unit5"></td><input type="hidden" name="buyPriceCZK">
                 <td id="purchasePrice5"></td>                     
                 <td>
-                    <input type="number" name="buyCZK" value="enter CZK">                                                        
+                    <input type="number" min="0" max="1000000" name="buyCZK" placeholder="enter CZK">
                 </td>
                 <td><input type="submit" id="CZKSubmit" value="BuyCZK"></td>                         
             </form>
@@ -201,7 +201,7 @@
                 <td id="unit6"></td><input type="hidden" name="buyPriceGBP">
                 <td id="purchasePrice6"></td>                     
                 <td>
-                    <input type="number" name="buyGBP" value="enter GBP">                                                        
+                    <input type="number" min="0" max="1000000" name="buyGBP" placeholder="enter GBP">
                 </td>
                 <td><input type="submit" id="GBPSubmit" value="BuyGBP"></td>                         
             </form>
@@ -218,7 +218,7 @@
 
                 <tr bgcolor="#666666">
                     <td>Currency</td>
-                    <td>We buy at</td>
+                    <td>Sell price</td>
                     <td bgcolor="lightblue">Amount</td>
                     <td>Value</td>
                     <td>Actions</td>
@@ -233,7 +233,7 @@
                         <td id="amountWallet1"></td>
                         <td id="walletValue1"></td>
                         <td>
-                            <input type="text" name="sellUSD" value="enter USD">                                                        
+                            <input type="number" min="0" max="1000000" name="sellUSD" placeholder="enter USD">
                         </td>
                         <td><input type="submit" id="USDSubmit" value="SellUSD"></td>                         
                     </form>
@@ -247,7 +247,7 @@
                         <td id="amountWallet2"></td>
                         <td id="walletValue2"></td>
                         <td>
-                            <input type="text" name="sellEUR" value="enter EUR">                                                        
+                            <input type="number" min="0" max="1000000" name="sellEUR" placeholder="enter EUR">
                         </td>
                         <td><input type="submit" id="EURSubmit" value="SellEUR"></td>                         
                     </form>
@@ -261,7 +261,7 @@
                         <td id="amountWallet3"></td>
                         <td id="walletValue3"></td>
                         <td>
-                            <input type="text" name="sellCHF" value="enter CHF">                                                        
+                            <input type="number" min="0" max="1000000" name="sellCHF" placeholder="enter CHF">
                         </td>
                         <td><input type="submit" id="CHFSubmit" value="SellCHF"></td>                         
                     </form>
@@ -275,7 +275,7 @@
                         <td id="amountWallet4"></td>
                         <td id="walletValue4"></td>
                         <td>
-                            <input type="text" name="sellRUB" value="enter RUB">                                                        
+                            <input type="number" min="0" max="1000000" name="sellRUB" placeholder="enter RUB">
                         </td>
                         <td><input type="submit" id="RUBSubmit" value="SellRUB"></td>                         
                     </form>
@@ -289,7 +289,7 @@
                         <td id="amountWallet5"></td>
                         <td id="walletValue5"></td>
                         <td>
-                            <input type="text" name="sellCZK" value="enter CZK">                                                        
+                            <input type="number" min="0" max="1000000" name="sellCZK" placeholder="enter CZK">
                         </td>
                         <td><input type="submit" id="CZKSubmit" value="SellCZK"></td>                         
                     </form>
@@ -303,7 +303,7 @@
                         <td id="amountWallet6"></td>
                         <td id="walletValue6"></td>
                         <td>
-                            <input type="text" name="sellGBP" value="enter GBP">                                                        
+                            <input type="number" min="0" max="1000000" name="sellGBP" placeholder="enter GBP">
                         </td>
                         <td><input type="submit" id="GBPSubmit" value="SellGBP"></td>                         
                     </form>
@@ -363,6 +363,8 @@
         </div>
 
     </div>
+	
+	
 
 </body>
 </html>
