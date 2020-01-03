@@ -1,6 +1,16 @@
 getAndCalcData();
 setInterval(function(){ getAndCalcData(); }, 30000);
 
+function unhidePassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+
 function getAndCalcData() 
 {
     
