@@ -25,17 +25,6 @@ $.ajax({
   dataType: 'json',                //data format      
   success: function(data)          //on recieve of reply, data has all rows from db so it's data[row][column] format
   {
-	
-
-	//--------------------------------------------------------------------
-	// 3) Update html content
-	//--------------------------------------------------------------------
-	$('#output_db').html("<b>id: </b>"+data[0][0]+"<b> name: </b>"+data[0][1] + "<b> walletUSD: </b>" + data[0][2]); //Set output element html
-	//$('#output_db').html(vwallet);
-	//recommend reading up on jquery selectors they are awesome 
-	// http://api.jquery.com/category/selectors/
-
-    //get purchasePrice for USD from webservice
     $.getJSON("server_content.php")		// was var jqxhr = $.getJSON but working now
     .done(function(data2) {			//if connection ok
             //get date and time from string, use split func to seperate string
@@ -76,6 +65,7 @@ $.ajax({
             
             for(i = 0; i < data2.items.length; i++)  //fill the right table - amount and value column
             {
+				console.log(data[i+6]);
                 $("#amountWallet" + (i + 1)).text(data[i+6]);
                 $("#walletValue" + (i + 1)).text(parseFloat(data[i+6] * data2.items[i].sellPrice).toFixed(4));
             }
