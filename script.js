@@ -26,9 +26,7 @@ $.ajax({
   success: function(data)          //on recieve of reply, data has all rows from db so it's data[row][column] format
   {
 	
-	var id = data[0];              //get id
-	var vname = data[4];           //get name
-    var vwallet = data[6];
+
 	//--------------------------------------------------------------------
 	// 3) Update html content
 	//--------------------------------------------------------------------
@@ -45,7 +43,7 @@ $.ajax({
             var res2 = res1[1].split(".");	
             var result = res1[0] + " " + res2[0];		
             
-            $("#lastUpdate").text("Last update: " +  result + "(GMT+1)");		// write in div with id "last update" (Time:GMT)
+            $("#lastUpdate").text("Last update: " +  result + "(CET)");		// write in div with id "last update" (Time:GMT)
             
 
             for (i = 0; i < data2.items.length; i++)			// fill the left table
