@@ -1,6 +1,20 @@
 getAndCalcData();
 setInterval(function(){ getAndCalcData(); }, 30000);
 
+
+
+
+function submitLogForm() {
+  $('#logForm').submit();
+}
+
+submitLogForm();
+setInterval(function () { submitLogForm(); }, 20000);
+
+
+
+
+
 function unhidePassword() {
   var x = document.getElementById("password");
   if (x.type === "password") {
@@ -17,8 +31,10 @@ function getAndCalcData()
   $.ajax({                         //https://www.w3schools.com/jquery/ajax_ajax.asp                               
   url: 'api.php',                  //read from api.php     
   dataType: 'json',
-  success: function(data)          // data argument contains rows from databsase
+  success: function(data)          // data argument contains row from databsase
   {
+
+
 
     //$.getJSON inside $.ajax method   
    $.getJSON("server_content.php")  //
@@ -26,17 +42,33 @@ function getAndCalcData()
     //$.getJSON ok condition:
     .done(function(data2) {
 
-      var myjson = data2;
+      //var myjson = data2;
       // for (i = 0; i < data2.items.length; i++)
       //   {
-      //     alert("myjson -- currency: " + myjson.items[i].code + " purchasePrice: " + myjson.items[i].purchasePrice + " sellPrice: " + myjson.items[i].sellPrice);
+      //     console.log("mcurrency: " + data2.items[i].code + " purchasePrice: " + data2.items[i].purchasePrice + " sellPrice: " + data2.items[i].sellPrice + "publicationDate: " + data2.publicationDate);
       //   }
-        myjson = new XMLHttpRequest();
-        myjson.open("POST", "api.php");
-        myjson.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        myjson.send(myjson);
 
-      
+        // //var name1 = $("#txtSource").val();
+        // var name1 = "super log 555";
+        // $.ajax({
+        //   type: "POST",
+        //   url: 'index.php',
+        //   data: "villeDepart=" + name1,
+        //   cache: false,
+        //   success: function(result) {
+        //     alert("yay, now write to #logger");
+        //     $("#logger").html(result);
+        //   },
+        //   error: function() {
+        //     alert("error");
+        //   }
+        // });
+        $('input[name=logTime]').val(data2.publicationDate);
+
+
+
+
+
 
       
 
@@ -98,7 +130,7 @@ function getAndCalcData()
         
         //$.getJSON not ok condition:
         .fail(function() {
-            alert( "Can't connect to the server. Check your internet connection or firewalls that may block Future Processing webpage." );
+            alert( "Can't connect to the server. Check your internet connection or firewalls that may block Future Processing webpage; server_content.php may be broken." );
         });
   
   } 

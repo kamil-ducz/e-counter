@@ -23,42 +23,16 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">		<!-- including stylesheet for index.php -->
     <link rel="stylesheet" href="css/fontello.css" type="text/css">		<!-- including fontello-->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> 	<!-- including google fonts -->
-    <script language="javascript" type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <!--<script language="javascript" type="text/javascript" src="js/jquery-3.3.1.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
 
 
 <body>
 
-    <form name="hiddenForm" id="hiddenForm" method="POST" action="index.php">
-        <input type="hidden" name="valueUSD" id="valueUSD"/>
-        <input type="hidden" name="valueEUR" />
-        <input type="hidden" name="valueCHF" />
-        <input type="hidden" name="valueRUB" />
-        <input type="hidden" name="valueCZK" />
-        <input type="hidden" name="valueGBP" />
-
-        <input type="hidden" name="valueUSD2" />
-        <input type="hidden" name="valueEUR2" />
-        <input type="hidden" name="valueCHF2" />
-        <input type="hidden" name="valueRUB2" />
-        <input type="hidden" name="valueCZK2" />
-        <input type="hidden" name="valueGBP2" />
-        <input type="submit" id="superGuzik" value="submituj" />
-        <input type="button" id="hiddenFormButton" value="guzik" />
-    </form>
 
     <div id="container">
-
-        <div class="top_panel">
-        <?php if(!isset($_SESSION['login']))
-            echo "Welcome! Log in to buy or sell available units.\n Warning: program uses database.";
-            else
-                echo "Welcome again in our E-Counter!";
-            ?>
-
-        </div>
-
         <?php
 
         if (true == isset($_SESSION['login']))
@@ -322,30 +296,6 @@
 
         <div style="clear:both"></div>  <!-- clearing atribute float:left -->
 
-        <div class="graph">
-            <u>Graph presenting last 20 courses(extra):</u>
-            <br />
-
-            <form name="sellForm" id="sellForm" action="sellOperation.php" method="POST">
-                <input type="" name="sellUSD" />
-                <input type="" name="sellEUR" />
-                <input type="" name="sellCHF" />
-                <input type="" name="sellRUB" />
-                <input type="" name="sellCZK" />
-                <input type="" name="sellGBP" /> <br />
-            </form>
-
-            <form name="buyForm" id="buyForm" action="buyOperation.php" method="POST">
-                <input type="" name="buyUSD" />
-                <input type="" name="buyEUR" />
-                <input type="" name="buyCHF" />
-                <input type="" name="buyRUB" />
-                <input type="" name="buyCZK" />
-                <input type="" name="buyGBP" /> <br />
-            </form>
-
-        </div>
-
         <div class="available_money">
             <?php
             if(isset($_SESSION['login']))
@@ -364,7 +314,28 @@
 
     </div>
 	
-	
+    <div id="logdiv">
+        <form id="logForm" type="hidden" action="index.php" method="post">
+        <input type="hidden" type="text" name="logTime">
+        <input type="hidden" type="submit" value="submit publication date">
+    </form>
+    <?php
+        // echo $_POST['logTime'];
+        // $file = "log.txt";
+        // $content = $_POST['logTime'];
+        // file_put_contents($file, $content);
+        //date("Y-m-d").
+
+        $file=fopen("log.txt","a+") or exit("Unable to open file!");
+
+        if ($_POST["logTime"] <> "")
+        {
+            fwrite($file,$_POST["logTime"]."\n");
+        }
+
+        fclose($file);
+    ?>
+    </div>
 
 </body>
 </html>
