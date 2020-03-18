@@ -13,8 +13,6 @@ setInterval(function () { submitLogForm(); }, 20000);
 
 
 
-
-
 function unhidePassword() {
   var x = document.getElementById("password");
   if (x.type === "password") {
@@ -42,11 +40,13 @@ function getAndCalcData()
     //$.getJSON ok condition:
     .done(function(data2) {
 
-      //var myjson = data2;
-      // for (i = 0; i < data2.items.length; i++)
-      //   {
-      //     console.log("mcurrency: " + data2.items[i].code + " purchasePrice: " + data2.items[i].purchasePrice + " sellPrice: " + data2.items[i].sellPrice + "publicationDate: " + data2.publicationDate);
-      //   }
+
+          $('input[name=logTime]').val(data2.publicationDate);
+      for (i = 0; i < data2.items.length; i++)
+        {
+          console.log("currency: " + data2.items[i].code + " purchasePrice: " + data2.items[i].purchasePrice + " sellPrice: " + data2.items[i].sellPrice + "publicationDate: " + data2.publicationDate);
+          $('input[name=currencyRow' + (i+1) +'] ').val("currency: " + data2.items[i].code + " purchasePrice: " + data2.items[i].purchasePrice + " sellPrice: " + data2.items[i].sellPrice);
+        }
 
         // //var name1 = $("#txtSource").val();
         // var name1 = "super log 555";
@@ -63,7 +63,7 @@ function getAndCalcData()
         //     alert("error");
         //   }
         // });
-        $('input[name=logTime]').val(data2.publicationDate);
+
 
 
 

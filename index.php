@@ -317,7 +317,13 @@
     <div id="logdiv">
         <form id="logForm" type="hidden" action="index.php" method="post">
         <input type="hidden" type="text" name="logTime">
-        <input type="hidden" type="submit" value="submit publication date">
+        <input name="currencyRow1">
+        <input name="currencyRow2">
+        <input name="currencyRow3">
+        <input name="currencyRow4">
+        <input name="currencyRow5">
+        <input name="currencyRow6">
+        <input type="hidden" type="submit" value="submit">
     </form>
     <?php
         // echo $_POST['logTime'];
@@ -330,7 +336,28 @@
 
         if ($_POST["logTime"] <> "")
         {
-            fwrite($file,$_POST["logTime"]."\n");
+            fwrite($file,$_POST["logTime"].",");
+            for($i=0;$i<6;$i++)
+            {
+                if($i+1 == 6)
+                {
+                    fwrite($file,$_POST["currencyRow".($i+1).""]);
+                }
+                else
+                {
+                    fwrite($file,$_POST["currencyRow".($i+1).""].",");
+                }
+
+
+
+            }
+                fwrite($file, "\n");
+            
+            // fwrite($file,$_POST["currencyRow1"].",");
+            // fwrite($file,$_POST["currencyRow1"].",");
+            // fwrite($file,$_POST["currencyRow1"].",");
+            // fwrite($file,$_POST["currencyRow1"].",");
+            // fwrite($file,$_POST["currencyRow1"]."\n");
         }
 
         fclose($file);
