@@ -1,68 +1,43 @@
 getAndCalcData();
 setInterval(function(){ getAndCalcData(); }, 30000);
 
-
-
-
-function submitLogForm() {
-  $('#logForm').submit();
-}
-
 submitLogForm();
-setInterval(function () { submitLogForm(); }, 20000);
+setInterval(function () { submitLogForm(); }, 10000);
+
+              // plan for action:
+              // fix asynchronic passing to PHP
+              // PHP and read from log.txt 
+              // pass to js
+              // use in js to chart
 
 
 
-function unhidePassword() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
+
 
 
 function getAndCalcData() 
 {
-
   $.ajax({                         //https://www.w3schools.com/jquery/ajax_ajax.asp                               
-  url: 'api.php',                  //read from api.php     
+  url: 'api.php',                  //read from api.php
+  method: "POST",     
   dataType: 'json',
-  success: function(data)          // data argument contains row from databsase
-  {
+  success: function(db_data)          // json_data argument contains row from databsase
+  {  
+   $.getJSON("server_content.php")
+      .done(function(json_data) {
 
 
 
-    //$.getJSON inside $.ajax method   
-   $.getJSON("server_content.php")  //
-
-    //$.getJSON ok condition:
-    .done(function(data2) {
 
 
-          $('input[name=logTime]').val(data2.publicationDate);
-      for (i = 0; i < data2.items.length; i++)
-        {
-          console.log("currency: " + data2.items[i].code + " purchasePrice: " + data2.items[i].purchasePrice + " sellPrice: " + data2.items[i].sellPrice + "publicationDate: " + data2.publicationDate);
-          $('input[name=currencyRow' + (i+1) +'] ').val("currency: " + data2.items[i].code + " purchasePrice: " + data2.items[i].purchasePrice + " sellPrice: " + data2.items[i].sellPrice);
-        }
 
-        // //var name1 = $("#txtSource").val();
-        // var name1 = "super log 555";
-        // $.ajax({
-        //   type: "POST",
-        //   url: 'index.php',
-        //   data: "villeDepart=" + name1,
-        //   cache: false,
-        //   success: function(result) {
-        //     alert("yay, now write to #logger");
-        //     $("#logger").html(result);
-        //   },
-        //   error: function() {
-        //     alert("error");
-        //   }
-        // });
+          //pass json_data to html for submit - TODO fix to asynchronous passing to PHP
+          $('input[name=logTime]').val(json_data.publicationDate);
+          for (i = 0; i < json_data.items.length; i++)
+          {
+            console.log("currency: " + json_data.items[i].code + " purchasePrice: " + json_data.items[i].purchasePrice + " sellPrice: " + json_data.items[i].sellPrice + "publicationDate: " + json_data.publicationDate);
+            $('input[name=currencyRow' + (i+1) +'] ').val("currency: " + json_data.items[i].code + " purchasePrice: " + json_data.items[i].purchasePrice + " sellPrice: " + json_data.items[i].sellPrice);
+          }
 
 
 
@@ -70,63 +45,121 @@ function getAndCalcData()
 
 
 
-      
-
-            var res1 = data2.publicationDate.split("T");
-            var res2 = res1[1].split(".");	
-            var result = res1[0] + " " + res2[0];		
-            $("#lastUpdate").text("Last update: " +  result + "(CET)");
-            for (i = 0; i < data2.items.length; i++)			// fill the left table - purchasePrice column
-            {
-                $("#code" + (i + 1)).text(data2.items[i].code );
-                $("#unit" + (i + 1)).text(data2.items[i].unit );
-                $("#sellPrice" + (i + 1)).text(data2.items[i].purchasePrice);
-            }
-            for (i = 0; i < data2.items.length; i++)		//fill the right table - sellPrice column
-            {
-                $("#codeSale" + (i + 1)).text(data2.items[i].code );
-                $("#purchasePrice" + (i + 1)).text(data2.items[i].sellPrice );
-            }
 
 
-            $('input[name=sellPriceUSD]').val(data2.items[0].sellPrice);
-            $('input[name=sellPriceEUR]').val(data2.items[1].sellPrice);
-            $('input[name=sellPriceCHF]').val(data2.items[2].sellPrice);
-            $('input[name=sellPriceRUB]').val(data2.items[3].sellPrice);
-            $('input[name=sellPriceCZK]').val(data2.items[4].sellPrice);
-            $('input[name=sellPriceGBP]').val(data2.items[5].sellPrice);
-            $('input[name=buyPriceUSD]').val(data2.items[0].purchasePrice);
-            $('input[name=buyPriceEUR]').val(data2.items[1].purchasePrice);
-            $('input[name=buyPriceCHF]').val(data2.items[2].purchasePrice);
-            $('input[name=buyPriceRUB]').val(data2.items[3].purchasePrice);
-            $('input[name=buyPriceCZK]').val(data2.items[4].purchasePrice);
-            $('input[name=buyPriceGBP]').val(data2.items[5].purchasePrice);
+
+
+              var res1 = json_data.publicationDate.split("T");
+              var res2 = res1[1].split(".");	
+              var result = res1[0] + " " + res2[0];		
+              $("#lastUpdate").text("Last update: " +  result + "(CET)");
+              for (i = 0; i < json_data.items.length; i++)			// fill the left table - purchasePrice column
+              {
+                  $("#code" + (i + 1)).text(json_data.items[i].code );
+                  $("#unit" + (i + 1)).text(json_data.items[i].unit );
+                  $("#sellPrice" + (i + 1)).text(parseFloat(json_data.items[i].purchasePrice).toFixed(2));
+              }
+              for (i = 0; i < json_data.items.length; i++)		//fill the right table - sellPrice column
+              {
+                  $("#codeSale" + (i + 1)).text(json_data.items[i].code );
+                  $("#purchasePrice" + (i + 1)).text(parseFloat(json_data.items[i].sellPrice).toFixed(2));
+              }
+
+
+              $('input[name=sellPriceUSD]').val(json_data.items[0].sellPrice);
+              $('input[name=sellPriceEUR]').val(json_data.items[1].sellPrice);
+              $('input[name=sellPriceCHF]').val(json_data.items[2].sellPrice);
+              $('input[name=sellPriceRUB]').val(json_data.items[3].sellPrice);
+              $('input[name=sellPriceCZK]').val(json_data.items[4].sellPrice);
+              $('input[name=sellPriceGBP]').val(json_data.items[5].sellPrice);
+              $('input[name=buyPriceUSD]').val(json_data.items[0].purchasePrice);
+              $('input[name=buyPriceEUR]').val(json_data.items[1].purchasePrice);
+              $('input[name=buyPriceCHF]').val(json_data.items[2].purchasePrice);
+              $('input[name=buyPriceRUB]').val(json_data.items[3].purchasePrice);
+              $('input[name=buyPriceCZK]').val(json_data.items[4].purchasePrice);
+              $('input[name=buyPriceGBP]').val(json_data.items[5].purchasePrice);
+              
+
+              
+              for(i = 0; i < json_data.items.length; i++)  //fill the right table - amount and value column
+              {
+                  $("#amountWallet" + (i + 1)).text(db_data[i+6]);
+                  $("#walletValue" + (i + 1)).text(parseFloat(db_data[i+6] * json_data.items[i].sellPrice).toFixed(2));
+              }
+
+              var totalPLN = 0;
+              console.log("totalPLN: " + totalPLN);
+              var currentCurrencyValue = [];
+
+              for(i = 0; i < json_data.items.length; i++)  //sum all currecies amount value with walletPLN
+              {                
+                  currentCurrencyValue[i] = db_data[i+6] * json_data.items[i].sellPrice;
+                  console.log("currentCurrencyValue[i]: " + currentCurrencyValue[i]);
+                  totalPLN += currentCurrencyValue[i];
+                  console.log("totalPLN: " + totalPLN);
+          
+              }
+              //totalPLN += data[12] * 1; //parseFloat
+              console.log("totalPLN: " + totalPLN);
+              $("#totalPLN").text(parseFloat(totalPLN.toFixed(2)));
+
+
+              //TODO new chart needed like ajax
+              //https://canvasjs.com/docs/charts/how-to/javascript-charts-from-json-data-api-and-ajax/
+
+              function prepareChart() {
+
+                var chart = new CanvasJS.Chart("chartContainer", { 
+                  title: {
+                    text: "Adding & Updating dataPoints"
+                  },
+                  data: [
+                  {
+                    type: "spline",
+                    dataPoints: [
+                      { y: Math.random()*10 },
+                      { y:  Math.random()*10 },
+                      { y: Math.random()*10 },
+                      { y:  Math.random()*10 }	
+                    ]
+                  }
+                  ]
+                });
+                chart.render();	
+              
+              $("#addDataPoint").click(function () {
+              
+                var length = chart.options.data[0].dataPoints.length;
+                chart.options.title.text = "New DataPoint Added at the end";
+                chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
+                chart.render();
+              
+                });
+              
+                $("#updateDataPoint").click(function () {
+              
+                var length = chart.options.data[0].dataPoints.length;
+                chart.options.title.text = "Last DataPoint Updated";
+                chart.options.data[0].dataPoints[length-1].y = 15 - Math.random() * 10;
+              
+                });
+              
+              }
+              
+              function drawChart() {
+               chart.render();
+              }
+              
+              prepareChart();
+              drawChart();
+
+
+
+
             
 
-            
-            for(i = 0; i < data2.items.length; i++)  //fill the right table - amount and value column
-            {
-                $("#amountWallet" + (i + 1)).text(data[i+6]);
-                $("#walletValue" + (i + 1)).text(parseFloat(data[i+6] * data2.items[i].sellPrice).toFixed(4));
-            }
-
-            var totalPLN = 0;
-			      console.log("totalPLN: " + totalPLN);
-            var currentCurrencyValue = [];
-
-            for(i = 0; i < data2.items.length; i++)  //sum all currecies amount value with walletPLN
-            {                
-                currentCurrencyValue[i] = data[i+6] * data2.items[i].sellPrice;
-                console.log("currentCurrencyValue[i]: " + currentCurrencyValue[i]);
-                totalPLN += currentCurrencyValue[i];
-				        console.log("totalPLN: " + totalPLN);
-				
-            }
-            totalPLN += data[12] * 1; //parseFloat
-            console.log("totalPLN: " + totalPLN);
-            $("#totalPLN").text(parseFloat(totalPLN.toFixed(4)));
-            
-        })
+              
+          })
         
         //$.getJSON not ok condition:
         .fail(function() {
@@ -138,3 +171,24 @@ function getAndCalcData()
 
 
 };
+//https://stackoverflow.com/questions/1960240/jquery-ajax-submit-form TOO
+//TODO
+function submitLogForm() {
+        alert("Thank you for your comment!");
+}
+
+$(function() {
+  // bind 'myForm' and provide a simple callback function
+  $('#myForm').ajaxForm(function() {
+      alert("Thank you for your comment!");
+  });
+});
+
+function unhidePassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

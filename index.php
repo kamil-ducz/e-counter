@@ -25,6 +25,10 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> 	<!-- including google fonts -->
     <!--<script language="javascript" type="text/javascript" src="js/jquery-3.3.1.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
 	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
 
@@ -105,7 +109,7 @@
         </tr>
     <!-- valueUSD2 means buying, all 2 values to buy -->
         <tr>
-            <form name="buyUSDForm" method="POST" action="../e-counter/BuyOperations/buyOperationUSD.php">
+            <form name="buyUSDForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationUSD.php">
 
                 <td id="code1"></td>
                 <td id="unit1"></td><input type="hidden" name="buyPriceUSD">
@@ -200,7 +204,7 @@
                 </tr>
 
                 <tr>
-                    <form name="sellUSDForm" method="POST" action="../e-counter/SellOperations/sellOperationUSD.php">
+                    <form name="sellUSDForm" method="POST" action="../e-counter-xampp/SellOperations/sellOperationUSD.php">
 
                         <td id="codeSale1"></td>
                         <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
@@ -363,6 +367,61 @@
         fclose($file);
     ?>
     </div>
+
+    <div id="chartContainer" style="width:100%; height:280px"></div>  
+    <button id="addDataPoint">Add Data Point</button>  
+    <button id="updateDataPoint">Update Data Point</button> 
+
+
+    
+
+
+    
+    
+    <?php
+    //asynchronous passing from JavaScript to PHP
+    //https://stackoverflow.com/questions/23740548/how-do-i-pass-variables-and-data-from-php-to-javascript
+
+    $file = "log.txt";
+    $file_lines = file($file);
+    $first_line = $file_lines[0];
+
+    $first_line_cooked = explode("T", $first_line);
+    $first_line_cooked2 = explode(".", $first_line_cooked[1]);
+
+    //echo $first_line_cooked[0]." ".$first_line_cooked2[0]; //result
+
+    // echo "file_lines is var of type: ".gettype($file_lines)."<br>";
+    // echo "first_line is var of type: ".gettype($first_line)."<br>";
+    // echo "first_line_cooked is var of type: ".gettype($first_line_cooked)."<br>";
+    // echo "first_line_cooked2 is var of type: ".gettype($first_line_cooked2)."<br>";
+
+    //SEARCH FILE FOR STRING
+    // $file = 'log.txt';
+    // $searchfor = '2020-03-24';
+    // // the following line prevents the browser from parsing this as HTML.
+    // header('Content-Type: text/plain');
+    // // get the file contents, assuming the file to be readable (and exist)
+    // $contents = file_get_contents($file);
+    // // escape special characters in the query
+    // $pattern = preg_quote($searchfor, '/');
+    // // finalise the regular expression, matching the whole line
+    // $pattern = "/^.*$pattern.*\$/m";
+    // // search, and store all matching occurences in $matches
+    // if(preg_match_all($pattern, $contents, $matches)){
+    // echo "Found matches:\n";
+    // echo implode("\n", $matches[0]);
+    // }
+    // else{
+    // echo "No matches found";
+    // }
+    //END OF SEARCH FILE FOR STRING
+
+    ?>
+
+
+
+
 
 </body>
 </html>
