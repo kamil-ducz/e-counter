@@ -93,11 +93,12 @@
 
         <div style="clear:both"></div>	<!-- clearing atribute float:left -->
 
+
     <!--STARTOF BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING -->
         <div class="currencies">		<!-- we buy units here -->
         Currencies	<br />
 
-        <div id ="lastUpdate"> </div>
+        
 
     <table border="1">
         <tr bgcolor="#666666">
@@ -292,12 +293,6 @@
         </div>
         <!--ENDOF SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING -->
 
-
-        <div style="clear:both"></div>	<!-- clearing atribute float:left -->
-
-        <div class="blank_rectangle">
-        </div>
-
         <div style="clear:both"></div>  <!-- clearing atribute float:left -->
 
         <div class="available_money">
@@ -316,87 +311,34 @@
             
         </div>
 
-    </div>
-	
-    <div id="logdiv">
-        <form id="logForm" type="hidden" action="index.php" method="post">
-        <input type="hidden" type="text" name="logTime">
-        <input name="currencyRow1">
-        <input name="currencyRow2">
-        <input name="currencyRow3">
-        <input name="currencyRow4">
-        <input name="currencyRow5">
-        <input name="currencyRow6">
-        <input type="hidden" type="submit" value="submit">
-    </form>
-    <?php
-        // echo $_POST['logTime'];
-        // $file = "log.txt";
-        // $content = $_POST['logTime'];
-        // file_put_contents($file, $content);
-        //date("Y-m-d").
 
-        $file=fopen("log.txt","a+") or exit("Unable to open file!");
+    <div style="clear:both"></div>  <!-- clearing atribute float:left -->
+    <div id="chartContainer" style="width:100%; height:280px"></div>
+    <script>
+        var chart = new CanvasJS.Chart("chartContainer", { 
+                    title: {
+                    text: "Adding & Updating dataPoints"
+                    },
+                        data: [
+                        {
+                            type: "spline",
+                            dataPoints: [
+                            ]
+                        }
+                        ]
+                        });
+        chart.render();	
+    </script>
+    <div style="clear:both"></div>  <!-- clearing atribute float:left -->
+    <div id ="lastUpdate"> </div>
 
-        if ($_POST["logTime"] <> "")
-        {
-            fwrite($file,$_POST["logTime"].",");
-            for($i=0;$i<6;$i++)
-            {
-                if($i+1 == 6)
-                {
-                    fwrite($file,$_POST["currencyRow".($i+1).""]);
-                }
-                else
-                {
-                    fwrite($file,$_POST["currencyRow".($i+1).""].",");
-                }
-
-
-
-            }
-                fwrite($file, "\n");
-            
-            // fwrite($file,$_POST["currencyRow1"].",");
-            // fwrite($file,$_POST["currencyRow1"].",");
-            // fwrite($file,$_POST["currencyRow1"].",");
-            // fwrite($file,$_POST["currencyRow1"].",");
-            // fwrite($file,$_POST["currencyRow1"]."\n");
-        }
-
-        fclose($file);
-    ?>
-    </div>
-
-    <div id="chartContainer" style="width:100%; height:280px"></div>  
-    <button id="addDataPoint">Add Data Point</button>  
-    <button id="updateDataPoint">Update Data Point</button> 
-
-
-    
-
-
-    
+                   
+                   
     
     <?php
-    //asynchronous passing from JavaScript to PHP
-    //https://stackoverflow.com/questions/23740548/how-do-i-pass-variables-and-data-from-php-to-javascript
 
-    $file = "log.txt";
-    $file_lines = file($file);
-    $first_line = $file_lines[0];
+    //SEARCH FILE FOR STRING, assign date to searchfor variable to find matching lines in log.txt
 
-    $first_line_cooked = explode("T", $first_line);
-    $first_line_cooked2 = explode(".", $first_line_cooked[1]);
-
-    //echo $first_line_cooked[0]." ".$first_line_cooked2[0]; //result
-
-    // echo "file_lines is var of type: ".gettype($file_lines)."<br>";
-    // echo "first_line is var of type: ".gettype($first_line)."<br>";
-    // echo "first_line_cooked is var of type: ".gettype($first_line_cooked)."<br>";
-    // echo "first_line_cooked2 is var of type: ".gettype($first_line_cooked2)."<br>";
-
-    //SEARCH FILE FOR STRING
     // $file = 'log.txt';
     // $searchfor = '2020-03-24';
     // // the following line prevents the browser from parsing this as HTML.
@@ -415,6 +357,7 @@
     // else{
     // echo "No matches found";
     // }
+    
     //END OF SEARCH FILE FOR STRING
 
     ?>
