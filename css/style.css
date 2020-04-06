@@ -64,7 +64,7 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 .currencies		/* here are tables and currencies on the left*/
 {
 	width: 600px;
-	height: 500px;
+	height: 350px;
 	/*background-color: #035D39;*/
 	float: left;		/*rectangles 'float to the left', so that they are one next to the other*/
 	border-color: #000000;
@@ -79,7 +79,7 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 .my_wallet		/* here's user's wallet to sell units on the right*/
 {
 	width: 600px;
-	height: 500px;
+	height: 350px;
 	/*background-color: #035D39*/;
 	float: left;
 	border-color: #000000;
@@ -90,16 +90,6 @@ a:hover {text-decoration: none; color: #ffffff; font-size: 25px; }
 	border-right-width: 4px;
 }
 
-.blank_rectangle		/* class for the blank rectangles which separate bottom parts:graph and available money*/
-{
-	width: 996px;
-	height: 80px;
-	background-color: #0C012F;
-	float: left;
-
-
-	border-color: #000000;
-}
 
 .graph
 {
