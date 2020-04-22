@@ -17,18 +17,84 @@ function getAndCalcData()
    $.getJSON("server_content.php")
       .done(function(json_data) {
 
-              var name1=10;
-              function logfile(){
-              $.ajax({                         //https://www.w3schools.com/jquery/ajax_ajax.asp                               
-                url: 'logfile.php',                  //read from api.php
-                method: "POST",
-                data:"logTime=" + name1,
-                success: function(result){
-                
-                }	  
-                });
-              }
+//         n data variable
 
+
+
+// Now you have only one variable named logtime
+
+
+
+// If you want to send several variables here the syntax
+
+
+
+// data:"logtime="+value1+"&variable2="+value2+"&variable3"+value3;
+
+
+
+// example pf sending three variables inside Post array in ajax
+
+              function logfile(){
+                $.ajax({                             
+                  url: 'logfile.php',
+                  method: "POST",
+                  data:"logTime=" + json_data.publicationDate + "&purchasePrice1=" + json_data.items[0].purchasePrice + "&purchasePrice2=" + json_data.items[1].purchasePrice + "&purchasePrice3=" + json_data.items[2].purchasePrice + "&purchasePrice4=" + json_data.items[3].purchasePrice + "&purchasePrice5=" + json_data.items[4].purchasePrice + "&purchasePrice6=" + json_data.items[5].purchasePrice + "&sellPrice1=" + json_data.items[0].sellPrice + "&sellPrice2=" + json_data.items[1].sellPrice + "&sellPrice3=" + json_data.items[2].sellPrice + "&sellPrice4=" + json_data.items[3].sellPrice + "&sellPrice5=" + json_data.items[4].sellPrice + "&sellPrice6=" + json_data.items[5].sellPrice           ,
+                  success: function(data){}	  
+                  });
+
+                // $.ajax({                                                      
+                //   url: 'logfile.php',                
+                //   method: "POST",
+                //   data:"currencyRow1=" + json_data.items[0].sellPrice,
+                //   success: function(result){
+                  
+                //   }	  
+                //   });
+
+                //   $.ajax({                                                     
+                //     url: 'logfile.php',                  
+                //     method: "POST",
+                //     data:"currencyRow2=" + json_data.items[1].sellPrice,
+                //     success: function(result){
+                    
+                //     }	  
+                //     });
+
+                //     $.ajax({                                                    
+                //       url: 'logfile.php',              
+                //       method: "POST",
+                //       data:"currencyRow3=" + json_data.items[2].sellPrice,
+                //       success: function(result){
+                      
+                //       }	  
+                //       });
+                //     $.ajax({                                                    
+                //       url: 'logfile.php',              
+                //       method: "POST",
+                //       data:"currencyRow4=" + json_data.items[3].sellPrice,
+                //       success: function(result){
+                      
+                //       }	  
+                //       });
+                //     $.ajax({                                                    
+                //       url: 'logfile.php',              
+                //       method: "POST",
+                //       data:"currencyRow5=" + json_data.items[4].sellPrice,
+                //       success: function(result){
+                      
+                //       }	  
+                //       });
+                //       $.ajax({                                                    
+                //         url: 'logfile.php',              
+                //         method: "POST",
+                //         data:"currencyRow6=" + json_data.items[5].sellPrice,
+                //         success: function(result){
+                        
+                //         }	  
+                //         });
+
+              }
               logfile();
 
 
