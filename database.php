@@ -1,68 +1,54 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 		
-class Database			// here we have class Database with most of methods
+class Database
 {
 	private $connection;
 	
-	
-	function connect()		// used every time to connect with mysql
+	function connect()
 	{
 		require_once('connect.php');	
-
-		//we need this file and we're configuring everything(host,user,pass etc.) in it
-		if (false == isset($this -> connection))		// when there is no connection...
+		if (false == isset($this -> connection))
 		{
-			$this -> connection = mysqli_connect($host, $db_user, $db_password);		//asign effect of connection to var connection
-			
-			if (mysqli_connect_errno())		// when there's error in connection this if happens and function returns false
+			$this -> connection = mysqli_connect($host, $db_user, $db_password);
+			if (mysqli_connect_errno())
 			{
 				return false;
 			}
 		}
-		  
-		return true;		// happens when connection is on
+		return true;
 	}
 	
-	function createDatabase()		//this need to go for the first time to create userdatabase
+	function createDatabase()
 	{
 		$result = $this -> connect();
-		
 		if (true == $result)
 		{		
 			$query = "CREATE DATABASE IF NOT EXISTS usersdatabase"; 
 			mysqli_query($this -> connection, $query) ;
 			mysqli_select_db($this->connection, "usersdatabase");
-			//creating table for userdatabase if there isn't one
-			$query2="CREATE TABLE IF NOT EXISTS users(
-
-							   id int(10) NOT NULL auto_increment,                 
-							   name varchar (20) NOT NULL,
-							   surname varchar (20) NOT NULL,
-							   login varchar (20) NOT NULL,
-							   password varchar (20) NOT NULL,
-							   mail varchar (20),
-							   
-							   walletUSD int(10),
-							   walletEUR int(10),
-							   walletCHF int(10),
-							   walletRUB int(10),
-							   walletCZK int(10),
-							   walletGBP int(10),
-							   walletPLN int(10),
-							   
-							   PRIMARY KEY (id)
-															)";
-							   
-			//create table where counter bureau money is 
-			$query3="CREATE TABLE IF NOT EXISTS counter(
-			
-							   counter_money int(10) DEFAULT 100000,
-							   PRIMARY KEY (counter_money)
-																				)";
-
-			mysqli_query($this -> connection, $query2) ;		// execute queries db and table
+			$query2="CREATE TABLE IF NOT EXISTS users
+								(
+									id int(10) NOT NULL auto_increment,                 
+									name varchar (20) NOT NULL,
+									surname varchar (20) NOT NULL,
+									login varchar (20) NOT NULL,
+									password varchar (255) NOT NULL,
+									mail varchar (20),
+									walletUSD int(10),
+									walletEUR int(10),
+									walletCHF int(10),
+									walletRUB int(10),
+									walletCZK int(10),
+									walletGBP int(10),
+									walletPLN int(10),
+									PRIMARY KEY (id)
+							   )";
+			$query3="CREATE TABLE IF NOT EXISTS counter
+								(
+									counter_money int(10) DEFAULT 100000,
+									PRIMARY KEY (counter_money)
+								)";
+			mysqli_query($this -> connection, $query2) ;
 			mysqli_query($this -> connection, $query3) ;
 			
 			return true;
@@ -71,20 +57,17 @@ class Database			// here we have class Database with most of methods
 			return false;
 	}
 	
-	function checkUser($login)		// used when user's logging and during registration
+	function checkUser($login)
 	{
 		$query="SELECT * FROM users WHERE login='$login'";
 		$result = mysqli_query($this -> connection, $query);
 		
-		
-		// Mysql_num_row is counting table row
-		
-		if (1 == mysqli_num_rows($result))		// number of rows has to be exactly 1 (only 1 user can have 1 login)
+		if (1 == mysqli_num_rows($result))
 		{
-			return false;		// there is such user, so false
+			return false;
 		}
 		
-		return true;		// check ok, login free
+		return true;
 	}
 	
 	function  registerUser ($name, $surname, $login, $password, $mail, $walletUSD, $walletEUR, $walletCHF, $walletRUB, $walletCZK, $walletGBP, $walletPLN)
@@ -94,21 +77,22 @@ class Database			// here we have class Database with most of methods
 		$db_password = "";
 		$db_name = "usersdatabase";
 
-		$connection = mysqli_connect($host, $db_user, $db_password, $db_name);
-		//TODO duplicate users cause issue 
+		$password = password_hash($password, PASSWORD_DEFAULT);
+
+		$connection = mysqli_connect($host, $db_user, $db_password, $db_name); 
 		$query = 'INSERT INTO users(name, surname, login, password, mail, walletUSD, walletEUR, walletCHF, walletRUB, walletCZK, walletGBP, walletPLN) 
 		VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$password.'", "'.$mail.'", "'.$walletUSD.'",
 		 "'.$walletEUR.'", "'.$walletCHF.'", "'.$walletRUB.'", "'.$walletCZK.'", "'.$walletGBP.'",
 		  "'.$walletPLN.'" )';
 		$result = mysqli_query($this -> connection, $query);
 			echo $query;
-		if (true == $result)		//success 
+		if (true == $result)
 		{
 			return true;	
 		}
 		else
 		{
-			return false;		// unable to execute query
+			return false;
 		}
 
 	}
@@ -119,19 +103,22 @@ class Database			// here we have class Database with most of methods
 		$db_user = "root";
 		$db_password = "";
 		$db_name = "usersdatabase";
-		$connection =  mysqli_connect($host, $db_user, $db_password, $db_name);		// set connection to variable
-		$query=sprintf("SELECT * FROM Users WHERE login='%s' and password='%s'", mysqli_real_escape_string($connection, $login), mysqli_real_escape_string($connection, $password));
+		$connection =  mysqli_connect($host, $db_user, $db_password, $db_name);
+
+		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
+
+		$query=sprintf("SELECT * FROM Users WHERE login='%s'", 
+		mysqli_real_escape_string($connection, $login));
 		$result=mysqli_query($this -> connection, $query);
-
-
-		// Mysql_num_row is counting table row
-		$count=mysqli_num_rows($result);
-		// If result matched $username and $password, table row must be 1 row
-		if ($count ==1 ) {
-			//echo "Success! $count";
+		$row = $result -> fetch_assoc();//fetch row from query and store in array
+		
+		
+		if(password_verify($password, $row['password']) == true)
+		{
 			return true;
-		} else {
-			//echo 'Wrong username or password';
+		}
+		else
+		{
 			return false;
 		}
 
@@ -145,7 +132,6 @@ class Database			// here we have class Database with most of methods
 		{
             return false;
         }
-		
         $row = $result -> fetch_assoc();
 
         return $row;
@@ -165,7 +151,6 @@ class Database			// here we have class Database with most of methods
 		
 		return false;
     }
-	
 	
 	function closeConnection()
 	{
