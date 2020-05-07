@@ -1,105 +1,52 @@
 <?php
-	session_start();
-	
-		if(isset($_SESSION['login'])) $logged = $_SESSION['login'];
-		require_once('connect.php');
-		
-		$link = mysqli_connect($host, $db_user, $db_password);
-		mysqli_select_db($link, "usersdatabase");
+    session_start();
+    if(!isset($_SESSION['login'])) //not logged
+    {
+    header('Location: login.php');
+    }
+
+    if(isset($_SESSION['login'])) $logged = $_SESSION['login']; //logged
+    require_once('connect.php');
+    $link = mysqli_connect($host, $db_user, $db_password);
+    mysqli_select_db($link, "usersdatabase");
 ?>
 
 <!DOCTYPE HTML>
 <html lang="en">
-
 <head>
     <meta Content-Type = "application/json" charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Internetowy System Wymiany Walut</title>
-
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-
-    <link rel="stylesheet" href="css/style.css" type="text/css">		<!-- including stylesheet for index.php -->
-    <link rel="stylesheet" href="css/fontello.css" type="text/css">		<!-- including fontello-->
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> 	<!-- including google fonts -->
-    <!--<script language="javascript" type="text/javascript" src="js/jquery-3.3.1.js"></script> -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/fontello.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    
 	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
-
-
 <body>
-
-
-    <div id="container">
-        <?php
-
-        if (true == isset($_SESSION['login']))
-        {
-
-            ?><!-- if logged do the html code from here... -->
-            <div class="log_buttons">
-            Logged as 
-            
-            <?php echo  $_SESSION['login']?>
-            <a href="userSettings.php"><i align="right" class="icon-cog "></i></a>
-            <a href="logout.php"><i align="right" class="icon-power"></i></a>
-            </br>
-            <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-            }
-            ?>
-            </div>			<!-- to here.-->
-        <?php
-
-        }
-        else
-        {
-        ?><!-- if not logged show panel for log in and registration-->
-        <div class="log_panel">
-            <form action="proceedLoginData.php" method="post">
-
-            Login
-            <input type="text" name="login" /> <br />
-            Password
-            <input type="password" name="password" />
-
-            <input type="submit" value="Login" /><br/>
-            </form>
-            <a href="registrationForm.php">Register new user</a>
-
-
-        <?php			// show error when wrong login and password are given by user
-
-            if(isset($_SESSION['error']))			// session error exists - display it
-            {
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-            }
-
-            ?>
+    <div class="container-fluid">
+        <div class="navbar">
+            <div align="left" text-decoration="none"><a href="index.php"><span class="">Internetowy System Wymiany Walut</span></a></div>
+            <div align="right">
+                <span> Logged as  <?php echo  $_SESSION['login']?> </span>
+                <a href="userSettings.php"><span class="icon-cog"><span></a>
+                <a href="logout.php"><span class="icon-power"><span></a>
+            </div>
+            <br />
         </div>
-            <?php
-        }
-        ?>
 
-        <div style="clear:both"></div>	<!-- clearing atribute float:left -->
-
-
+    <div class="row">
     <!--STARTOF BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING -->
-        <div class="currencies">		<!-- we buy units here -->
+    <div class="col-lg">
         Currencies	<br />
-
-        
-
     <table border="1">
         <tr bgcolor="#666666">
             <td>Currency</td>
@@ -108,7 +55,6 @@
             <td>Actions</td>
             <td>Finalize</td>
         </tr>
-    <!-- valueUSD2 means buying, all 2 values to buy -->
         <tr>
             <form name="buyUSDForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationUSD.php">
 
@@ -191,7 +137,7 @@
     <!--ENDOF BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING -->
 
     <!--STARTOF SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING -->
-        <div class="my_wallet">
+        <div class="col-lg">
         <br />My Wallet:
             <table border="1" id="tableSell">
 
@@ -290,8 +236,9 @@
 
             </table>
 
-        </div>
+            </div>
         <!--ENDOF SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING -->
+        </div>
 
         <div style="clear:both"></div>  <!-- clearing atribute float:left -->
 
