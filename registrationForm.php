@@ -1,73 +1,76 @@
-<?php
-
-	//when user is logged it's impossible to register new user
-	require_once("database.php");			// open database.php using require_once instead of include
-	if(isset($_SESSION['login']))				// if logged go to index(avoid entering registrationForm manually from browser)
-	{
-		header("Location:index.php");
-		exit();
-	}
-?>
 
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
-<meta charset="utf8" />
-<meta httpequiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
-<title>Registration Form</title>
-<link rel="stylesheet" href="css/registrationFormstyle.css" type="text/css">
-<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
+	<meta charset="utf8" />
+	<meta httpequiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+	<title>Registration Form</title>
+	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/fontello.css" type="text/css">
+	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
-
 <body>
+		<div class="container">
+		<div class="navbar">
+				<h3><a href="index.php"><span class="">Internetowy System Wymiany Walut</span></a></h>
+			</div>
 
-<form action="proceedRegistrationData.php" method="post">		<!-- post info from form to php script -->
-
-Your login :
-<input type="text" name="login" minlength="3"  maxlength="20"  required /> <br />
-
-Your password: 
-<input type="password" name="password" id="password" minlength="4"  maxlength="20" required /> <br />
-<input type="checkbox" onclick="unhidePassword()">Show password <br />
-
-Enter your name: 
-<input type="text" name="userName" minlength="3" maxlength="20" /> <br />
-
-Enter your surname: 
-<input type="text" name="userSurname" minlength="3" maxlength="20" /> <br />
-
-Enter your e-mail: 
-<input type="email" name="mail" /> <br />
-<p>
-How much money you have in USD:
-<input type="number" name="walletUSD" min="0" max="1000000" value="10000" required /> <br />
-
-How much money you have in EUR:
-<input type="number" name="walletEUR" min="0" max="1000000" value="10000" required  /> <br />
-
-How much money you have in CHF:
-<input type="number" name="walletCHF" min="0" max="1000000" value="10000" required  /> <br />
-
-How much money you have in RUB:
-<input type="number" name="walletRUB" min="0" max="1000000" value="10000" required  /> <br />
-
-How much money you have in CZK:
-<input type="number" name="walletCZK" min="0" max="1000000" value="10000" required  /> <br />
-
-How much money you have in GBP:
-<input type="number" name="walletGBP" min="0" max="1000000" value="10000" required  /> <br />
-
-How much money you have in PLN:
-<input type="number" name="walletPLN" min="0" max="1000000" value="10000" required  /> <br />
-
-<a href="index.php">Back</a>
-<input type="submit" style="height: 30px; width: 80px" value="Register" />
-
-
-
-
-</form>
+		<form action="proceedRegistrationData.php" method="post" oninput='up2.setCustomValidity(password.value != password2.value ? "Passwords do not match." : "")'>
+			<h4>Twoje dane</h>
+			<div class="form-group">
+				<label for="inputEmail">E-mail</label>
+				<input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Wprowadź e-mail" name="login" minlength="3"  maxlength="20"  required />
+				<small id="emailHelp" class="form-text text-muted">Nigdy nie udostępnimy Twojego adresu e-mail.</small>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword">Hasło</label>
+				<input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Wprowadź hasło" name="password" id="inputPassword" minlength="4"  maxlength="20" required />
+				<small id="passwordHelp" class="form-text text-muted">Twoje hasło jest zaszyfrowane i nigdy go nikomu nie udostępnimy.</small>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword2">Powtórz hasło</label>
+				<input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Powtórz hasło" name="password2" id="inputPassword2" minlength="4"  maxlength="20" required />
+			</div>
+			<div class="form-group">
+			<label for="inputFirstName">Imię</label>
+			<input type="text" name="userName" minlength="3" maxlength="20" class="form-control" id="inputFirstName" placeholder="Wprowadź swoje imię" />
+			</div>
+			<div class="form-group">
+			<label for="inputFirstName">Nazwisko</label>
+			<input type="text" name="userSurname" minlength="3" maxlength="20" class="form-control" id="inputSurname" placeholder="Wprowadź swoje nazwisko" />
+			</div>
+			<h4>Twój portfel</h4>
+			<div class="form-group">
+			<label>Dolary USD</label>
+			<input type="number" name="walletUSD" min="0" max="1000000" value="100" class="form-control" required />
+			</div>
+			<div class="form-group">
+			<label>Euro EUR</label>
+			<input type="number" name="walletEUR" min="0" max="1000000" value="75" class="form-control" required  />
+			</div>
+			<div class="form-group">
+			<label>Franki Szwajcarskie CHF</label>
+			<input type="number" name="walletCHF" min="0" max="1000000" value="75" class="form-control" required  />
+			</div>
+			<div class="form-group">
+			<label>Rosyjskie Ruble RUB</label>
+			<input type="number" name="walletRUB" min="0" step="100" max="1000000" value="600" class="form-control" required  />
+			</div>
+			<div class="form-group">
+			<label>Korony Czeskie CZK</label>
+			<input type="number" name="walletCZK" min="0" step="100" max="1000000" value="800" class="form-control" required  />
+			<div class="form-group">
+			<label>Funty Brytyjskie GBP</label>
+			<input type="number" name="walletGBP" min="0" max="1000000" value="50" class="form-control" required  />
+			</div>
+			<div class="form-group">
+			<label>Polskie Złotówki</label>
+			<input type="number" name="walletPLN" min="0" max="1000000" value="300" class="form-control" required  />
+			</div>
+			<a href="index.php" class="icon-power">Powrót</a>
+			<button type="submit" class="btn btn-primary">Zarejestruj</button>
+		</form>
+	</div>
 
 </body>
-
 </html>

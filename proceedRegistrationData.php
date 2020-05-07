@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	
-	//when user is logged it's impossible to register new user
+	//block registration when user logged
 	require_once("database.php");
 	if(isset($_SESSION['login']))
 	{
@@ -11,8 +11,9 @@
 	
 	require_once('database.php');
 	
-	$login = $_POST['login'];		//set variables from form
+	$login = $_POST['login'];
 	$pass = $_POST['password'];
+	$pass2 = $_POST['password2'];
 	$userName = $_POST['userName'];
 	$userSurname = $_POST['userSurname'];
 	$userMail = $_POST['mail'];
@@ -24,36 +25,33 @@
 	$WalletGBP = $_POST['walletGBP'];
 	$WalletPLN = $_POST['walletPLN'];
 	
-
+	$db = new Database();
+	$result = $db -> createDatabase();
 	
-	$db = new Database();		//create new database object
-	
-	$result = $db -> createDatabase();		// call function createDatabase(this can be first time and there could not be any database)
-	
-	if (false == $result)		// function got false, we cannot create database
+	if (false == $result)
 	{
 		$_SESSION['error'] = "Can not create database!";
 		header('location:index.php');
 		exit;
 	}
 	
-	$result = $db -> checkUser($login);		//check if there's such login
+	$result = $db -> checkUser($login);
 	
-	if (false == $result)		// if got false because user exists
+	if (false == $result)
 	{
-		$_SESSION['error'] =  '<span style="color:red">Login already exists. Try another one.</span>';		// set session error and display in index.php
-		header('location:index.php');
-		exit;			//exit to avoid redundant code 
+		$_SESSION['error'] =  '<span style="color:red">Użytkownik z takim adresem e-mail już istnieje. Wprowadź inny adres e-mail.</span>';
+		//header('location:index.php');
+		//exit;			//exit to avoid redundant code 
 	}
 	
-	$result = $db -> registerUser($userName, $userSurname, $login, $pass, $userMail, $WalletUSD, $WalletEUR, $WalletCHF, $WalletRUB, $WalletCZK, $WalletGBP, $WalletPLN);		//call function registerUser and set session error as positive or echo mistake
-
+	$result = $db -> registerUser($userName, $userSurname, $login, $pass, $userMail, $WalletUSD, $WalletEUR, $WalletCHF, $WalletRUB, $WalletCZK, $WalletGBP, $WalletPLN);
 	if(false == $result)
 	{
 		$_SESSION['error'] =  "Unable to register.";
 	}
-	else{	
-	$_SESSION['error'] = '<span style="color:yellow">User '.$login.' registered!</span>';
+	else
+	{	
+		$_SESSION['error'] = '<span style="color:yellow">Użytkownik '.$login.' zarejestrowany. Dziękujemy!</span>';
 	}
-	header('location:index.php');
+	//header('location:index.php');
 ?>
