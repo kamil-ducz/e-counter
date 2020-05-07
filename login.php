@@ -11,30 +11,37 @@ session_start();
     <title>Internetowy System Wymiany Walut</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="container">
-            <form action="proceedLoginData.php" method="post">
+    <div class="navbar">
+        <div align="left" text-decoration="none"><a href="index.php"><span class="">Internetowy System Wymiany Walut</span></a></div>
+        <br />
+    </div>
+    <form action="proceedLoginData.php" method="post">
+        <div class="form-group">
+            <label for="inputEmail">E-mail</label>
+            <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Wprowadź e-mail" name="login" />
+            <small id="emailHelp" class="form-text text-muted">Nigdy nie udostępnimy Twojego adresu e-mail.</small>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Hasło</label>
+            <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Wprowadź hasło" name="password" />
+            <small id="passwordHelp" class="form-text text-muted">Twoje hasło jest zaszyfrowane i nigdy go nikomu nie udostępnimy.</small>
+        </div>
+        <button type="submit" class="btn btn-primary" value="Login">Zaloguj</button>
+    </form>
+    Nie masz konta?<a href="registrationForm.php"> Zarejestruj się</a>
 
-            Login
-            <input type="text" name="login" /> <br />
-            Password
-            <input type="password" name="password" />
+    <?php
+        if(isset($_SESSION['error']))
+        {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+    ?>
 
-            <input type="submit" value="Login" /><br/>
-            </form>
-            <a href="registrationForm.php">Register new user</a>
-
-
-        <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-            }
-        ?>
 </div>
 </body>
 
