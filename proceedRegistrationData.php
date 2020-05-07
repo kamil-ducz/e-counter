@@ -16,7 +16,6 @@
 	$pass2 = $_POST['password2'];
 	$userName = $_POST['userName'];
 	$userSurname = $_POST['userSurname'];
-	$userMail = $_POST['mail'];
 	$WalletUSD = $_POST['walletUSD'];
 	$WalletEUR = $_POST['walletEUR'];
 	$WalletCHF = $_POST['walletCHF'];
@@ -44,7 +43,7 @@
 		//exit;			//exit to avoid redundant code 
 	}
 	
-	$result = $db -> registerUser($userName, $userSurname, $login, $pass, $userMail, $WalletUSD, $WalletEUR, $WalletCHF, $WalletRUB, $WalletCZK, $WalletGBP, $WalletPLN);
+	$result = $db -> registerUser($userName, $userSurname, $login, $pass, $WalletUSD, $WalletEUR, $WalletCHF, $WalletRUB, $WalletCZK, $WalletGBP, $WalletPLN);
 	if(false == $result)
 	{
 		$_SESSION['error'] =  "Unable to register.";
@@ -53,5 +52,5 @@
 	{	
 		$_SESSION['error'] = '<span style="color:yellow">Użytkownik '.$login.' zarejestrowany. Dziękujemy!</span>';
 	}
-	//header('location:index.php');
+	header('location:index.php');
 ?>

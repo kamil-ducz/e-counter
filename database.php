@@ -70,7 +70,7 @@ class Database
 		return true;
 	}
 	
-	function  registerUser ($name, $surname, $login, $password, $mail, $walletUSD, $walletEUR, $walletCHF, $walletRUB, $walletCZK, $walletGBP, $walletPLN)
+	function  registerUser ($name, $surname, $login, $password, $walletUSD, $walletEUR, $walletCHF, $walletRUB, $walletCZK, $walletGBP, $walletPLN)
 	{
 		$host = "localhost";
 		$db_user = "root";
@@ -80,8 +80,8 @@ class Database
 		$password = password_hash($password, PASSWORD_DEFAULT);
 
 		$connection = mysqli_connect($host, $db_user, $db_password, $db_name); 
-		$query = 'INSERT INTO users(name, surname, login, password, mail, walletUSD, walletEUR, walletCHF, walletRUB, walletCZK, walletGBP, walletPLN) 
-		VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$password.'", "'.$mail.'", "'.$walletUSD.'",
+		$query = 'INSERT INTO users(name, surname, login, password, walletUSD, walletEUR, walletCHF, walletRUB, walletCZK, walletGBP, walletPLN) 
+		VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$password.'", "'.$walletUSD.'",
 		 "'.$walletEUR.'", "'.$walletCHF.'", "'.$walletRUB.'", "'.$walletCZK.'", "'.$walletGBP.'",
 		  "'.$walletPLN.'" )';
 		$result = mysqli_query($this -> connection, $query);
