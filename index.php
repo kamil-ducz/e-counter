@@ -30,231 +30,226 @@
 	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="navbar">
-            <div align="left" text-decoration="none"><a href="index.php"><span class="">Internetowy System Wymiany Walut</span></a></div>
-            <div align="right">
-                <span> Logged as  <?php echo  $_SESSION['login']?> </span>
-                <a href="userSettings.php"><span class="icon-cog"><span></a>
-                <a href="logout.php"><span class="icon-power"><span></a>
-            </div>
-            <br />
-    </div>
+    <div class="container">
 
-    <div class="row">
-    <!--STARTOF BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING -->
-    <div class="col-lg">
-        Currencies	<br />
-    <table border="1">
-        <tr bgcolor="#666666">
-            <td>Currency</td>
-            <td>Unit</td>
-            <td>Purchase price</td>
-            <td>Actions</td>
-            <td>Finalize</td>
-        </tr>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="btn btn-primary" href="index.php">Internetowy System Wymiany Walut</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">O projekcie <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">O autorze</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <span> Witaj <?php echo  $_SESSION['login']?> </span>
+                    <a href="userSettings.php" class="icon-cog"></a>
+                    <a href="logout.php" class="icon-power"></a>
+                </div>
+            </nav>
+
+    <button type="button" class="btn btn-info">Kantor</button>
+    <table class="table table-hover">
+    <thead>
         <tr>
+        <th scope="col">Waluta</th>
+        <th scope="col">Cena kupna</th>
+        <th scope="col">Ile kupić?</th>
+        <th scope="col">Kupuj</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-active">
             <form name="buyUSDForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationUSD.php">
-
                 <td id="code1"></td>
-                <td id="unit1"></td><input type="hidden" name="buyPriceUSD">
                 <td id="purchasePrice1"></td>                     
                 <td>
-                    <input type="number" min="0" max="1000000" name="buyUSD" placeholder="enter USD">
+                    <input type="number" min="0" max="1000" name="buyUSD" placeholder="USD" class="form-control">
                 </td>
-                <td><input type="submit" id="USDSubmit" value="BuyUSD"></td>                         
+                <td><button type="submit" id="USDSubmit" value="BuyUSD" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
             </form>
         </tr>
-
         <tr>
             <form name="buyEURForm" method="POST" action="../e-counter/BuyOperations/buyOperationEUR.php">
 
                 <td id="code2"></td>
-                <td id="unit2"></td><input type="hidden" name="buyPriceEUR">
                 <td id="purchasePrice2"></td>                     
                 <td>
-                    <input type="number" min="0" max="1000000" name="buyEUR" placeholder="enter EUR">
+                    <input type="number" min="0" max="1000" name="buyEUR" placeholder="EUR"  class="form-control">
                 </td>
-                <td><input type="submit" id="EURSubmit" value="BuyEUR"></td>                         
+                <td><button type="submit" id="EURSubmit" value="BuyEUR" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
             </form>
         </tr>
         <tr>
             <form name="buyCHFForm" method="POST" action="../e-counter/BuyOperations/buyOperationCHF.php">
 
                 <td id="code3"></td>
-                <td id="unit3"></td><input type="hidden" name="buyPriceCHF">
                 <td id="purchasePrice3"></td>                     
                 <td>
-                    <input type="number" min="0" max="1000000" name="buyCHF" placeholder="enter CHF">
+                    <input type="number" min="0" max="1000" name="buyCHF" placeholder="CHF" class="form-control">
                 </td>
-                <td><input type="submit" id="CHFSubmit" value="BuyCHF"></td>                         
+                <td><button type="submit" id="CHFSubmit" value="BuyCHF" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
             </form>
         </tr>
-
         <tr>
             <form name="buyRUBForm" method="POST" action="../e-counter/BuyOperations/buyOperationRUB.php">
 
                 <td id="code4"></td>
-                <td id="unit4"></td><input type="hidden" name="buyPriceRUB">
                 <td id="purchasePrice4"></td>                     
                 <td>
-                    <input type="number" min="0" max="1000000" name="buyRUB" placeholder="enter RUB">
+                    <input type="number" min="0" max="1000" name="buyRUB" placeholder="RUB" class="form-control">
                 </td>
-                <td><input type="submit" id="RUBSubmit" value="BuyRUB"></td>                         
+                <td><button type="submit" id="RUBSubmit" value="BuyRUB" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
             </form>
         </tr>
-
         <tr>
             <form name="buyCZKForm" method="POST" action="../e-counter/BuyOperations/buyOperationCZK.php">
 
                 <td id="code5"></td>
-                <td id="unit5"></td><input type="hidden" name="buyPriceCZK">
                 <td id="purchasePrice5"></td>                     
                 <td>
-                    <input type="number" min="0" max="1000000" name="buyCZK" placeholder="enter CZK">
+                    <input type="number" min="0" max="1000" name="buyCZK" placeholder="CZK" class="form-control">
                 </td>
-                <td><input type="submit" id="CZKSubmit" value="BuyCZK"></td>                         
+                <td><button type="submit" id="CZKSubmit" value="BuyCZK" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
             </form>
         </tr>
-
         <tr>
             <form name="buyGBPForm" method="POST" action="../e-counter/BuyOperations/buyOperationGBP.php">
 
                 <td id="code6"></td>
-                <td id="unit6"></td><input type="hidden" name="buyPriceGBP">
                 <td id="purchasePrice6"></td>                     
                 <td>
-                    <input type="number" min="0" max="1000000" name="buyGBP" placeholder="enter GBP">
+                    <input type="number" min="0" max="1000" name="buyGBP" placeholder="GBP" class="form-control">
                 </td>
-                <td><input type="submit" id="GBPSubmit" value="BuyGBP"></td>                         
+                <td><button type="submit" id="GBPSubmit" value="BuyGBP" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+            </form>
+        </tr>
+    </tbody>
+    </table> 
+<button type="button" class="btn btn-info">Twój portfel</button>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">Waluta</th>
+        <th scope="col">Cena sprzedaży</th>
+        <th scope="col">Posiadana ilość</th>
+        <th scope="col">Wartość waluty w PLN</th>
+        <th scope="col">Ile sprzedać?</th>
+        <th scope="col">Sprzedawaj</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <form name="sellUSDForm" method="POST" action="../e-counter-xampp/SellOperations/sellOperationUSD.php">
+            <td id="codeSale1"></td>
+            <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
+            <td id="amountWallet1"></td>
+            <td id="walletValue1"></td>
+            <td>
+            <input type="number" min="0" max="1000" name="sellUSD" placeholder="USD" class="form-control">
+            </td>
+            <td><button type="submit" id="USDSubmit" value="SellUSD" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            </form>
+        </tr>
+        <tr>
+            <form name="sellEURForm" method="POST" action="../e-counter/SellOperations/sellOperationEUR.php">
+
+                <td id="codeSale2"></td>
+                <td id="sellPrice2"></td><input type="hidden" name="sellPriceEUR">                     
+                <td id="amountWallet2"></td>
+                <td id="walletValue2"></td>
+                <td>
+                    <input type="number" min="0" max="1000" name="sellEUR" placeholder="EUR" class="form-control">
+                </td>
+                <td><button type="submit" id="EURSubmit" value="SellEUR" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
             </form>
         </tr>
 
-            </table>
-        </div>
-    <!--ENDOF BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING BUYING -->
+        <tr>
+            <form name="sellCHFForm" method="POST" action="../e-counter/SellOperations/sellOperationCHF.php">
 
-    <!--STARTOF SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING -->
-        <div class="col-lg">
-        <br />My Wallet:
-            <table border="1" id="tableSell">
+                <td id="codeSale3"></td>
+                <td id="sellPrice3"></td><input type="hidden" name="sellPriceCHF">                     
+                <td id="amountWallet3"></td>
+                <td id="walletValue3"></td>
+                <td>
+                    <input type="number" min="0" max="1000" name="sellCHF" placeholder="CHF" class="form-control">
+                </td>
+                <td><button type="submit" id="CHFSubmit" value="SellCHF" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            </form>
+        </tr>
 
-                <tr bgcolor="#666666">
-                    <td>Currency</td>
-                    <td>Sell price</td>
-                    <td bgcolor="lightblue">Amount</td>
-                    <td>Value</td>
-                    <td>Actions</td>
-                    <td>Finalize</td>
-                </tr>
+        <tr>
+            <form name="sellRUBForm" method="POST" action="../e-counter/SellOperations/sellOperationRUB.php">
 
-                <tr>
-                    <form name="sellUSDForm" method="POST" action="../e-counter-xampp/SellOperations/sellOperationUSD.php">
+                <td id="codeSale4"></td>
+                <td id="sellPrice4"></td><input type="hidden" name="sellPriceRUB">                     
+                <td id="amountWallet4"></td>
+                <td id="walletValue4"></td>
+                <td>
+                    <input type="number" min="0" max="1000" name="sellRUB" placeholder="RUB" class="form-control">
+                </td>
+                <td><button type="submit" id="RUBSubmit" value="SellRUB" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            </form>
+        </tr>
 
-                        <td id="codeSale1"></td>
-                        <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
-                        <td id="amountWallet1"></td>
-                        <td id="walletValue1"></td>
-                        <td>
-                            <input type="number" min="0" max="1000000" name="sellUSD" placeholder="enter USD">
-                        </td>
-                        <td><input type="submit" id="USDSubmit" value="SellUSD"></td>                         
-                    </form>
-                </tr>
+        <tr>
+            <form name="sellCZKForm" method="POST" action="../e-counter/SellOperations/sellOperationCZK.php">
 
-                <tr>
-                    <form name="sellEURForm" method="POST" action="../e-counter/SellOperations/sellOperationEUR.php">
+                <td id="codeSale5"></td>
+                <td id="sellPrice5"></td><input type="hidden" name="sellPriceCZK">                     
+                <td id="amountWallet5"></td>
+                <td id="walletValue5"></td>
+                <td>
+                    <input type="number" min="0" max="1000" name="sellCZK" placeholder="CZK" class="form-control">
+                </td>
+                <td><button type="submit" id="CZKSubmit" value="SellCZK" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            </form>
+        </tr>
 
-                        <td id="codeSale2"></td>
-                        <td id="sellPrice2"></td><input type="hidden" name="sellPriceEUR">                     
-                        <td id="amountWallet2"></td>
-                        <td id="walletValue2"></td>
-                        <td>
-                            <input type="number" min="0" max="1000000" name="sellEUR" placeholder="enter EUR">
-                        </td>
-                        <td><input type="submit" id="EURSubmit" value="SellEUR"></td>                         
-                    </form>
-                </tr>
+        <tr>
+            <form name="sellGBPForm" method="POST" action="../e-counter/SellOperations/sellOperationGBP.php">
 
-                <tr>
-                    <form name="sellCHFForm" method="POST" action="../e-counter/SellOperations/sellOperationCHF.php">
+                <td id="codeSale6"></td>
+                <td id="sellPrice6"></td><input type="hidden" name="sellPriceGBP">                     
+                <td id="amountWallet6"></td>
+                <td id="walletValue6"></td>
+                <td>
+                    <input type="number" min="0" max="1000" name="sellGBP" placeholder="GBP" class="form-control">
+                </td>
+                <td><button type="submit" id="GBPSubmit" value="SellGBP" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            </form>
+        </tr>
+    </tbody>
+    </table> 
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Twoje pieniądze w Polskich Złotych PLN</th>
+            <th scope="col">Całkowita wartość walut i pieniędzy w PLN </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active">
+            <td>
+                <?php
 
-                        <td id="codeSale3"></td>
-                        <td id="sellPrice3"></td><input type="hidden" name="sellPriceCHF">                     
-                        <td id="amountWallet3"></td>
-                        <td id="walletValue3"></td>
-                        <td>
-                            <input type="number" min="0" max="1000000" name="sellCHF" placeholder="enter CHF">
-                        </td>
-                        <td><input type="submit" id="CHFSubmit" value="SellCHF"></td>                         
-                    </form>
-                </tr>
-
-                <tr>
-                    <form name="sellRUBForm" method="POST" action="../e-counter/SellOperations/sellOperationRUB.php">
-
-                        <td id="codeSale4"></td>
-                        <td id="sellPrice4"></td><input type="hidden" name="sellPriceRUB">                     
-                        <td id="amountWallet4"></td>
-                        <td id="walletValue4"></td>
-                        <td>
-                            <input type="number" min="0" max="1000000" name="sellRUB" placeholder="enter RUB">
-                        </td>
-                        <td><input type="submit" id="RUBSubmit" value="SellRUB"></td>                         
-                    </form>
-                </tr>
-
-                <tr>
-                    <form name="sellCZKForm" method="POST" action="../e-counter/SellOperations/sellOperationCZK.php">
-
-                        <td id="codeSale5"></td>
-                        <td id="sellPrice5"></td><input type="hidden" name="sellPriceCZK">                     
-                        <td id="amountWallet5"></td>
-                        <td id="walletValue5"></td>
-                        <td>
-                            <input type="number" min="0" max="1000000" name="sellCZK" placeholder="enter CZK">
-                        </td>
-                        <td><input type="submit" id="CZKSubmit" value="SellCZK"></td>                         
-                    </form>
-                </tr>
-
-                <tr>
-                    <form name="sellGBPForm" method="POST" action="../e-counter/SellOperations/sellOperationGBP.php">
-
-                        <td id="codeSale6"></td>
-                        <td id="sellPrice6"></td><input type="hidden" name="sellPriceGBP">                     
-                        <td id="amountWallet6"></td>
-                        <td id="walletValue6"></td>
-                        <td>
-                            <input type="number" min="0" max="1000000" name="sellGBP" placeholder="enter GBP">
-                        </td>
-                        <td><input type="submit" id="GBPSubmit" value="SellGBP"></td>                         
-                    </form>
-                </tr>
-
-            </table>
-
-            </div>
-        <!--ENDOF SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING SELLING -->
-        </div>
-
-        <div style="clear:both"></div>  <!-- clearing atribute float:left -->
-
-        <div class="available_money">
-            <?php
-            if(isset($_SESSION['login']))
-            {
-            $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-            $row = mysqli_fetch_row($result);
-            $walletPLN = $row[12];
-
-                echo "Wallet PLN: ".$walletPLN. "<br>";
-               echo "Total PLN: "?><div id="totalPLN"></div> <?php
-            }
-            else echo "Log in to check your available money.";
-            ?>
-            
-        </div>
+                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
+                    $row = mysqli_fetch_row($result);
+                    $walletPLN = $row[12];
+                    echo $walletPLN;
+                ?>
+            </td>
+            <td id="totalPLN"></td>
+            </tr>
+            </tbody>
+    </table> 
 
 
     <div style="clear:both"></div>  <!-- clearing atribute float:left -->

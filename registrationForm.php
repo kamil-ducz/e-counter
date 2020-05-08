@@ -11,9 +11,22 @@
 </head>
 <body>
 		<div class="container">
-		<div class="navbar">
-				<h3><a href="index.php"><span class="">Internetowy System Wymiany Walut</span></a></h>
-			</div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="btn btn-primary" href="index.php">Internetowy System Wymiany Walut</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarColor03">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">O projekcie <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">O autorze</a>
+                                </li>
+                            </ul>
+                        </div>
+            </nav>
 
 		<form action="proceedRegistrationData.php" method="post" oninput='up2.setCustomValidity(password.value != password2.value ? "Passwords do not match." : "")'>
 			<h4>Twoje dane</h>

@@ -1,3 +1,10 @@
+$('#inputPassword, #inputPassword2').on('keyup', function () {
+  if ($('#inputPassword').val() == $('#inputPassword2').val()) {
+    //$('#confirmPasswordMessage').html('Matching').css('color', 'green');
+  } else 
+    alert("nie");//$('#confirmPasswordMessage').html('Not Matching').css('color', 'red');
+});
+
 setInterval(function(){ getAndCalcData(); }, 30000);
               // plan for action:
               // fix asynchronic passing to PHP
@@ -102,7 +109,7 @@ function getAndCalcData()
               var res1 = json_data.publicationDate.split("T");
               var res2 = res1[1].split(".");	
               var result = res1[0] + " " + res2[0];		
-              $("#lastUpdate").text("Last update: " +  result + "(CET)");
+              $("#lastUpdate").text("Ostatnia aktualizacja walut: " +  result + " - (Centralny Czas Europejski)");
               for (i = 0; i < json_data.items.length; i++)			// fill the left table - purchasePrice column
               {
                   $("#code" + (i + 1)).text(json_data.items[i].code );
