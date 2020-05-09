@@ -56,6 +56,13 @@ session_start();
             <a href="index.php" class="icon-power">Powrót</a> 
             <button type="submit" class="btn btn-primary">Zapisz zmiany</button> 
          </form>
+         <?php
+        if(isset($_SESSION['error']))
+        {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+    ?>
    </div>
 </body>
 </html>

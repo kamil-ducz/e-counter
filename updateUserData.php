@@ -17,12 +17,12 @@
 	$result = $db ->updateUser($_SESSION['login'], $_SESSION['password2'], $_SESSION['name'], $_SESSION['surname']);
 	if (true == $result)
 	{
-		$_SESSION['error'] = "Zapisano nowe dane";
+		$_SESSION['error'] = '<span style="color:yellow"><br />Zapisano nowe dane, dziękujemy!';
 		header("Location:userSettings.php");
 	}
 	else
 	{
-		$_SESSION['error'] = "Nie można było zaktualizować danych. Skontaktuj się z administratorem aplikacji.";
+		$_SESSION['error'] = '<span style="color:red"><br />Nie można było zaktualizować danych. Skontaktuj się z administratorem aplikacji.';
 		header("Location:userSettings.php");
 
 	}
