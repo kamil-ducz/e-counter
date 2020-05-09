@@ -108,7 +108,7 @@ class Database
 
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
 
-		$query=sprintf("SELECT * FROM Users WHERE login='%s'", 
+		$query=sprintf("SELECT * FROM users WHERE login='%s'", 
 		mysqli_real_escape_string($connection, $login));
 		$result=mysqli_query($this -> connection, $query);
 		$row = $result -> fetch_assoc();//fetch row from query and store in array
