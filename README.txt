@@ -3,3 +3,5 @@
 3. Edit connect.php file and enter proper credentials for MySQL db
 4. Start Apache and MySQL services
 5. Open URL: "localhost\{e-counter}" in browser
+
+external link to the system: http://ecounter.priv.pl
