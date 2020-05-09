@@ -28,7 +28,7 @@
                         </div>
             </nav>
 
-		<form action="proceedRegistrationData.php" method="post" oninput='up2.setCustomValidity(password.value != password2.value ? "Passwords do not match." : "")'>
+		<form action="proceedRegistrationData.php" method="post">
 			<h4>Twoje dane</h>
 			<div class="form-group">
 				<label for="inputEmail">E-mail</label>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="form-group">
 				<label for="inputPassword2">Powtórz hasło</label>
-				<input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Powtórz hasło" name="password2" id="inputPassword2" minlength="4"  maxlength="20" required />
+				<input type="password" class="form-control" id="inputPassword2" aria-describedby="passwordHelp" placeholder="Powtórz hasło" name="password2" id="inputPassword2" oninput="checkPassword(this)" minlength="4"  maxlength="20" required />
 			</div>
 			<div class="form-group">
 			<label for="inputFirstName">Imię</label>

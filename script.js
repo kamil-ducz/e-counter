@@ -1,17 +1,12 @@
-$('#inputPassword, #inputPassword2').on('keyup', function () {
-  if ($('#inputPassword').val() == $('#inputPassword2').val()) {
-    //$('#confirmPasswordMessage').html('Matching').css('color', 'green');
-  } else 
-    alert("nie");//$('#confirmPasswordMessage').html('Not Matching').css('color', 'red');
-});
+function checkPassword(input) {
+  if (input.value != document.getElementById('inputPassword').value) {
+      input.setCustomValidity('Hasła muszą się zgadzać!');
+  } else {
+      input.setCustomValidity('');
+  }
+}
 
 setInterval(function(){ getAndCalcData(); }, 30000);
-              // plan for action:
-              // fix asynchronic passing to PHP
-              // PHP and read from log.txt 
-              // pass to js
-              // use in js to chart
-
 
 function getAndCalcData() 
 {
