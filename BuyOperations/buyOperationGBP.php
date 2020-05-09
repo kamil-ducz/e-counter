@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost";
-$user = "ecounter";
-$pass = "OSbG9sqoq%tu";
-$databaseName = "ecounter_usersdatabase";
+$user = "root";
+$pass = "";
+$databaseName = "usersdatabase";
 $tableName = "users";
 $con = mysqli_connect($host,$user,$pass, $databaseName);
 
