@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf8" />
 	<meta httpequiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
-	<title>Registration Form</title>
+	<title>Internetowy System Wymiany Walut</title>
 	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/fontello.css" type="text/css">
 	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>

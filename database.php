@@ -1,4 +1,5 @@
 <?php
+session_start();
 		
 class Database
 {
@@ -137,19 +138,24 @@ class Database
         return $row;
     }
 	
-	public function updateUser($pass, $name, $surname, $mail, $login ) { //settings change
+	public function updateUser($login, $pass, $name, $surname) { //settings change
 
-       $result = $this -> connect();
+	   $result = $this -> connect();
+	   $pass = password_hash($pass, PASSWORD_DEFAULT);
+
 		if (true == $result)
 		{		
-			$query = "UPDATE users SET password='$pass', name='$name', surname='$surname', mail='$mail' WHERE login='$login' "; 
+			$query = "UPDATE users SET password='$pass', name='$name', surname='$surname' WHERE login='$login' "; 
 			mysqli_select_db ($this -> connection, "usersdatabase");
 			$result = mysqli_query($this -> connection, $query) ;
 			
-			return $result;
+			return true;
 		}
-		
-		return false;
+		else
+		{
+			return false;			
+		}
+
     }
 	
 	function closeConnection()

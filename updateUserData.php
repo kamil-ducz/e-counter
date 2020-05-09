@@ -1,12 +1,3 @@
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-<meta charset="utf8" />
-<meta httpequiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
-<title>Personal Settings</title>
-</head>
-
-<body>
 <?php
 	session_start();
 	
@@ -18,25 +9,24 @@
 	
 	require_once('database.php');
 	
-	$db = new Database();	
-	
-	$_SESSION['login'] = $_POST['login'];
-	$_SESSION['password']  = $_POST['password'];
+	$_SESSION['password2']  = $_POST['password2'];
 	$_SESSION['name']  = $_POST['userName'];
 	$_SESSION['surname']  = $_POST['userSurname'];
-	$_SESSION['mail']  = $_POST['mail'];
-	
-	$result = $db ->updateUser($_SESSION['password'], $_SESSION['name'], $_SESSION['surname'], $_SESSION['mail'], $_SESSION['login']);
-	
+
+	$db = new Database();
+	$result = $db ->updateUser($_SESSION['login'], $_SESSION['password2'], $_SESSION['name'], $_SESSION['surname']);
 	if (true == $result)
 	{
-		$_SESSION['error'] = "User updated!";
+		$_SESSION['error'] = "Zapisano nowe dane";
+		header("Location:userSettings.php");
 	}
 	else
 	{
-		$_SESSION['error'] = "Can not update user settings!";
+		$_SESSION['error'] = "Nie można było zaktualizować danych. Skontaktuj się z administratorem aplikacji.";
+		header("Location:userSettings.php");
+
 	}
-	header("Location:index.php");
+	//header("Location:index.php");
 	
 	
 ?>
