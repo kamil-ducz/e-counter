@@ -43,7 +43,7 @@ session_start();
             </div>
             <div class="form-group">
                <label for="inputPassword2">Powtórz nowe hasło</label>
-               <input type="password" class="form-control" id="inputPassword2" placeholder="Powtórz hasło" name="password2" id="inputPassword2" minlength="4"  maxlength="20" />
+               <input type="password" class="form-control" id="inputPassword2" placeholder="Powtórz hasło" name="password2" id="inputPassword2" oninput="checkPassword(this)"  minlength="4"  maxlength="20" />
             </div>
             <div class="form-group">
             <label for="inputFirstName">Imię</label>
@@ -56,6 +56,13 @@ session_start();
             <a href="index.php" class="icon-power">Powrót</a> 
             <button type="submit" class="btn btn-primary">Zapisz zmiany</button> 
          </form>
+         <?php
+        if(isset($_SESSION['error']))
+        {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+    ?>
    </div>
 </body>
 </html>
