@@ -24,25 +24,25 @@
 	$db = new Database();
 	
 	$result = $db -> createDatabase();
-	
-	if (false == $result)
+	if($result == true)
 	{
-		$_SESSION['error'] = "Can not create database!";
-		header('Location: index.php');
-		exit;
-	}
-	
-	$result = $db -> loginCheck($login, $pass);
-	
-	if (true == $result)
-	{
-
+		echo "Poprawnie stworzono bazę lub tabele. Dziękujemy!";
 	}
 	else
 	{
-		$_SESSION['error'] = '<span style="color:red">Wrong login or password</span>';
-		header('Location: index.php');
-		exit;
+		echo "Nie można było stworzyć bazy lub tabeli w bazie. Skontaktuj się z administratorem.";
+	}
+
+	$result = $db -> loginCheck($login, $pass);
+	if($result == true)
+	{
+		header("Location: index.php");
+		//echo "Wprowadzono poprawny login. Dziękujemy!";
+	}
+	else
+	{
+		header('Location: login.php');
+		$_SESSION['error'] = '<span style="color:red"><br />Niestety wprowadzone dane logowania nie pasują. Prosimy spróbować ponownie lub skontaktować się z administratorem.</span>';
 	}
 	
 	$query = "SELECT * from users WHERE login = '$login'";
