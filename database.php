@@ -114,7 +114,7 @@ class Database
 		$row = $result -> fetch_assoc();//fetch row from query and store in array
 		
 		
-		if(password_verify($password, $row['password']) == true)
+		if(password_verify($password, $row['password']))
 		{
 			return true;
 		}

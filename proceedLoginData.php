@@ -34,10 +34,10 @@
 	}
 
 	$result = $db -> loginCheck($login, $pass);
-	if($result == true)
+	if($result)
 	{
 		header("Location: index.php");
-		unset($_SESSION['error']);	}
+	}
 	else
 	{
 		header('Location: login.php');
@@ -60,6 +60,4 @@
 	$_SESSION['walletGBP'] = $result['walletGBP'];
 	$_SESSION['walletPLN'] = $result['walletPLN'];
 	
-	
-	header('Location: index.php');
 ?>

@@ -51,7 +51,10 @@ session_start();
         {
             echo $_SESSION['error'];
             unset($_SESSION['error']);
+            session_unset();
+            session_destroy();
         }
+        
     ?>
 
 </div>
