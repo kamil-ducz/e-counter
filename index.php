@@ -54,6 +54,11 @@
                 </div>
             </nav>
 
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            </blockquote>
+
     <button type="button" class="btn btn-info">Kantor</button>
     <table class="table table-hover">
     <thead>
@@ -66,7 +71,8 @@
     </thead>
     <tbody>
         <tr class="table-active">
-            <form name="buyUSDForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationUSD.php">
+
+            <form name="buyUSDForm" method="POST" action="BuyOperations/buyOperationUSD.php">
                 <td id="code1"></td>
                 <td id="purchasePrice1"></td>                     
                 <td>
@@ -76,7 +82,7 @@
             </form>
         </tr>
         <tr>
-            <form name="buyEURForm" method="POST" action="../e-counter/BuyOperations/buyOperationEUR.php">
+            <form name="buyEURForm" method="POST" action="BuyOperations/buyOperationEUR.php">
 
                 <td id="code2"></td>
                 <td id="purchasePrice2"></td>                     
@@ -87,7 +93,7 @@
             </form>
         </tr>
         <tr>
-            <form name="buyCHFForm" method="POST" action="../e-counter/BuyOperations/buyOperationCHF.php">
+            <form name="buyCHFForm" method="POST" action="BuyOperations/buyOperationCHF.php">
 
                 <td id="code3"></td>
                 <td id="purchasePrice3"></td>                     
@@ -98,7 +104,7 @@
             </form>
         </tr>
         <tr>
-            <form name="buyRUBForm" method="POST" action="../e-counter/BuyOperations/buyOperationRUB.php">
+            <form name="buyRUBForm" method="POST" action="BuyOperations/buyOperationRUB.php">
 
                 <td id="code4"></td>
                 <td id="purchasePrice4"></td>                     
@@ -109,7 +115,7 @@
             </form>
         </tr>
         <tr>
-            <form name="buyCZKForm" method="POST" action="../e-counter/BuyOperations/buyOperationCZK.php">
+            <form name="buyCZKForm" method="POST" action="BuyOperations/buyOperationCZK.php">
 
                 <td id="code5"></td>
                 <td id="purchasePrice5"></td>                     
@@ -120,7 +126,7 @@
             </form>
         </tr>
         <tr>
-            <form name="buyGBPForm" method="POST" action="../e-counter/BuyOperations/buyOperationGBP.php">
+            <form name="buyGBPForm" method="POST" action="BuyOperations/buyOperationGBP.php">
 
                 <td id="code6"></td>
                 <td id="purchasePrice6"></td>                     
@@ -146,7 +152,7 @@
     </thead>
     <tbody>
         <tr>
-            <form name="sellUSDForm" method="POST" action="../e-counter-xampp/SellOperations/sellOperationUSD.php">
+            <form name="sellUSDForm" method="POST" action="SellOperations/sellOperationUSD.php">
             <td id="codeSale1"></td>
             <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
             <td id="amountWallet1"></td>
@@ -158,7 +164,7 @@
             </form>
         </tr>
         <tr>
-            <form name="sellEURForm" method="POST" action="../e-counter/SellOperations/sellOperationEUR.php">
+            <form name="sellEURForm" method="POST" action="SellOperations/sellOperationEUR.php">
 
                 <td id="codeSale2"></td>
                 <td id="sellPrice2"></td><input type="hidden" name="sellPriceEUR">                     
@@ -172,7 +178,7 @@
         </tr>
 
         <tr>
-            <form name="sellCHFForm" method="POST" action="../e-counter/SellOperations/sellOperationCHF.php">
+            <form name="sellCHFForm" method="POST" action="SellOperations/sellOperationCHF.php">
 
                 <td id="codeSale3"></td>
                 <td id="sellPrice3"></td><input type="hidden" name="sellPriceCHF">                     
@@ -186,7 +192,7 @@
         </tr>
 
         <tr>
-            <form name="sellRUBForm" method="POST" action="../e-counter/SellOperations/sellOperationRUB.php">
+            <form name="sellRUBForm" method="POST" action="SellOperations/sellOperationRUB.php">
 
                 <td id="codeSale4"></td>
                 <td id="sellPrice4"></td><input type="hidden" name="sellPriceRUB">                     
@@ -200,7 +206,7 @@
         </tr>
 
         <tr>
-            <form name="sellCZKForm" method="POST" action="../e-counter/SellOperations/sellOperationCZK.php">
+            <form name="sellCZKForm" method="POST" action="SellOperations/sellOperationCZK.php">
 
                 <td id="codeSale5"></td>
                 <td id="sellPrice5"></td><input type="hidden" name="sellPriceCZK">                     
@@ -214,7 +220,7 @@
         </tr>
 
         <tr>
-            <form name="sellGBPForm" method="POST" action="../e-counter/SellOperations/sellOperationGBP.php">
+            <form name="sellGBPForm" method="POST" action="SellOperations/sellOperationGBP.php">
 
                 <td id="codeSale6"></td>
                 <td id="sellPrice6"></td><input type="hidden" name="sellPriceGBP">                     
