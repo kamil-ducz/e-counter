@@ -33,7 +33,7 @@
 	if($result == true)
 	{
 		header("Location: index.php");
-		//echo "Wprowadzono poprawny login. Dziękujemy!";
+		unset($_SESSION['error']);	
 	}
 	else
 	{

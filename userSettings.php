@@ -1,7 +1,5 @@
 <?php
 session_start();
-unset($_SESSION['error']);
-
 ?>
 <!DOCTYPE HTML> 
 <html lang="pl">
@@ -40,12 +38,12 @@ unset($_SESSION['error']);
             </div>
             <div class="form-group">
                <label for="inputPassword">Nowe hasło</label>
-               <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" minlength="4"  maxlength="20" placeholder="Wprowadź nowe hasło" />
+               <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" minlength="4"  maxlength="20" placeholder="Wprowadź nowe hasło" required />
                <small id="passwordHelp" class="form-text text-muted">Twoje hasło jest zaszyfrowane i nigdy go nikomu nie udostępnimy.</small>
             </div>
             <div class="form-group">
                <label for="inputPassword2">Powtórz nowe hasło</label>
-               <input type="password" class="form-control" id="inputPassword2" placeholder="Powtórz hasło" name="password2" id="inputPassword2" oninput="checkPassword(this)"  minlength="4"  maxlength="20" />
+               <input type="password" class="form-control" id="inputPassword2" placeholder="Powtórz hasło" name="password2" id="inputPassword2" oninput="checkPassword(this)"  minlength="4" maxlength="20" required />
             </div>
             <div class="form-group">
             <label for="inputFirstName">Imię</label>
