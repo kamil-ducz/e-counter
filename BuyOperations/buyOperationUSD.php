@@ -49,5 +49,5 @@ echo json_encode($rowWalletPLN);
 echo "<br>Wallet USD: ";
 echo json_encode($rowWalletUSD);
 
-//header('Location: ../index.php');
+header('Location: ../index.php');
 ?>
