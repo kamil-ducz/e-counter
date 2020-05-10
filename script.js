@@ -105,18 +105,25 @@ function getAndCalcData()
               var res2 = res1[1].split(".");	
               var result = res1[0] + " " + res2[0];		
               $("#lastUpdate").text("Ostatnia aktualizacja walut: " +  result + " - (Centralny Czas Europejski)");
-              for (i = 0; i < json_data.items.length; i++)			// fill the left table - purchasePrice column
+              for (i = 0; i < json_data.items.length; i++)
               {
+                  if(i == 3 || i == 4)
+                  {
+                    json_data.items[i].purchasePrice /= 100;
+                  }
                   $("#code" + (i + 1)).text(json_data.items[i].code );
                   $("#unit" + (i + 1)).text(json_data.items[i].unit );
                   $("#sellPrice" + (i + 1)).text(parseFloat(json_data.items[i].purchasePrice).toFixed(2));
               }
-              for (i = 0; i < json_data.items.length; i++)		//fill the right table - sellPrice column
+              for (i = 0; i < json_data.items.length; i++)
               {
+                if(i == 3 || i==4)
+                {
+                  json_data.items[i].sellPrice /= 100;
+                }
                   $("#codeSale" + (i + 1)).text(json_data.items[i].code );
                   $("#purchasePrice" + (i + 1)).text(parseFloat(json_data.items[i].sellPrice).toFixed(2));
               }
-
 
               $('input[name=sellPriceUSD]').val(json_data.items[0].sellPrice);
               $('input[name=sellPriceEUR]').val(json_data.items[1].sellPrice);
@@ -131,29 +138,22 @@ function getAndCalcData()
               $('input[name=buyPriceCZK]').val(json_data.items[4].purchasePrice);
               $('input[name=buyPriceGBP]').val(json_data.items[5].purchasePrice);
               
-
-              
-              for(i = 0; i < json_data.items.length; i++)  //fill the right table - amount and value column
+              for(i = 0; i < json_data.items.length; i++)
               {
                   $("#amountWallet" + (i + 1)).text(db_data[i+6]);
                   $("#walletValue" + (i + 1)).text(parseFloat(db_data[i+6] * json_data.items[i].sellPrice).toFixed(2));
               }
 
               var totalPLN = 0;
-              console.log("totalPLN: " + totalPLN);
               var currentCurrencyValue = [];
-
-              for(i = 0; i < json_data.items.length; i++)  //sum all currecies amount value with walletPLN
+              for(i = 0; i < json_data.items.length; i++)
               {                
                   currentCurrencyValue[i] = db_data[i+6] * json_data.items[i].sellPrice;
-                  console.log("currentCurrencyValue[i]: " + currentCurrencyValue[i]);
                   totalPLN += currentCurrencyValue[i];
-                  console.log("totalPLN: " + totalPLN);
-          
               }
-              //totalPLN += data[12] * 1; //parseFloat
-              console.log("totalPLN: " + totalPLN);
-              $("#totalPLN").text(parseFloat(totalPLN.toFixed(2)));
+              $walletPLN = parseFloat(db_data[12]);
+              totalPLN = totalPLN + $walletPLN;
+              $("#totalPLN").text(parseFloat(totalPLN).toFixed(2));
 
               //CHART STARTING
               chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
@@ -162,28 +162,12 @@ function getAndCalcData()
               
           })
         
-        //$.getJSON not ok condition:
         .fail(function() {
-            alert( "Can't connect to the server. Check your internet connection or firewalls that may block Future Processing webpage; server_content.php may be broken." );
+            alert( "Serwer niedostępny. Sprawdź połączenie sieciowe. Zapory sieciowe mogą blokować serwer firmy Future Processing. Plik server_content.php może być nieprawidłowy, wówczas skontakuj się z administratorem aplikacji.");
         });
   
   } 
-});
-
-
+  });
 };
-
-
-
-function unhidePassword() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-
-
 
 getAndCalcData();
