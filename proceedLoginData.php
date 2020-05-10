@@ -1,15 +1,20 @@
 <?php
 	session_start();
 	
-	require_once("database.php");
 	
+	//require_once("database.php");
+	
+	//when user is logged it's impossible to register new user
 	if(isset($_SESSION['login']))	
 	{
 		header("Location:index.php");
 		exit();
 	}
 
-	$login = $_POST['login'];
+	require_once('database.php');
+	
+	
+	$login = $_POST['login'];			//login and password sent from form 
 	$pass = $_POST['password'];
 	
 	//MYSQL INJECTION PROTECT
@@ -19,7 +24,6 @@
 	$db = new Database();
 	
 	$result = $db -> createDatabase();
-
 	if($result == true)
 	{
 		echo "Poprawnie stworzono bazę lub tabele. Dziękujemy!";
@@ -30,10 +34,9 @@
 	}
 
 	$result = $db -> loginCheck($login, $pass);
-	if($result == true)
+	if($result)
 	{
 		header("Location: index.php");
-		unset($_SESSION['error']);	
 	}
 	else
 	{
@@ -57,6 +60,4 @@
 	$_SESSION['walletGBP'] = $result['walletGBP'];
 	$_SESSION['walletPLN'] = $result['walletPLN'];
 	
-	
-	header('Location: index.php');
 ?>
