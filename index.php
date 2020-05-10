@@ -71,10 +71,9 @@
     </thead>
     <tbody>
         <tr class="table-active">
-
-            <form name="buyUSDForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationUSD.php">
+            <form name="buyUSDForm" method="POST" action="BuyOperations/buyOperationUSD.php">
                 <td id="code1"></td>
-                <td id="purchasePrice1"></td>                     
+                <td id="purchasePrice1"></td><input type="hidden" name="buyPriceUSD">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyUSD" placeholder="USD" class="form-control">
                 </td>
@@ -82,10 +81,10 @@
             </form>
         </tr>
         <tr>
-            <form name="buyEURForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationEUR.php">
+            <form name="buyEURForm" method="POST" action="BuyOperations/buyOperationEUR.php">
 
                 <td id="code2"></td>
-                <td id="purchasePrice2"></td>                     
+                <td id="purchasePrice2"></td><input type="hidden" name="buyPriceEUR">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyEUR" placeholder="EUR"  class="form-control">
                 </td>
@@ -96,7 +95,7 @@
             <form name="buyCHFForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationCHF.php">
 
                 <td id="code3"></td>
-                <td id="purchasePrice3"></td>                     
+                <td id="purchasePrice3"></td><input type="hidden" name="buyPriceCHF">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyCHF" placeholder="CHF" class="form-control">
                 </td>
@@ -107,7 +106,7 @@
             <form name="buyRUBForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationRUB.php">
 
                 <td id="code4"></td>
-                <td id="purchasePrice4"></td>                     
+                <td id="purchasePrice4"></td><input type="hidden" name="buyPriceRUB">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyRUB" placeholder="RUB" class="form-control">
                 </td>
@@ -118,7 +117,7 @@
             <form name="buyCZKForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationCZK.php">
 
                 <td id="code5"></td>
-                <td id="purchasePrice5"></td>                     
+                <td id="purchasePrice5"></td><input type="hidden" name="buyPriceCZK">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyCZK" placeholder="CZK" class="form-control">
                 </td>
@@ -129,7 +128,7 @@
             <form name="buyGBPForm" method="POST" action="../e-counter-xampp/BuyOperations/buyOperationGBP.php">
 
                 <td id="code6"></td>
-                <td id="purchasePrice6"></td>                     
+                <td id="purchasePrice6"></td><input type="hidden" name="buyPriceGBP">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyGBP" placeholder="GBP" class="form-control">
                 </td>

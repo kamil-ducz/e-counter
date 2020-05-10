@@ -1,19 +1,19 @@
 <?php
 
 $host = "localhost";
-$user = "root";
-$pass = "";
-$databaseName = "usersdatabase";
+$db_user = "root";
+$db_password = "";
+$db_name = "usersdatabase";
 $tableName = "users";
-$con = mysqli_connect($host,$user,$pass, $databaseName);
+$connection = mysqli_connect($host,$db_user,$db_password, $db_name);
 
 session_start();
 
 $login = $_SESSION['login'];
 
 
-$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
-$queryWalletCHF = mysqli_query($con, "SELECT walletCHF FROM $tableName WHERE login='$login'");          //query
+$queryWalletPLN = mysqli_query($connection, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
+$queryWalletCHF = mysqli_query($connection, "SELECT walletCHF FROM $tableName WHERE login='$login'");          //query
 $rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
 $rowWalletCHF = mysqli_fetch_row($queryWalletCHF);
 $buyCHF = $_POST['buyCHF'];
@@ -24,8 +24,8 @@ $valuePLN = $buyCHF * $buyPriceCHF;
 $valuePLN = floatval($valuePLN);
 
 //actual calculation on database
-$queryAddPLN = mysqli_query($con, "UPDATE users SET walletPLN = walletPLN - $valuePLN WHERE login='$login'");
-$queryAddCHF = mysqli_query($con, "UPDATE users SET walletCHF = walletCHF + $buyCHF WHERE login='$login'");
+$queryAddPLN = mysqli_query($connection, "UPDATE users SET walletPLN = walletPLN - $valuePLN WHERE login='$login'");
+$queryAddCHF = mysqli_query($connection, "UPDATE users SET walletCHF = walletCHF + $buyCHF WHERE login='$login'");
 
 header('Location: ../index.php');
 ?>
