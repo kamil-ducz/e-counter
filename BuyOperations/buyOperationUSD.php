@@ -1,19 +1,18 @@
 <?php
 
 $host = "localhost";
-$user = "root";
-$pass = "";
-$databaseName = "usersdatabase";
+$db_user = "ecounter";
+$db_password = "OSbG9sqoq%tu";
+$db_name = "ecounter_usersdatabase";
 $tableName = "users";
-$con = mysqli_connect($host,$user,$pass, $databaseName);
+$connection = mysqli_connect($host,$db_user,$db_password, $db_name);
 
 session_start();
 
 $login = $_SESSION['login'];
 
-
-$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
-$queryWalletUSD = mysqli_query($con, "SELECT walletUSD FROM $tableName WHERE login='$login'");          //query
+$queryWalletPLN = mysqli_query($connection, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
+$queryWalletUSD = mysqli_query($connection, "SELECT walletUSD FROM $tableName WHERE login='$login'");          //query
 $rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
 $rowWalletUSD = mysqli_fetch_row($queryWalletUSD);
 $buyUSD = $_POST['buyUSD'];
@@ -26,7 +25,7 @@ print_r($buyUSD);
 echo "<br>";
 print_r($buyPriceUSD);
 echo "<br>";
-echo "PLN value = " + floatval($valuePLN); 
+echo "PLN value = ".$valuePLN; 
 
 //DEBUG check before update
 echo "<br>Before update: ";
@@ -36,12 +35,12 @@ echo "<br>Wallet USD: ";
 echo json_encode($rowWalletUSD);
 
 //actual calculation on database
-$queryAddPLN = mysqli_query($con, "UPDATE users SET walletPLN = walletPLN - $valuePLN WHERE login='$login'");
-$queryAddUSD = mysqli_query($con, "UPDATE users SET walletUSD = walletUSD + $buyUSD WHERE login='$login'");
+$queryAddPLN = mysqli_query($connection, "UPDATE users SET walletPLN = walletPLN - $valuePLN WHERE login='$login'");
+$queryAddUSD = mysqli_query($connection, "UPDATE users SET walletUSD = walletUSD + $buyUSD WHERE login='$login'");
 
 //DEBUGcheck after update
-$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
-$queryWalletUSD = mysqli_query($con, "SELECT walletUSD FROM $tableName WHERE login='$login'");          //query
+$queryWalletPLN = mysqli_query($connection, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
+$queryWalletUSD = mysqli_query($connection, "SELECT walletUSD FROM $tableName WHERE login='$login'");          //query
 $rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
 $rowWalletUSD = mysqli_fetch_row($queryWalletUSD);
 echo "<br>After update: ";
