@@ -77,7 +77,15 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyUSD" placeholder="USD" class="form-control">
                 </td>
-                <td><button type="submit" id="USDSubmit" value="BuyUSD" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="USDSubmit" value="BuyUSD" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <?php
+        if(isset($_SESSION['error']))
+        {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+        
+    ?>                         
             </form>
         </tr>
         <tr>
@@ -245,9 +253,9 @@
             <td>
                 <?php
 
-                    $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$logged'");
-                    $row = mysqli_fetch_row($result);
-                    $walletPLN = $row[12];
+                    $query = mysqli_query($link, "SELECT * FROM users WHERE login='$logged'");
+                    $queryRow = mysqli_fetch_row($query);
+                    $walletPLN = floatval($queryRow[12]);
                     echo $walletPLN;
                 ?>
             </td>

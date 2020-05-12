@@ -5,24 +5,27 @@ $user = "root";
 $pass = "";
 $databaseName = "usersdatabase";
 $tableName = "users";
-$con = mysqli_connect($host,$user,$pass, $databaseName);
+$connection = mysqli_connect($host,$user,$pass, $databaseName);
 
 session_start();
 
 $login = $_SESSION['login'];
+$query = mysqli_query($connection, "SELECT * FROM $tableName WHERE login='$login'");
+$queryRow = mysqli_fetch_row($query);
+$walletEUR = floatval($queryRow[7]);
+$sellEUR = floatval($_POST['sellEUR']);
+$sellPriceEUR = floatval($_POST['sellPriceEUR']);;
+$valuePLN = floatval($sellEUR * $sellPriceEUR);
 
-
-$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
-$queryWalletEUR = mysqli_query($con, "SELECT walletEUR FROM $tableName WHERE login='$login'");          //query
-$rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
-$rowWalletEUR = mysqli_fetch_row($queryWalletEUR);
-$sellEUR = $_POST['sellEUR'];
-$sellPriceEUR = $_POST['sellPriceEUR'];
-$valuePLN = $sellEUR * $sellPriceEUR;
-$valuePLN = $valuePLN;
-
-$queryAddPLN = mysqli_query($con, "UPDATE users SET walletPLN = walletPLN + $valuePLN WHERE login='$login'");
-$queryAddEUR = mysqli_query($con, "UPDATE users SET walletEUR = walletEUR - $sellEUR WHERE login='$login'");
+if($sellEUR > $walletEUR )
+{
+    $_SESSION['error'] = '<span style="color:red">Niestety, nie posiadasz aż tyle waluty.</span>';
+}
+else
+{
+    $queryAddPLN = mysqli_query($connection, "UPDATE users SET walletPLN = walletPLN + $valuePLN WHERE login='$login'");
+    $queryAddEUR = mysqli_query($connection, "UPDATE users SET walletEUR = walletEUR - $sellEUR WHERE login='$login'");
+}
 
 header('Location: ../index.php');
 ?>

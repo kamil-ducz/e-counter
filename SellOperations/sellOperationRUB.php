@@ -1,28 +1,31 @@
 <?php
 
 $host = "localhost";
-$user = "root";
-$pass = "";
-$databaseName = "usersdatabase";
+$db_user = "root";
+$db_password = "";
+$db_name = "usersdatabase";
 $tableName = "users";
-$con = mysqli_connect($host,$user,$pass, $databaseName);
+$connection = mysqli_connect($host,$db_user,$db_password, $db_name);
 
 session_start();
 
 $login = $_SESSION['login'];
+$query = mysqli_query($connection, "SELECT * FROM $tableName WHERE login='$login'");
+$queryRow = mysqli_fetch_row($query);
+$walletRUB = floatval($queryRow[9]);
+$sellRUB = floatval($_POST['sellRUB']);
+$sellPriceRUB = floatval($_POST['sellPriceRUB']);;
+$valuePLN = floatval($sellRUB * $sellPriceRUB);
 
-
-$queryWalletPLN = mysqli_query($con, "SELECT walletPLN FROM $tableName WHERE login='$login'");          //query
-$queryWalletRUB = mysqli_query($con, "SELECT walletRUB FROM $tableName WHERE login='$login'");          //query
-$rowWalletPLN = mysqli_fetch_row($queryWalletPLN);
-$rowWalletRUB = mysqli_fetch_row($queryWalletRUB);
-$sellRUB = $_POST['sellRUB'];
-$sellPriceRUB = $_POST['sellPriceRUB'];
-$valuePLN = $sellRUB * $sellPriceRUB;
-$valuePLN = $valuePLN;
-
-$queryAddPLN = mysqli_query($con, "UPDATE users SET walletPLN = walletPLN + $valuePLN WHERE login='$login'");
-$queryAddRUB = mysqli_query($con, "UPDATE users SET walletRUB = walletRUB - $sellRUB WHERE login='$login'");
+if($sellRUB > $walletRUB )
+{
+    $_SESSION['error'] = '<span style="color:red">Niestety, nie posiadasz aż tyle waluty.</span>';
+}
+else
+{
+    $queryAddPLN = mysqli_query($connection, "UPDATE users SET walletPLN = walletPLN + $valuePLN WHERE login='$login'");
+    $queryAddRUB = mysqli_query($connection, "UPDATE users SET walletRUB = walletRUB - $sellRUB WHERE login='$login'");
+}
 
 header('Location: ../index.php');
 ?>
