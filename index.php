@@ -55,8 +55,9 @@
             </nav>
 
             <blockquote class="blockquote text-center">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                <p class="mb-0">
+                    Witaj drogi użytkowniku! <br />Dziękujemy za zalogowanie do Internetowego Systemu Wymiany Walut. Używaj swojego portfela, kupuj, sprzedawaj, planuj. Poznaj jak działa kantor, sprawdzaj wykresy. Możesz też skorzystać z podpowiedzi, co warto a co nie warto kupić lub sprzedać. Miłego użytkowania.
+                </p>            
             </blockquote>
 
     <button type="button" class="btn btn-info">Kantor</button>
