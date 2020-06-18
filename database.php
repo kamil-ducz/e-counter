@@ -10,7 +10,7 @@ class Database
 		require_once('connect.php');	
 		if (false == isset($this -> connection))
 		{
-			$this -> connection = mysqli_connect($host, $db_user, $db_password);
+			$this -> connection = mysqli_connect($host, $db_user, $db_password, $db_name);
 			if (mysqli_connect_errno())
 			{
 				return false;
@@ -60,15 +60,20 @@ class Database
 	
 	function checkUser($login)
 	{
+
 		$query="SELECT * FROM users WHERE login='$login'";
 		$result = mysqli_query($this -> connection, $query);
-		
-		if (1 == mysqli_num_rows($result))
+
+		if (mysqli_num_rows($result) == 0)
 		{
-			return false;
+			return true;
 		}
-		
-		return true;
+		else
+		{
+			return false;			
+		}	
+
+
 	}
 	
 	function  registerUser ($name, $surname, $login, $password, $walletUSD, $walletEUR, $walletCHF, $walletRUB, $walletCZK, $walletGBP, $walletPLN)
@@ -86,7 +91,7 @@ class Database
 		 "'.$walletEUR.'", "'.$walletCHF.'", "'.$walletRUB.'", "'.$walletCZK.'", "'.$walletGBP.'",
 		  "'.$walletPLN.'" )';
 		$result = mysqli_query($this -> connection, $query);
-			echo $query;
+
 		if (true == $result)
 		{
 			return true;	

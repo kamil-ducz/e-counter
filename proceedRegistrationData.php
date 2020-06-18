@@ -26,7 +26,7 @@
 	
 	$db = new Database();
 	$result = $db -> createDatabase();
-	
+
 	if (false == $result)
 	{
 		$_SESSION['error'] = "Can not create database!";
@@ -35,22 +35,25 @@
 	}
 	
 	$result = $db -> checkUser($login);
-	
-	if (false == $result)
+
+	if ($result == true)
 	{
-		$_SESSION['error'] =  '<span style="color:red">Użytkownik z takim adresem e-mail już istnieje. Wprowadź inny adres e-mail.</span>';
-		//header('location:index.php');
-		//exit;			//exit to avoid redundant code 
-	}
-	
-	$result = $db -> registerUser($userName, $userSurname, $login, $pass, $WalletUSD, $WalletEUR, $WalletCHF, $WalletRUB, $WalletCZK, $WalletGBP, $WalletPLN);
-	if(false == $result)
-	{
-		$_SESSION['error'] =  "Unable to register.";
+
+		$result = $db -> registerUser($userName, $userSurname, $login, $pass, $WalletUSD, $WalletEUR, $WalletCHF, $WalletRUB, $WalletCZK, $WalletGBP, $WalletPLN);
+		if($result == true)
+		{
+			$_SESSION['error'] = '<span style="color:yellow">Użytkownik '.$login.' zarejestrowany. Dziękujemy!</span>';
+		}
+		else
+		{
+			$_SESSION['error'] = '<span style="color:red">Niestety rejestracja nie powiodła. Prosimy spróbować ponownie lub skontaktować się z administratorem aplikacji.</span>';
+
+		}
 	}
 	else
-	{	
-		$_SESSION['error'] = '<span style="color:yellow">Użytkownik '.$login.' zarejestrowany. Dziękujemy!</span>';
+	{
+		$_SESSION['error'] =  '<span style="color:red">Użytkownik z takim adresem e-mail już istnieje. Wprowadź inny adres e-mail.</span>';
 	}
 	header('location:index.php');
+	
 ?>

@@ -6,6 +6,10 @@
     }
 
     if(isset($_SESSION['login'])) $logged = $_SESSION['login']; //logged
+    if(isset($_SESSION['error']))
+    {
+        unset($_SESSION['error']);
+    }
     require_once('connect.php');
     $link = mysqli_connect($host, $db_user, $db_password);
     mysqli_select_db($link, "usersdatabase");
@@ -26,7 +30,6 @@
     <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
 <body>
@@ -55,8 +58,9 @@
             </nav>
 
             <blockquote class="blockquote text-center">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                <p class="mb-0">
+                    Witaj drogi użytkowniku! <br />Dziękujemy za zalogowanie do Internetowego Systemu Wymiany Walut. Używaj swojego portfela, kupuj, sprzedawaj, planuj. Poznaj jak działa kantor, sprawdzaj wykresy. Możesz też skorzystać z podpowiedzi, co warto a co nie warto kupić lub sprzedać. Miłego użytkowania.
+                </p>            
             </blockquote>
 
     <button type="button" class="btn btn-info">Kantor</button>
