@@ -270,11 +270,16 @@
 
 
     <div style="clear:both"></div>  <!-- clearing atribute float:left -->
-    <div id="chartContainer" style="width:100%; height:280px"></div>
-    <script>
-        var chart = new CanvasJS.Chart("chartContainer", { 
+    <div id="chartUSDContainer" style="width:100%; height:280px"></div><br />
+    <div id="chartEURContainer" style="width:100%; height:280px"></div><br />
+    <div id="chartCHFContainer" style="width:100%; height:280px"></div><br />
+    <div id="chartRUBContainer" style="width:100%; height:280px"></div><br />
+    <div id="chartCZKContainer" style="width:100%; height:280px"></div><br />
+    <div id="chartGBPContainer" style="width:100%; height:280px"></div><br />
+<script>
+        var chartUSD = new CanvasJS.Chart("chartUSDContainer", { 
                     title: {
-                    text: "Adding & Updating dataPoints"
+                    text: "Kurs USD"
                     },
                         data: [
                         {
@@ -284,7 +289,72 @@
                         }
                         ]
                         });
-        chart.render();	
+        chartUSD.render();
+        var chartEUR = new CanvasJS.Chart("chartEURContainer", { 
+                    title: {
+                    text: "Kurs EUR"
+                    },
+                        data: [
+                        {
+                            type: "spline",
+                            dataPoints: [
+                            ]
+                        }
+                        ]
+                        });
+        chartEUR.render();
+        var chartCHF = new CanvasJS.Chart("chartCHFContainer", { 
+                    title: {
+                    text: "Kurs CHF"
+                    },
+                        data: [
+                        {
+                            type: "spline",
+                            dataPoints: [
+                            ]
+                        }
+                        ]
+                        });
+        chartCHF.render();
+        var chartRUB = new CanvasJS.Chart("chartRUBContainer", { 
+                    title: {
+                    text: "Kurs RUB"
+                    },
+                        data: [
+                        {
+                            type: "spline",
+                            dataPoints: [
+                            ]
+                        }
+                        ]
+                        });
+        chartRUB.render();
+        var chartCZK = new CanvasJS.Chart("chartCZKContainer", { 
+                    title: {
+                    text: "Kurs CZK"
+                    },
+                        data: [
+                        {
+                            type: "spline",
+                            dataPoints: [
+                            ]
+                        }
+                        ]
+                        });
+        chartCZK.render();
+        var chartGBP = new CanvasJS.Chart("chartGBPContainer", { 
+                    title: {
+                    text: "Kurs GBP"
+                    },
+                        data: [
+                        {
+                            type: "spline",
+                            dataPoints: [
+                            ]
+                        }
+                        ]
+                        });
+        chartGBP.render();
     </script>
     <div style="clear:both"></div>  <!-- clearing atribute float:left -->
     <div id ="lastUpdate"> </div>

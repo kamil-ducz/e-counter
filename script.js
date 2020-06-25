@@ -156,8 +156,18 @@ function getAndCalcData()
               $("#totalPLN").text(parseFloat(totalPLN).toFixed(2));
 
               //CHART STARTING
-              chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
-              chart.render();
+              chartUSD.options.data[0].dataPoints.push({ y: json_data.items[0].sellPrice});
+              chartUSD.render();
+              chartEUR.options.data[0].dataPoints.push({ y: json_data.items[1].sellPrice});
+              chartEUR.render();
+              chartCHF.options.data[0].dataPoints.push({ y: json_data.items[2].sellPrice});
+              chartCHF.render();
+              chartRUB.options.data[0].dataPoints.push({ y: json_data.items[3].sellPrice});
+              chartRUB.render();
+              chartCZK.options.data[0].dataPoints.push({ y: json_data.items[4].sellPrice});
+              chartCZK.render();
+              chartGBP.options.data[0].dataPoints.push({ y: json_data.items[5].sellPrice});
+              chartGBP.render();
               //CHART ENDING
               
           })
