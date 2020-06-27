@@ -11,6 +11,10 @@
 	$db_password = "";
     $db_name = "usersdatabase";
     $connection = mysqli_connect($host, $db_user, $db_password, $db_name);
+
+
+
+
     $purchasePrice1 = $_POST["purchasePrice1"];
     $purchasePrice2 = $_POST["purchasePrice2"];
     $purchasePrice3 = $_POST["purchasePrice3"];
@@ -25,31 +29,47 @@
     $sellPrice5 = $_POST["sellPrice5"];
     $sellPrice6 = $_POST["sellPrice6"];
 
+    $query = 'SELECT * FROM currencies_history WHERE DATE_FORMAT(collection_date, "%Y-%m-%d ") = subdate(current_date, 1)';
+    $result=mysqli_query($connection, $query);
+    $array = mysqli_fetch_row($result);
+    echo json_encode($array);
+
+    $file=fopen("log.txt","a+") or exit("Unable to open file!");
+    if($row['averageUSD'] > $purchasePrice1)
+    {
+        fwrite($file,"wczorajsza cena USD jest wieksza niz obecna"."\n");
+    }
+    else
+    {
+        fwrite($file, "wczorajsza cena USD nie jest większa niż obecna"."\n");
+    }
+    fwrite($file,json_encode($array)."\n");
+    fclose($file);
+
+    
     $query = 'INSERT INTO currencies_history(buy_USD_course, buy_EUR_course, buy_CHF_course, buy_RUB_course, buy_CZK_course, buy_GBP_course, sell_USD_course, sell_EUR_course, sell_CHF_course, sell_RUB_course, sell_CZK_course, sell_GBP_course) 
     VALUES ("'.$purchasePrice1.'", "'.$purchasePrice2.'", "'.$purchasePrice3.'", "'.$purchasePrice4.'", "'.$purchasePrice5.'", "'.$purchasePrice6.'", "'.$sellPrice1.'", "'.$sellPrice2.'", "'.$sellPrice3.'", "'.$sellPrice4.'", "'.$sellPrice5.'", "'.$sellPrice6.'")'; 
 
     $result = mysqli_query($connection, $query);
-    //$result = mysqli_query($this -> connection, $query);
 
 
 
+    // $file=fopen("log.txt","a+") or exit("Unable to open file!");
 
-    $file=fopen("log.txt","a+") or exit("Unable to open file!");
+    // fwrite($file,$_POST["logTime"].",");
+    // fwrite($file,$_POST["purchasePrice1"].",");
+    // fwrite($file,$_POST["purchasePrice2"].",");
+    // fwrite($file,$_POST["purchasePrice3"].",");
+    // fwrite($file,$_POST["purchasePrice4"].",");
+    // fwrite($file,$_POST["purchasePrice5"].",");
+    // fwrite($file,$_POST["purchasePrice6"].",");
 
-    fwrite($file,$_POST["logTime"].",");
-    fwrite($file,$_POST["purchasePrice1"].",");
-    fwrite($file,$_POST["purchasePrice2"].",");
-    fwrite($file,$_POST["purchasePrice3"].",");
-    fwrite($file,$_POST["purchasePrice4"].",");
-    fwrite($file,$_POST["purchasePrice5"].",");
-    fwrite($file,$_POST["purchasePrice6"].",");
+    // fwrite($file,$_POST["sellPrice1"].",");
+    // fwrite($file,$_POST["sellPrice2"].",");
+    // fwrite($file,$_POST["sellPrice3"].",");
+    // fwrite($file,$_POST["sellPrice4"].",");
+    // fwrite($file,$_POST["sellPrice5"].",");
+    // fwrite($file,$_POST["sellPrice6"]."\n");
 
-    fwrite($file,$_POST["sellPrice1"].",");
-    fwrite($file,$_POST["sellPrice2"].",");
-    fwrite($file,$_POST["sellPrice3"].",");
-    fwrite($file,$_POST["sellPrice4"].",");
-    fwrite($file,$_POST["sellPrice5"].",");
-    fwrite($file,$_POST["sellPrice6"]."\n");
-
-    fclose($file);
+    // fclose($file);
 ?>
