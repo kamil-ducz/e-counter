@@ -68,7 +68,7 @@ function getAndCalcData()
                     {
                       $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-danger">Nie kupować</span>');
                     }
-                    else if(currency_data[i] == json_data.items[i].sellPrice)
+                    else if(currency_data[i] == json_data.items[i-6].sellPrice)
                     {
                       $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-info">Bez zmian</span>');
                     }
