@@ -71,10 +71,11 @@
         <th scope="col">Cena kupna</th>
         <th scope="col">Ile kupić?</th>
         <th scope="col">Kupuj</th>
+        <th scope="col">Podpowiedź</th>
         </tr>
     </thead>
     <tbody>
-        <tr class="table-active">
+        <tr>
             <form name="buyUSDForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationUSD.php">
                 <td id="code1"></td>
                 <td id="purchasePrice1"></td><input type="hidden" name="buyPriceUSD">                     
@@ -89,7 +90,8 @@
             unset($_SESSION['error']);
         }
         
-    ?>                         
+    ?>        
+                <td id="suggestionBuy1"></td>                 
             </form>
         </tr>
         <tr>
@@ -100,7 +102,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyEUR" placeholder="EUR"  class="form-control">
                 </td>
-                <td><button type="submit" id="EURSubmit" value="BuyEUR" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="EURSubmit" value="BuyEUR" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy2"></td>                         
             </form>
         </tr>
         <tr>
@@ -111,7 +114,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyCHF" placeholder="CHF" class="form-control">
                 </td>
-                <td><button type="submit" id="CHFSubmit" value="BuyCHF" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CHFSubmit" value="BuyCHF" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy3"></td>                         
             </form>
         </tr>
         <tr>
@@ -122,7 +126,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyRUB" placeholder="RUB" class="form-control">
                 </td>
-                <td><button type="submit" id="RUBSubmit" value="BuyRUB" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="RUBSubmit" value="BuyRUB" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy4"></td>                         
             </form>
         </tr>
         <tr>
@@ -133,7 +138,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyCZK" placeholder="CZK" class="form-control">
                 </td>
-                <td><button type="submit" id="CZKSubmit" value="BuyCZK" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CZKSubmit" value="BuyCZK" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy5"></td>                        
             </form>
         </tr>
         <tr>
@@ -144,7 +150,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyGBP" placeholder="GBP" class="form-control">
                 </td>
-                <td><button type="submit" id="GBPSubmit" value="BuyGBP" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="GBPSubmit" value="BuyGBP" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy6"></td>                         
             </form>
         </tr>
     </tbody>
@@ -159,6 +166,7 @@
         <th scope="col">Wartość waluty w PLN</th>
         <th scope="col">Ile sprzedać?</th>
         <th scope="col">Sprzedawaj</th>
+        <th scope="col">Podpowiedź</th>
         </tr>
     </thead>
     <tbody>
@@ -171,7 +179,8 @@
             <td>
             <input type="number" min="0" max="1000" name="sellUSD" placeholder="USD" class="form-control">
             </td>
-            <td><button type="submit" id="USDSubmit" value="SellUSD" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            <td><button type="submit" id="USDSubmit" value="SellUSD" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+            <td id="suggestionSell1"></td>                         
             </form>
         </tr>
         <tr>
@@ -184,7 +193,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellEUR" placeholder="EUR" class="form-control">
                 </td>
-                <td><button type="submit" id="EURSubmit" value="SellEUR" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="EURSubmit" value="SellEUR" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell2"></td>                           
             </form>
         </tr>
 
@@ -198,7 +208,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellCHF" placeholder="CHF" class="form-control">
                 </td>
-                <td><button type="submit" id="CHFSubmit" value="SellCHF" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CHFSubmit" value="SellCHF" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell3"></td>                           
             </form>
         </tr>
 
@@ -212,7 +223,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellRUB" placeholder="RUB" class="form-control">
                 </td>
-                <td><button type="submit" id="RUBSubmit" value="SellRUB" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="RUBSubmit" value="SellRUB" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell4"></td>                           
             </form>
         </tr>
 
@@ -226,7 +238,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellCZK" placeholder="CZK" class="form-control">
                 </td>
-                <td><button type="submit" id="CZKSubmit" value="SellCZK" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CZKSubmit" value="SellCZK" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell5"></td>                           
             </form>
         </tr>
 
@@ -240,7 +253,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellGBP" placeholder="GBP" class="form-control">
                 </td>
-                <td><button type="submit" id="GBPSubmit" value="SellGBP" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="GBPSubmit" value="SellGBP" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell6"></td>                           
             </form>
         </tr>
     </tbody>

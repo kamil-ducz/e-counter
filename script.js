@@ -41,8 +41,45 @@ function getAndCalcData()
                 dataType: "json",
                 success: function(currency_data)
                 {
-                  alert("haha: "+currency_data);
+                  console.log("yesterday avg courses array(buy and then sell): "+currency_data)
+                  console.log("yesterday USD average course: "+currency_data[0]);
+                  console.log("currency_data.length: "+currency_data.length);
+                  for (i = 0; i < currency_data.length/2; i++) //buy avg courses
+                  {
+                    console.log("currency_data["+i+"]: "+currency_data[i]+" json_data.items["+i+"].purchasePrice: "+json_data.items[i].purchasePrice);
+                    if(currency_data[i] < json_data.items[i].purchasePrice)
+                    {
+                      $(("#suggestionBuy")+(i+1)).html('<span class="badge badge-pill badge-danger">Nie kupować</span>');
+                    }
+                    else if(currency_data[i] == json_data.items[i].purchasePrice)
+                    {
+                      $(("#suggestionBuy")+(i+1)).html('<span class="badge badge-pill badge-info">Bez zmian</span>');
+                    }
+                    else
+                    {
+                      $(("#suggestionBuy")+(i+1)).html('<span class="badge badge-pill badge-success">Kupować</span>');
+                    }
+                  }
+
+                  for (i = currency_data.length/2; i < currency_data.length; i++) //sell avg courses
+                  {
+                    console.log("currency_data["+i+"]: "+currency_data[i]+" json_data.items["+(i-6)+"].sellPrice: "+json_data.items[i-6].sellPrice);
+                    if(currency_data[i] < json_data.items[i-6].sellPrice)
+                    {
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-danger">Nie kupować</span>');
+                    }
+                    else if(currency_data[i] == json_data.items[i].sellPrice)
+                    {
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-info">Bez zmian</span>');
+                    }
+                    else
+                    {
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-success">Kupować</span>');
+                    }
+                  }
                 }
+
+                
 
               });
             }
