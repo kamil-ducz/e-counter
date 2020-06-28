@@ -59,7 +59,7 @@
 
             <blockquote class="blockquote text-center">
                 <p class="mb-0">
-                        Witaj drogi użytkowniku! <br />Dziękujemy za zalogowanie do Internetowego Systemu Wymiany Walut. Używaj swojego portfela, kupuj, sprzedawaj, planuj. Poznaj jak działa kantor, sprawdzaj wykresy. Możesz też skorzystać z podpowiedzi, co warto a co nie warto kupić lub sprzedać. Miłego użytkowania.
+                    Witaj drogi użytkowniku! <br />Dziękujemy za zalogowanie do Internetowego Systemu Wymiany Walut. Używaj swojego portfela, kupuj, sprzedawaj, planuj. Poznaj jak działa kantor, sprawdzaj wykresy. Możesz też skorzystać z podpowiedzi, co warto a co nie warto kupić lub sprzedać. Miłego użytkowania.
                 </p>            
             </blockquote>
 
@@ -71,11 +71,12 @@
         <th scope="col">Cena kupna</th>
         <th scope="col">Ile kupić?</th>
         <th scope="col">Kupuj</th>
+        <th scope="col">Podpowiedź</th>
         </tr>
     </thead>
     <tbody>
-        <tr class="table-active">
-            <form name="buyUSDForm" method="POST" action="BuyOperations/buyOperationUSD.php">
+        <tr>
+            <form name="buyUSDForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationUSD.php">
                 <td id="code1"></td>
                 <td id="purchasePrice1"></td><input type="hidden" name="buyPriceUSD">                     
                 <td>
@@ -89,62 +90,68 @@
             unset($_SESSION['error']);
         }
         
-    ?>                         
+    ?>        
+                <td id="suggestionBuy1"></td>                 
             </form>
         </tr>
         <tr>
-            <form name="buyEURForm" method="POST" action="BuyOperations/buyOperationEUR.php">
+            <form name="buyEURForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationEUR.php">
 
                 <td id="code2"></td>
                 <td id="purchasePrice2"></td><input type="hidden" name="buyPriceEUR">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyEUR" placeholder="EUR"  class="form-control">
                 </td>
-                <td><button type="submit" id="EURSubmit" value="BuyEUR" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="EURSubmit" value="BuyEUR" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy2"></td>                         
             </form>
         </tr>
         <tr>
-            <form name="buyCHFForm" method="POST" action="BuyOperations/buyOperationCHF.php">
+            <form name="buyCHFForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationCHF.php">
 
                 <td id="code3"></td>
                 <td id="purchasePrice3"></td><input type="hidden" name="buyPriceCHF">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyCHF" placeholder="CHF" class="form-control">
                 </td>
-                <td><button type="submit" id="CHFSubmit" value="BuyCHF" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CHFSubmit" value="BuyCHF" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy3"></td>                         
             </form>
         </tr>
         <tr>
-            <form name="buyRUBForm" method="POST" action="BuyOperations/buyOperationRUB.php">
+            <form name="buyRUBForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationRUB.php">
 
                 <td id="code4"></td>
                 <td id="purchasePrice4"></td><input type="hidden" name="buyPriceRUB">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyRUB" placeholder="RUB" class="form-control">
                 </td>
-                <td><button type="submit" id="RUBSubmit" value="BuyRUB" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="RUBSubmit" value="BuyRUB" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy4"></td>                         
             </form>
         </tr>
         <tr>
-            <form name="buyCZKForm" method="POST" action="BuyOperations/buyOperationCZK.php">
+            <form name="buyCZKForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationCZK.php">
 
                 <td id="code5"></td>
                 <td id="purchasePrice5"></td><input type="hidden" name="buyPriceCZK">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyCZK" placeholder="CZK" class="form-control">
                 </td>
-                <td><button type="submit" id="CZKSubmit" value="BuyCZK" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CZKSubmit" value="BuyCZK" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy5"></td>                        
             </form>
         </tr>
         <tr>
-            <form name="buyGBPForm" method="POST" action="BuyOperations/buyOperationGBP.php">
+            <form name="buyGBPForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationGBP.php">
 
                 <td id="code6"></td>
                 <td id="purchasePrice6"></td><input type="hidden" name="buyPriceGBP">                     
                 <td>
                     <input type="number" min="0" max="1000" name="buyGBP" placeholder="GBP" class="form-control">
                 </td>
-                <td><button type="submit" id="GBPSubmit" value="BuyGBP" class="btn btn-primary">Kup wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="GBPSubmit" value="BuyGBP" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
+                <td id="suggestionBuy6"></td>                         
             </form>
         </tr>
     </tbody>
@@ -159,11 +166,12 @@
         <th scope="col">Wartość waluty w PLN</th>
         <th scope="col">Ile sprzedać?</th>
         <th scope="col">Sprzedawaj</th>
+        <th scope="col">Podpowiedź</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <form name="sellUSDForm" method="POST" action="SellOperations/sellOperationUSD.php">
+            <form name="sellUSDForm" method="POST" action="../e-counter-kamil-ducz-async/SellOperations/sellOperationUSD.php">
             <td id="codeSale1"></td>
             <td id="sellPrice1"></td><input type="hidden" name="sellPriceUSD">                     
             <td id="amountWallet1"></td>
@@ -171,11 +179,12 @@
             <td>
             <input type="number" min="0" max="1000" name="sellUSD" placeholder="USD" class="form-control">
             </td>
-            <td><button type="submit" id="USDSubmit" value="SellUSD" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+            <td><button type="submit" id="USDSubmit" value="SellUSD" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+            <td id="suggestionSell1"></td>                         
             </form>
         </tr>
         <tr>
-            <form name="sellEURForm" method="POST" action="SellOperations/sellOperationEUR.php">
+            <form name="sellEURForm" method="POST" action="../e-counter-kamil-ducz-async/SellOperations/sellOperationEUR.php">
 
                 <td id="codeSale2"></td>
                 <td id="sellPrice2"></td><input type="hidden" name="sellPriceEUR">                     
@@ -184,12 +193,13 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellEUR" placeholder="EUR" class="form-control">
                 </td>
-                <td><button type="submit" id="EURSubmit" value="SellEUR" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="EURSubmit" value="SellEUR" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell2"></td>                           
             </form>
         </tr>
 
         <tr>
-            <form name="sellCHFForm" method="POST" action="SellOperations/sellOperationCHF.php">
+            <form name="sellCHFForm" method="POST" action="../e-counter-kamil-ducz-async/SellOperations/sellOperationCHF.php">
 
                 <td id="codeSale3"></td>
                 <td id="sellPrice3"></td><input type="hidden" name="sellPriceCHF">                     
@@ -198,12 +208,13 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellCHF" placeholder="CHF" class="form-control">
                 </td>
-                <td><button type="submit" id="CHFSubmit" value="SellCHF" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CHFSubmit" value="SellCHF" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell3"></td>                           
             </form>
         </tr>
 
         <tr>
-            <form name="sellRUBForm" method="POST" action="SellOperations/sellOperationRUB.php">
+            <form name="sellRUBForm" method="POST" action="../e-counter-kamil-ducz-async/SellOperations/sellOperationRUB.php">
 
                 <td id="codeSale4"></td>
                 <td id="sellPrice4"></td><input type="hidden" name="sellPriceRUB">                     
@@ -212,12 +223,13 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellRUB" placeholder="RUB" class="form-control">
                 </td>
-                <td><button type="submit" id="RUBSubmit" value="SellRUB" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="RUBSubmit" value="SellRUB" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell4"></td>                           
             </form>
         </tr>
 
         <tr>
-            <form name="sellCZKForm" method="POST" action="SellOperations/sellOperationCZK.php">
+            <form name="sellCZKForm" method="POST" action="../e-counter-kamil-ducz-async/SellOperations/sellOperationCZK.php">
 
                 <td id="codeSale5"></td>
                 <td id="sellPrice5"></td><input type="hidden" name="sellPriceCZK">                     
@@ -226,12 +238,13 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellCZK" placeholder="CZK" class="form-control">
                 </td>
-                <td><button type="submit" id="CZKSubmit" value="SellCZK" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="CZKSubmit" value="SellCZK" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell5"></td>                           
             </form>
         </tr>
 
         <tr>
-            <form name="sellGBPForm" method="POST" action="SellOperations/sellOperationGBP.php">
+            <form name="sellGBPForm" method="POST" action="../e-counter-kamil-ducz-async/SellOperations/sellOperationGBP.php">
 
                 <td id="codeSale6"></td>
                 <td id="sellPrice6"></td><input type="hidden" name="sellPriceGBP">                     
@@ -240,7 +253,8 @@
                 <td>
                     <input type="number" min="0" max="1000" name="sellGBP" placeholder="GBP" class="form-control">
                 </td>
-                <td><button type="submit" id="GBPSubmit" value="SellGBP" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>                         
+                <td><button type="submit" id="GBPSubmit" value="SellGBP" class="btn btn-primary">Sprzedaj wprowadzoną ilość</button></td>
+                <td id="suggestionSell6"></td>                           
             </form>
         </tr>
     </tbody>
@@ -355,7 +369,17 @@
                         ]
                         });
         chartGBP.render();
+        
+
     </script>
+
+
+
+
+
+
+
+
     <div style="clear:both"></div>  <!-- clearing atribute float:left -->
     <div id ="lastUpdate"> </div>
 
