@@ -66,7 +66,7 @@ function getAndCalcData()
                     console.log("currency_data["+i+"]: "+currency_data[i]+" json_data.items["+(i-6)+"].sellPrice: "+json_data.items[i-6].sellPrice);
                     if(currency_data[i] < json_data.items[i-6].sellPrice)
                     {
-                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-danger">Nie kupować</span>');
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-success">Sprzedawać</span>');
                     }
                     else if(currency_data[i] == json_data.items[i-6].sellPrice)
                     {
@@ -74,7 +74,7 @@ function getAndCalcData()
                     }
                     else
                     {
-                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-success">Kupować</span>');
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-danger">Nie sprzedawać</span>');
                     }
                   }
                 }
