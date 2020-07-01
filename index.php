@@ -6,10 +6,10 @@
     }
 
     if(isset($_SESSION['login'])) $logged = $_SESSION['login']; //logged
-    if(isset($_SESSION['error']))
-    {
-        unset($_SESSION['error']);
-    }
+    // if(isset($_SESSION['error']))
+    // {
+    //     unset($_SESSION['error']);
+    // }
     require_once('connect.php');
     $link = mysqli_connect($host, $db_user, $db_password);
     mysqli_select_db($link, "usersdatabase");
@@ -74,6 +74,14 @@
         <th scope="col">Podpowiedź</th>
         </tr>
     </thead>
+    <?php
+    if(isset($_SESSION['error']))
+        {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+        
+    ?>
     <tbody>
         <tr>
             <form name="buyUSDForm" method="POST" action="../e-counter-kamil-ducz-async/BuyOperations/buyOperationUSD.php">
@@ -82,15 +90,7 @@
                 <td>
                     <input type="number" min="0" max="1000" name="buyUSD" placeholder="USD" class="form-control">
                 </td>
-                <td><button type="submit" id="USDSubmit" value="BuyUSD" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
-                <?php
-        if(isset($_SESSION['error']))
-        {
-            echo $_SESSION['error'];
-            unset($_SESSION['error']);
-        }
-        
-    ?>        
+                <td><button type="submit" id="USDSubmit" value="BuyUSD" class="btn btn-primary">Kup wprowadzoną ilość</button></td>        
                 <td id="suggestionBuy1"></td>                 
             </form>
         </tr>
