@@ -12,6 +12,7 @@ session_start();
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+    <script language="javascript" type="text/javascript" src="script.js?newversion"></script>
 </head>
 <body>
 <div class="container">
@@ -41,6 +42,7 @@ session_start();
             <label for="inputPassword">Hasło</label>
             <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Wprowadź hasło" name="password" />
             <small id="passwordHelp" class="form-text text-muted">Twoje hasło jest zaszyfrowane i nigdy go nikomu nie udostępnimy.</small>
+            <input type="checkbox" onclick="unhidePassword()">Wyświetl hasło<br />
         </div>
         <button type="submit" class="btn btn-primary" value="Login">Zaloguj</button>
     </form>
@@ -50,8 +52,9 @@ session_start();
         if(isset($_SESSION['error']))
         {
             echo $_SESSION['error'];
-
+            $_SESSION['error'] = "";
         }
+        
     ?>
 
 </div>

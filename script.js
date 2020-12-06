@@ -6,6 +6,15 @@ function checkPassword(input) {
   }
 }
 
+function unhidePassword() {
+  var x = document.getElementById("inputPassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
 setInterval(function(){ getAndCalcData(); }, 30000);
 
 function getAndCalcData() 
@@ -66,7 +75,7 @@ function getAndCalcData()
                     console.log("currency_data["+i+"]: "+currency_data[i]+" json_data.items["+(i-6)+"].sellPrice: "+json_data.items[i-6].sellPrice);
                     if(currency_data[i] < json_data.items[i-6].sellPrice)
                     {
-                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-success">Sprzedawać</span>');
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-danger">Nie kupować</span>');
                     }
                     else if(currency_data[i] == json_data.items[i-6].sellPrice)
                     {
@@ -74,7 +83,7 @@ function getAndCalcData()
                     }
                     else
                     {
-                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-danger">Nie sprzedawać</span>');
+                      $(("#suggestionSell")+(i-5)).html('<span class="badge badge-pill badge-success">Kupować</span>');
                     }
                   }
                 }
