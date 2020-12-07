@@ -268,7 +268,7 @@
 
                     $query = mysqli_query($link, "SELECT * FROM users WHERE login='$logged'");
                     $queryRow = mysqli_fetch_row($query);
-                    $walletPLN = floatval($queryRow[12]);
+                    $walletPLN = number_format($queryRow[12], 2, '.', '');
                     echo $walletPLN;
                 ?>
             </td>
