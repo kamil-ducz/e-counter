@@ -6,10 +6,10 @@
     }
 
     if(isset($_SESSION['login'])) $logged = $_SESSION['login']; //logged
-    if(isset($_SESSION['error']))
-    {
-        unset($_SESSION['error']);
-    }
+    // if(isset($_SESSION['error']))
+    // {
+    //     unset($_SESSION['error']);
+    // }
     require_once('connect.php');
     $link = mysqli_connect($host, $db_user, $db_password);
     mysqli_select_db($link, "ecounter_usersdatabase");
@@ -42,7 +42,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor03">
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">O projekcie <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">O autorze</a>
+                        </li>
                     </ul>
                 </div>
                 <div>
@@ -69,6 +74,14 @@
         <th scope="col">Podpowiedź</th>
         </tr>
     </thead>
+    <?php
+    if(isset($_SESSION['error']))
+        {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+        
+    ?>
     <tbody>
         <tr>
             <form name="buyUSDForm" method="POST" action="BuyOperations/buyOperationUSD.php">
@@ -79,11 +92,7 @@
                 </td>
                 <td><button type="submit" id="USDSubmit" value="BuyUSD" class="btn btn-primary">Kup wprowadzoną ilość</button></td>
                 <?php
-        if(isset($_SESSION['error']))
-        {
-            echo $_SESSION['error'];
-            unset($_SESSION['error']);
-        }
+
         
     ?>        
                 <td id="suggestionBuy1"></td>                 
