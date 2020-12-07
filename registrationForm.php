@@ -32,7 +32,7 @@
 			<h4>Twoje dane</h>
 			<div class="form-group">
 				<label for="inputEmail">E-mail</label>
-				<input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Wprowadź e-mail" name="login" minlength="3"  maxlength="40"  required />
+				<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Wprowadź e-mail" name="login" minlength="3"  maxlength="40"  required />
 				<small id="emailHelp" class="form-text text-muted">Nigdy nie udostępnimy Twojego adresu e-mail.</small>
 			</div>
 			<div class="form-group">
